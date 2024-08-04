@@ -1,0 +1,5 @@
+.vscode
+*.obj
+*.py
+
+build
