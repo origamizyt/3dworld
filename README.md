@@ -6,6 +6,7 @@
 
 相比 v1 版本，v2 版本修改了以下内容：
 
+- 增加了注释。
 - 增加了命名空间，Models 位于 `c3w` 命名空间下，Controllers 位于 `c3w::controllers` 命名空间下，Views 位于 `c3w::views` 命名空间下。
 - 为 `Point<N>` 增加了 `Vector<T, N>` 基类，并实现了加减、数乘、内积等操作。
 - 为 `Element<N, S>` 增加了平移、缩放等操作。
@@ -16,6 +17,17 @@
 - 增加了导入 / 导出器的注册机制，见 `StorageFactory`。
 - 增加了 `ControllerBase` 抽象基类。
 - 优化了 Views 的设计。
+
+## Compile
+
+编译所有子目录下的 cpp 文件。由于我也不会 Makefile，所以就用 Python 了：
+```py
+import glob, os
+
+cpp_list = glob.glob("**/*.cpp", recursive=True)
+
+os.system("g++ -std=c++11 %s -o main" % ' '.join(cpp_files))
+```
 
 ## Design
 
