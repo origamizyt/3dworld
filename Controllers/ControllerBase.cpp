@@ -12,7 +12,7 @@
 #include "../Models/Core/Model.hpp"
 #include "../Models/Core/Line.hpp"
 #include "../Models/Core/Face.hpp"
-#include "../Models/Container/DynamicSet.hpp"
+#include "../Models/Containers/DynamicSet.hpp"
 #include "../Models/Storage/ImporterBase.hpp"
 #include "../Models/Storage/ExporterBase.hpp"
 #include "../Models/Storage/StorageFactory.hpp"
@@ -337,6 +337,9 @@ ControllerBase::Result ControllerBase::LoadModel(string path) {
     }
     catch (FileFormatException) {
         return Result::FILE_FORMAT_ERROR;
+    }
+    catch (IndexOverflowException) {
+        return Result::INDEX_OVERFLOW;
     }
     m_LineStatus.assign(m_Model.Lines.Count(), Status::UNTOUCHED);
     m_FaceStatus.assign(m_Model.Faces.Count(), Status::UNTOUCHED);

@@ -67,6 +67,12 @@ void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
                 if (lineStream.bad()) {
                     throw FileFormatException();
                 }
+                if (
+                    (p1 == 0 || p1 > points.size()) ||
+                    (p2 == 0 || p2 > points.size())
+                ) {
+                    throw IndexOverflowException();
+                }
                 model.Lines.Add(Line<3> { points[p1-1], points[p2-1] });
                 break;
             }
@@ -77,6 +83,13 @@ void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
                 lineStream >> p1 >> p2 >> p3;
                 if (lineStream.bad()) {
                     throw FileFormatException();
+                }
+                if (
+                    (p1 == 0 || p1 > points.size()) ||
+                    (p2 == 0 || p2 > points.size()) ||
+                    (p3 == 0 || p3 > points.size())
+                ) {
+                    throw IndexOverflowException();
                 }
                 model.Faces.Add(
                     Face<3> { points[p1-1], points[p2-1], points[p3-1] }

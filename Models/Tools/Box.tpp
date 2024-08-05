@@ -10,7 +10,7 @@
 #include <limits>
 #include "Box.hpp"
 #include "../Core/Point.hpp"
-#include "../Container/DynamicSet.hpp"
+#include "../Containers/DynamicSet.hpp"
 using namespace std;
 using namespace c3w;
 

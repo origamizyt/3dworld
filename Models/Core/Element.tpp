@@ -11,9 +11,9 @@
 #include "Element.hpp"
 #include "Point.hpp"
 #include "Vector.hpp"
-#include "../Container/FixedSet.hpp"
+#include "../Containers/FixedSet.hpp"
 using namespace std;
-using namespace c3w::container;
+using namespace c3w::containers;
 
 namespace c3w {
 

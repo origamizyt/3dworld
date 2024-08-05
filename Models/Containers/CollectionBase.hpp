@@ -11,7 +11,7 @@
 #include "../Tools/Representable.hpp"
 using namespace std;
 
-namespace c3w::container { 
+namespace c3w::containers { 
 
 /*************************************************************************
 【类名】 CollectionBase

@@ -13,7 +13,7 @@
 #include "../Models/Core/Line.hpp"
 #include "../Models/Core/Face.hpp"
 #include "../Models/Core/Point.hpp"
-#include "../Models/Container/DynamicSet.hpp"
+#include "../Models/Containers/DynamicSet.hpp"
 using namespace std;
 
 namespace c3w::controllers {

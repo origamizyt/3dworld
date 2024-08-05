@@ -9,11 +9,11 @@
 #include "Face.hpp"
 #include "Line.hpp"
 #include "Point.hpp"
-#include "../Container/DynamicSet.hpp"
+#include "../Containers/DynamicSet.hpp"
 #include "../Tools/Box.hpp"
 #include "Model.hpp"
 using namespace std;
-using namespace c3w::container;
+using namespace c3w::containers;
 
 namespace c3w {
 
