@@ -104,7 +104,7 @@ class ConsoleViewBase: public ViewBase {
         size_t Select(string prompt, const vector<string>& choices) const;
 
         /**********************************************************************
-        【类名】 Palette
+        【类名】 Result
         【功能】 一个枚举，用于命令的返回值。
         【接口说明】 枚举，用于命令的返回值。
         【开发者及日期】 赵一彤 2024/7/24
@@ -125,9 +125,9 @@ class ConsoleViewBase: public ViewBase {
         
         /**********************************************************************
         【函数名称】 ResultToString
-        【函数功能】 将控制器返回的结果转化为字符串。
+        【函数功能】 将命令返回的结果转化为字符串。
         【参数】
-            result: 要转化的 ControllerBase::Result 枚举。
+            result: 要转化的 ConsoleViewBase::Result 枚举。
         【返回值】
             结果的字符串表示形式。
         【开发者及日期】 赵一彤 2024/7/24
