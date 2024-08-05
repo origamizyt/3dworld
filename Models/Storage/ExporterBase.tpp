@@ -11,8 +11,9 @@
 #include "ExporterBase.hpp"
 using namespace std;
 using namespace c3w;
-using namespace c3w::storage;
 using namespace c3w::errors;
+
+namespace c3w::storage {
 
 /**********************************************************************
 【函数名称】 Export
@@ -38,3 +39,4 @@ void ExporterBase<N>::Export(string path, const Model<N>& model) const {
     }
 }
 
+}
