@@ -7,7 +7,7 @@
 #include <ostream>
 #include "Representable.hpp"
 
-namespace c3w::tools {
+namespace C3w::Tools {
     /**********************************************************************
     【函数名称】 operator<<
     【函数功能】 将可表对象插入到输出流中。

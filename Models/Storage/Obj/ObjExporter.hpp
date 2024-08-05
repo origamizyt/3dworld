@@ -10,10 +10,10 @@
 #include "../ExporterBase.hpp"
 #include "../../Core/Model.hpp"
 using namespace std;
-using namespace c3w;
-using namespace c3w::storage;
+using namespace C3w;
+using namespace C3w::Storage;
 
-namespace c3w::storage::obj {
+namespace C3w::Storage::Obj {
 
 /*************************************************************************
 【类名】 ObjExporter

@@ -14,7 +14,7 @@
 #include "../Tools/Representable.hpp"
 using namespace std;
 
-namespace c3w { 
+namespace C3w { 
 
 /*************************************************************************
 【类名】 Vector
@@ -23,7 +23,7 @@ namespace c3w {
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T, size_t N>
-class Vector: public tools::Representable {
+class Vector: public Tools::Representable {
     static_assert(N > 0, "Dimension must be positive.");
     public:
         // 成员

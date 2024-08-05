@@ -10,7 +10,7 @@
 #include "Point.hpp"
 using namespace std;
 
-namespace c3w {
+namespace C3w {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -35,7 +35,7 @@ template <size_t N>
 Face<N>::Face(const Face<N>& other): Element<N, 3>(other) {}
 
 /**********************************************************************
-【函数名称】 Length
+【函数名称】 GetLength
 【函数功能】 求此元素的长度。
 【参数】 无
 【返回值】
@@ -43,7 +43,7 @@ Face<N>::Face(const Face<N>& other): Element<N, 3>(other) {}
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Face<N>::Length() const {
+double Face<N>::GetLength() const {
     return (
         Point<N>::Distance(this->Points[0], this->Points[1]) +
         Point<N>::Distance(this->Points[1], this->Points[2]) +
@@ -52,7 +52,7 @@ double Face<N>::Length() const {
 }
 
 /**********************************************************************
-【函数名称】 Area
+【函数名称】 GetArea
 【函数功能】 求此元素的面积。
 【参数】 无
 【返回值】
@@ -60,7 +60,7 @@ double Face<N>::Length() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Face<N>::Area() const {
+double Face<N>::GetArea() const {
     auto a = Point<N>::Distance(this->Points[0], this->Points[1]);
     auto b = Point<N>::Distance(this->Points[1], this->Points[2]);
     auto c = Point<N>::Distance(this->Points[2], this->Points[0]);

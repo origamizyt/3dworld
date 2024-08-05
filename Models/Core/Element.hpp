@@ -14,9 +14,9 @@
 #include "../Containers/FixedSet.hpp"
 #include "../Tools/Representable.hpp"
 using namespace std;
-using namespace c3w::containers;
+using namespace C3w::Containers;
 
-namespace c3w {
+namespace C3w {
 
 /*************************************************************************
 【类名】 Element
@@ -25,7 +25,7 @@ namespace c3w {
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <size_t N, size_t S>
-class Element: public tools::Representable {
+class Element: public Tools::Representable {
     public:
         // 成员
 
@@ -71,23 +71,23 @@ class Element: public tools::Representable {
         // 属性
 
         /**********************************************************************
-        【函数名称】 Length
+        【函数名称】 GetLength
         【函数功能】 求此元素的长度。
         【参数】 无
         【返回值】
             此元素的长度。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual double Length() const = 0;
+        virtual double GetLength() const = 0;
         /**********************************************************************
-        【函数名称】 Area
+        【函数名称】 GetArea
         【函数功能】 求此元素的面积。
         【参数】 无
         【返回值】
             此元素的面积。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual double Area() const = 0;
+        virtual double GetArea() const = 0;
 
         // 操作
 

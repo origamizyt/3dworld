@@ -13,7 +13,7 @@
 #include "../../Models/Core/Face.hpp"
 using namespace std;
 
-namespace c3w::controllers::cli {
+namespace C3w::Controllers::Cli {
 
 /*************************************************************************
 【类名】 ConsoleController

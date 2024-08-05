@@ -11,7 +11,7 @@
 #include "../Containers/DynamicSet.hpp"
 using namespace std;
 
-namespace c3w::tools {
+namespace C3w::Tools {
 
 /*************************************************************************
 【类名】 Box
@@ -55,7 +55,7 @@ class Box final {
         **********************************************************************/
         Box(const Box<N>& other);
         /**********************************************************************
-        【函数名称】 BoundingBoxOf
+        【函数名称】 GetBoundingBoxOf
         【函数功能】 获取可以容纳所有给定点的最小长方体。
         【参数】 
             points: 包含点的集合。
@@ -63,19 +63,19 @@ class Box final {
             可以容纳所有给定点的最小长方体。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static Box<N> BoundingBoxOf(const DynamicSet<Point<N>>& points);
+        static Box<N> GetBoundingBoxOf(const DynamicSet<Point<N>>& points);
 
         // 属性
 
         /**********************************************************************
-        【函数名称】 Volume
+        【函数名称】 GetVolume
         【函数功能】 计算自身的体积。
         【参数】 无。
         【返回值】
             长方体体积。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        double Volume() const;
+        double GetVolume() const;
 
         // 操作
 

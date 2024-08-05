@@ -9,9 +9,9 @@
 #include "../../Controllers/ControllerBase.hpp"
 #include "ConsoleViewBase.hpp"
 using namespace std;
-using namespace c3w::controllers;
+using namespace C3w::Controllers;
 
-namespace c3w::views::cli {
+namespace C3w::Views::Cli {
 
 /*************************************************************************
 【类名】 MainConsoleView

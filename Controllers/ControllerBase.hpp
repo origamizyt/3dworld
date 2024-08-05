@@ -16,7 +16,7 @@
 #include "../Models/Containers/DynamicSet.hpp"
 using namespace std;
 
-namespace c3w::controllers {
+namespace C3w::Controllers {
 
 /*************************************************************************
 【类名】 ControllerBase

@@ -18,9 +18,10 @@
 #include "../Models/Storage/StorageFactory.hpp"
 #include "ControllerBase.hpp"
 using namespace std;
-using namespace c3w::errors;
+using namespace C3w::Errors;
+using namespace C3w::Storage;
 
-namespace c3w::controllers {
+namespace C3w::Controllers {
 
 /**********************************************************************
 【函数名称】 GetName
@@ -299,15 +300,15 @@ ControllerBase::Statistics ControllerBase::GetStatistics() const {
         0,
         m_Model.Lines.Count(), 0,
         m_Model.Faces.Count(), 0,
-        m_Model.BoundingBox().Volume()
+        m_Model.GetBoundingBox().GetVolume()
     };
     stats.TotalPointCount = 
         stats.TotalLineCount * 2 + stats.TotalFaceCount * 3;
     for (auto& line: m_Model.Lines) {
-        stats.TotalLineLength += line.Length();
+        stats.TotalLineLength += line.GetLength();
     }
     for (auto& face: m_Model.Faces) {
-        stats.TotalFaceArea += face.Area();
+        stats.TotalFaceArea += face.GetArea();
     }
     return stats;
 }

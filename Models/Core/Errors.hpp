@@ -9,7 +9,7 @@
 #include <stdexcept>
 using namespace std;
 
-namespace c3w::errors {
+namespace C3w::Errors {
 
 /*************************************************************************
 【类名】 IndexOverflowException

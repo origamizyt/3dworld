@@ -13,7 +13,7 @@
 #include "ConsoleController.hpp"
 using namespace std;
 
-namespace c3w::controllers::cli {
+namespace C3w::Controllers::Cli {
 
 // 初始化空指针。
 shared_ptr<ConsoleController> ConsoleController::m_pInstance { nullptr };

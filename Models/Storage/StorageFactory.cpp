@@ -12,13 +12,13 @@
 #include "StorageFactory.hpp"
 using namespace std;
 
-namespace c3w::storage {
+namespace C3w::Storage {
 
 // 导入/导出器列表
 list<StorageFactory::Pair> StorageFactory::m_Pairs {
     { ".obj", 3, 
-        [](){ return new obj::ObjImporter(); },
-        [](){ return new obj::ObjExporter(); }
+        [](){ return new Obj::ObjImporter(); },
+        [](){ return new Obj::ObjExporter(); }
     }
 };
 

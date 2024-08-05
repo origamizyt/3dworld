@@ -10,10 +10,10 @@
 #include "CollectionBase.hpp"
 #include "../Core/Errors.hpp"
 using namespace std;
-using namespace c3w;
-using namespace c3w::errors;
+using namespace C3w;
+using namespace C3w::Errors;
 
-namespace c3w::containers {
+namespace C3w::Containers {
 
 /**********************************************************************
 【函数名称】 Get

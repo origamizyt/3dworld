@@ -1,6 +1,6 @@
 /*************************************************************************
 【文件名】 ObjImporter.hpp
-【功能模块和目的】 ObjImporter 类定义了一个 .obj 文件的导入器。
+【功能模块和目的】 ObjImporter 类定义了一个 .Obj 文件的导入器。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
@@ -10,10 +10,10 @@
 #include "../ImporterBase.hpp"
 #include "../../Core/Model.hpp"
 using namespace std;
-using namespace c3w;
-using namespace c3w::storage;
+using namespace C3w;
+using namespace C3w::Storage;
 
-namespace c3w::storage::obj {
+namespace C3w::Storage::Obj {
 
 /*************************************************************************
 【类名】 ObjImporter

@@ -13,9 +13,9 @@
 #include "../Tools/Box.hpp"
 #include "Model.hpp"
 using namespace std;
-using namespace c3w::containers;
+using namespace C3w::Containers;
 
-namespace c3w {
+namespace C3w {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -82,7 +82,7 @@ DynamicSet<Point<N>> Model<N>::CollectPoints() const {
 }
 
 /**********************************************************************
-【函数名称】 BoundingBox
+【函数名称】 GetBoundingBox
 【函数功能】 获取能包含此模型中所有元素的最小长方体。
 【参数】 无
 【返回值】
@@ -90,8 +90,8 @@ DynamicSet<Point<N>> Model<N>::CollectPoints() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-tools::Box<N> Model<N>::BoundingBox() const {
-    return tools::Box<N>::BoundingBoxOf(CollectPoints());
+Tools::Box<N> Model<N>::GetBoundingBox() const {
+    return Tools::Box<N>::GetBoundingBoxOf(CollectPoints());
 }
 
 /**********************************************************************

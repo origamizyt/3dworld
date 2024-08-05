@@ -13,9 +13,9 @@
 #include "Vector.hpp"
 #include "../Containers/FixedSet.hpp"
 using namespace std;
-using namespace c3w::containers;
+using namespace C3w::Containers;
 
-namespace c3w {
+namespace C3w {
 
 /**********************************************************************
 【函数名称】 构造函数

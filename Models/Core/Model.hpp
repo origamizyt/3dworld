@@ -14,9 +14,9 @@
 #include "../Containers/DynamicSet.hpp"
 #include "../Tools/Box.hpp"
 using namespace std;
-using namespace c3w::containers;
+using namespace C3w::Containers;
 
-namespace c3w {
+namespace C3w {
 
 /*************************************************************************
 【类名】 Vector
@@ -94,14 +94,14 @@ class Model {
         **********************************************************************/
         virtual DynamicSet<Point<N>> CollectPoints() const;
         /**********************************************************************
-        【函数名称】 BoundingBox
+        【函数名称】 GetBoundingBox
         【函数功能】 获取能包含此模型中所有元素的最小长方体。
         【参数】 无
         【返回值】
             能包含此模型中所有元素的最小长方体。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        tools::Box<N> BoundingBox() const;
+        Tools::Box<N> GetBoundingBox() const;
 
         // 操作符
         

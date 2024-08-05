@@ -15,10 +15,10 @@
 #include "../../Core/Line.hpp"
 #include "../../Core/Face.hpp"
 using namespace std;
-using namespace c3w;
-using namespace c3w::errors;
+using namespace C3w;
+using namespace C3w::Errors;
 
-namespace c3w::storage::obj {
+namespace C3w::Storage::Obj {
 
 /**********************************************************************
 【函数名称】 InnerImport

@@ -10,7 +10,7 @@
 #include <string>
 using namespace std;
 
-namespace c3w::tools {
+namespace C3w::Tools {
 
 /*************************************************************************
 【类名】 Representable

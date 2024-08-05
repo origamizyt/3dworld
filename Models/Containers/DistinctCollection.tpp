@@ -9,7 +9,7 @@
 #include "DistinctCollection.hpp"
 using namespace std;
 
-namespace c3w::containers {
+namespace C3w::Containers {
 
 /**********************************************************************
 【函数名称】 IsDistinct

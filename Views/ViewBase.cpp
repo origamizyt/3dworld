@@ -8,9 +8,9 @@
 #include "../Controllers/ControllerBase.hpp"
 #include "ViewBase.hpp"
 using namespace std;
-using namespace c3w::controllers;
+using namespace C3w::Controllers;
 
-namespace c3w::views {
+namespace C3w::Views {
 
 /**********************************************************************
 【函数名称】 构造函数

@@ -10,7 +10,7 @@
 #include "Point.hpp"
 using namespace std;
 
-namespace c3w {
+namespace C3w {
 
 // 原点。
 template <size_t N>

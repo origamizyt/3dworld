@@ -10,7 +10,7 @@
 #include "CollectionBase.hpp"
 using namespace std;
 
-namespace c3w::containers {
+namespace C3w::Containers {
 
 /*************************************************************************
 【类名】 DistinctCollection

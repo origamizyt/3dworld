@@ -10,7 +10,7 @@
 #include "Vector.hpp"
 using namespace std;
 
-namespace c3w {
+namespace C3w {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -35,7 +35,7 @@ template <size_t N>
 Line<N>::Line(const Line<N>& other): Element<N, 2>(other) {}
 
 /**********************************************************************
-【函数名称】 Length
+【函数名称】 GetLength
 【函数功能】 求此元素的长度。
 【参数】 无
 【返回值】
@@ -43,12 +43,12 @@ Line<N>::Line(const Line<N>& other): Element<N, 2>(other) {}
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Line<N>::Length() const {
+double Line<N>::GetLength() const {
     return Point<N>::Distance(this->Points[0], this->Points[1]);
 }
 
 /**********************************************************************
-【函数名称】 Area
+【函数名称】 GetArea
 【函数功能】 求此元素的面积。由于线段没有面积故恒为 0。
 【参数】 无
 【返回值】
@@ -56,7 +56,7 @@ double Line<N>::Length() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Line<N>::Area() const {
+double Line<N>::GetArea() const {
     return 0;
 }
 

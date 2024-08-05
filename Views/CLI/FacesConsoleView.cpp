@@ -13,7 +13,7 @@
 #include "FacesConsoleView.hpp"
 using namespace std;
 
-namespace c3w::views::cli {
+namespace C3w::Views::Cli {
 
 /**********************************************************************
 【函数名称】 构造函数

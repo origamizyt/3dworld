@@ -12,9 +12,9 @@
 #include "../Core/Point.hpp"
 #include "../Containers/DynamicSet.hpp"
 using namespace std;
-using namespace c3w;
+using namespace C3w;
 
-namespace c3w::tools {
+namespace C3w::Tools {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -41,7 +41,7 @@ template <size_t N>
 Box<N>::Box(const Box<N>& other): Box(other.Vertex1, other.Vertex2) {}
 
 /**********************************************************************
-【函数名称】 BoundingBoxOf
+【函数名称】 GetBoundingBoxOf
 【函数功能】 获取可以容纳所有给定点的最小长方体。
 【参数】 
     points: 包含点的集合。
@@ -50,7 +50,7 @@ Box<N>::Box(const Box<N>& other): Box(other.Vertex1, other.Vertex2) {}
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Box<N> Box<N>::BoundingBoxOf(const DynamicSet<Point<N>>& points) {
+Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& points) {
     if (points.Count() == 0) {
         return Box<N>(Point<N>::Origin, Point<N>::Origin);
     }
@@ -74,7 +74,7 @@ Box<N> Box<N>::BoundingBoxOf(const DynamicSet<Point<N>>& points) {
 }
 
 /**********************************************************************
-【函数名称】 Volume
+【函数名称】 GetVolume
 【函数功能】 计算自身的体积。
 【参数】 无。
 【返回值】
@@ -82,7 +82,7 @@ Box<N> Box<N>::BoundingBoxOf(const DynamicSet<Point<N>>& points) {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Box<N>::Volume() const {
+double Box<N>::GetVolume() const {
     double volume = 1;
     for (size_t i = 0; i < N; i++) {
         volume *= fabs(Vertex1[i] - Vertex2[i]);

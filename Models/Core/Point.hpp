@@ -11,7 +11,7 @@
 #include "Vector.hpp"
 using namespace std;
 
-namespace c3w {
+namespace C3w {
 
 /*************************************************************************
 【类名】 Point

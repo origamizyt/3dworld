@@ -9,9 +9,9 @@
 #include <memory>
 #include "../Controllers/ControllerBase.hpp"
 using namespace std;
-using namespace c3w::controllers;
+using namespace C3w::Controllers;
 
-namespace c3w::views {
+namespace C3w::Views {
 
 /*************************************************************************
 【类名】 ViewBase

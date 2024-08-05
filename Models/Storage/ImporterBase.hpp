@@ -11,9 +11,9 @@
 #include <string>
 #include "../Core/Model.hpp"
 using namespace std;
-using namespace c3w;
+using namespace C3w;
 
-namespace c3w::storage {
+namespace C3w::Storage {
 
 /*************************************************************************
 【类名】 ImporterBase

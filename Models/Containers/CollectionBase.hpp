@@ -11,7 +11,7 @@
 #include "../Tools/Representable.hpp"
 using namespace std;
 
-namespace c3w::containers { 
+namespace C3w::Containers { 
 
 /*************************************************************************
 【类名】 CollectionBase
@@ -20,7 +20,7 @@ namespace c3w::containers {
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T>
-class CollectionBase: public tools::Representable {
+class CollectionBase: public Tools::Representable {
     public:
         // 属性
 

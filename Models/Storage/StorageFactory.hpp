@@ -15,7 +15,7 @@
 #include "ExporterBase.hpp"
 using namespace std;
 
-namespace c3w::storage {
+namespace C3w::Storage {
 
 /*************************************************************************
 【类名】 StorageFactory

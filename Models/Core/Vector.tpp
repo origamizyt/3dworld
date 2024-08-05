@@ -15,8 +15,8 @@
 #include "Errors.hpp"
 #include "Vector.hpp"
 using namespace std;
-using namespace c3w;
-using namespace c3w::errors;
+using namespace C3w;
+using namespace C3w::Errors;
 
 // 零向量。
 template <typename T, size_t N>
@@ -597,7 +597,7 @@ string Vector<T, N>::ToString() const {
     return stream.str();
 }
 
-namespace c3w {
+namespace C3w {
     /**********************************************************************
     【函数名称】 operator*
     【函数功能】 将向量与标量数乘。

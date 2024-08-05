@@ -14,9 +14,9 @@
 #include "../Core/Errors.hpp"
 #include "StorageFactory.hpp"
 using namespace std;
-using namespace c3w::errors;
+using namespace C3w::Errors;
 
-namespace c3w::storage {
+namespace C3w::Storage {
 
 /**********************************************************************
 【函数名称】 Register
