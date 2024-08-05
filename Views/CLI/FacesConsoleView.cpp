@@ -12,6 +12,7 @@
 #include "../../Controllers/ControllerBase.hpp"
 #include "FacesConsoleView.hpp"
 using namespace std;
+using namespace C3w::Controllers;
 
 namespace C3w::Views::Cli {
 

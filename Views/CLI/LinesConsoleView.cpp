@@ -12,6 +12,7 @@
 #include "../../Controllers/ControllerBase.hpp"
 #include "LinesConsoleView.hpp"
 using namespace std;
+using namespace C3w::Controllers;
 
 namespace C3w::Views::Cli {
 
