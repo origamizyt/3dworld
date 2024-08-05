@@ -328,6 +328,9 @@ bool CollectionBase<T>::operator!=(const CollectionBase<T>& other) const {
 **********************************************************************/
 template <typename T>
 string CollectionBase<T>::ToString() const {
+    if (Count() == 0) {
+        return "{}";
+    }
     ostringstream stream;
     stream << "{";
     auto count = Count();
