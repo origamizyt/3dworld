@@ -7,6 +7,8 @@
 #include <functional>
 #include <list>
 #include <string>
+#include "Obj/ObjImporter.hpp"
+#include "Obj/ObjExporter.hpp"
 #include "StorageFactory.hpp"
 using namespace std;
 

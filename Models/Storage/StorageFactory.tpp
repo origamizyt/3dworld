@@ -11,8 +11,6 @@
 #include <string>
 #include "ImporterBase.hpp"
 #include "ExporterBase.hpp"
-#include "Obj/ObjImporter.hpp"
-#include "Obj/ObjExporter.hpp"
 #include "../Core/Errors.hpp"
 #include "StorageFactory.hpp"
 using namespace std;
