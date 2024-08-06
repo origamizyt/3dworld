@@ -29,6 +29,18 @@ cpp_list = glob.glob("**/*.cpp", recursive=True)
 os.system("g++ -std=c++11 %s -o main" % ' '.join(cpp_files))
 ```
 
+MSVC 比较麻烦：
+```py
+import glob, os
+
+for cpp in glob.iglob("..\\**\\*.cpp", recursive=True):
+    os.system('cl %s /c /EHsc' % cpp)
+
+obj_list = glob.glob('*.obj')
+
+os.system('link /OUT:main.exe %s' % ' '.join(obj_list))
+```
+
 ## Design
 
 ### `C3w::Tools::Representable`
