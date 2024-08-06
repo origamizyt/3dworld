@@ -58,6 +58,14 @@ void ConsoleViewBase::Display() const {
                 Output << Palette::FG_RED;
                 Output << "error: Unrecognized command '" << line << "'."; 
                 Output << Palette::CLEAR << endl;
+                for (auto& pair: m_Commands) {
+                    if (Likelihood(line, pair.first) >= 0.75f) {
+                        Output << Palette::FG_GRAY;
+                        Output << "Perhaps you mean '" << pair.first;
+                        Output << "'?" << Palette::CLEAR << endl;
+                        break;
+                    }
+                }
             }
         }
     }
@@ -236,6 +244,27 @@ void ConsoleViewBase::ShowHelp() const {
         }
         Output << "- " << pair.second.Help << endl;
     }
+}
+
+/**********************************************************************
+【函数名称】 Likelihood
+【函数功能】 计算两个字符串的相似程度。
+【参数】 
+    given: 用户提供的字符串。
+    have: 原有的字符串。
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+float ConsoleViewBase::Likelihood(string given, string have) {
+    auto denominator = max(given.size(), have.size());
+    auto valid_len = min(given.size(), have.size());
+    int numerator = 0;
+    for (size_t i = 0; i < valid_len; i++) {
+        if (given[i] == have[i]) {
+            numerator++;
+        }
+    }
+    return static_cast<float>(numerator) / denominator;
 }
 
 /**********************************************************************
