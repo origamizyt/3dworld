@@ -11,7 +11,9 @@
 using namespace std;
 using namespace C3w::Controllers;
 
-namespace C3w::Views {
+namespace C3w {
+
+namespace Views {
 
 /*************************************************************************
 【类名】 ViewBase
@@ -50,5 +52,7 @@ class ViewBase {
         // 控制器
         shared_ptr<ControllerBase> m_pController;
 };
+
+}
 
 }

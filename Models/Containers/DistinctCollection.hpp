@@ -10,7 +10,9 @@
 #include "CollectionBase.hpp"
 using namespace std;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /*************************************************************************
 【类名】 DistinctCollection
@@ -117,6 +119,8 @@ class DistinctCollection: public CollectionBase<T> {
         **********************************************************************/
         bool ShouldInsert(size_t index, const T& value) const override;
 };
+
+}
 
 }
 

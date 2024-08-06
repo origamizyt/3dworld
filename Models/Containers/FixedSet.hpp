@@ -13,7 +13,9 @@
 #include "DynamicSet.hpp"
 using namespace std;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 // FixedSet 不实现交并补操作，因为操作后大小不定。
 // 因此 FixedSet 不继承于 DynamicSet。
@@ -207,6 +209,8 @@ class FixedSet: public DistinctCollection<T> {
     private:
         array<T, N> m_Elements;
 };
+
+}
 
 }
 

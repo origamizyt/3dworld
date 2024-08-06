@@ -16,7 +16,9 @@
 using namespace std;
 using namespace C3w::Errors;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -263,6 +265,8 @@ bool FixedSet<T, N>::ShouldInsert(size_t index, const T& element) const {
 template <typename T, size_t N>
 void FixedSet<T, N>::InnerInsert(size_t index, const T& element) {
     throw CollectionException();
+}
+
 }
 
 }

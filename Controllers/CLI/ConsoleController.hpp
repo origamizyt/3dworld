@@ -13,7 +13,11 @@
 #include "../../Models/Core/Face.hpp"
 using namespace std;
 
-namespace C3w::Controllers::Cli {
+namespace C3w {
+
+namespace Controllers {
+
+namespace Cli {
 
 /*************************************************************************
 【类名】 ConsoleController
@@ -88,5 +92,9 @@ class ConsoleController: public ControllerBase {
         **********************************************************************/
         ConsoleController() = default;
 };
+
+}
+
+}
 
 }

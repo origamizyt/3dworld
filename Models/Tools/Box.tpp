@@ -14,7 +14,9 @@
 using namespace std;
 using namespace C3w;
 
-namespace C3w::Tools {
+namespace C3w {
+
+namespace Tools {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -163,6 +165,8 @@ Box<N>& Box<N>::operator=(const Box<N>& other) {
         Vertex2 = other.Vertex2;
     }
     return *this;
+}
+
 }
 
 }

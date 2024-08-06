@@ -17,7 +17,11 @@
 using namespace std;
 using namespace C3w::Controllers;
 
-namespace C3w::Views::Cli {
+namespace C3w {
+
+namespace Views {
+
+namespace Cli {
 
 /**********************************************************************
 【函数名称】 Display
@@ -250,6 +254,10 @@ ostream& operator<<(
 ) {
     stream << "\033[" << static_cast<int>(palette) << "m";
     return stream;
+}
+
+}
+
 }
 
 }

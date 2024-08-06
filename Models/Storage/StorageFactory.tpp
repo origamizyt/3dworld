@@ -16,7 +16,9 @@
 using namespace std;
 using namespace C3w::Errors;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 /**********************************************************************
 【函数名称】 Register
@@ -87,6 +89,8 @@ unique_ptr<ExporterBase<N>> StorageFactory::GetExporter(string path) {
         }
     }
     throw StorageFactoryLookupException();
+}
+
 }
 
 }

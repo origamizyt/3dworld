@@ -11,7 +11,11 @@
 using namespace std;
 using namespace C3w::Controllers;
 
-namespace C3w::Views::Cli {
+namespace C3w {
+
+namespace Views {
+
+namespace Cli {
 
 /*************************************************************************
 【类名】 MainConsoleView
@@ -99,5 +103,9 @@ class MainConsoleView: public ConsoleViewBase {
         **********************************************************************/
         Result CommandSaveModel() const;
 };
+
+}
+
+}
 
 }

@@ -12,7 +12,9 @@
 using namespace std;
 using namespace C3w::Errors;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -452,6 +454,8 @@ typename vector<T>::const_iterator DynamicSet<T>::begin() const {
 template <typename T>
 typename vector<T>::const_iterator DynamicSet<T>::end() const {
     return m_Elements.end();
+}
+
 }
 
 }

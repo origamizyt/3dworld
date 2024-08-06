@@ -16,7 +16,9 @@
 #include "../Models/Containers/DynamicSet.hpp"
 using namespace std;
 
-namespace C3w::Controllers {
+namespace C3w {
+
+namespace Controllers {
 
 /*************************************************************************
 【类名】 ControllerBase
@@ -328,5 +330,7 @@ class ControllerBase {
         vector<Status> m_LineStatus;
         vector<Status> m_FaceStatus;
 };
+
+}
 
 }

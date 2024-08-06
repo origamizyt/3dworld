@@ -13,7 +13,9 @@
 using namespace std;
 using namespace C3w;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 /*************************************************************************
 【类名】 ExporterBase
@@ -55,6 +57,8 @@ class ExporterBase {
             const Model<N>& model
         ) const = 0;
 };
+
+}
 
 }
 

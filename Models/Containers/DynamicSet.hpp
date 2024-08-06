@@ -11,7 +11,9 @@
 #include "DistinctCollection.hpp"
 using namespace std;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /*************************************************************************
 【类名】 DynamicSet
@@ -337,6 +339,8 @@ class DynamicSet: public DistinctCollection<T> {
     private:
         vector<T> m_Elements;
 };
+
+}
 
 }
 

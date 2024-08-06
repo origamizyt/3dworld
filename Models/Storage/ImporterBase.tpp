@@ -14,7 +14,9 @@ using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 /**********************************************************************
 【函数名称】 Import
@@ -38,6 +40,8 @@ void ImporterBase<N>::Import(string path, Model<N>& model) const {
         stream.close();
         throw;
     }
+}
+
 }
 
 }

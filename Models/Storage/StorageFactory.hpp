@@ -15,7 +15,9 @@
 #include "ExporterBase.hpp"
 using namespace std;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 /*************************************************************************
 【类名】 StorageFactory
@@ -98,6 +100,8 @@ class StorageFactory final {
         // 静态类，隐藏构造函数。
         StorageFactory();
 };
+
+}
 
 }
 

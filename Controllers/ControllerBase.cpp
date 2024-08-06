@@ -21,7 +21,9 @@ using namespace std;
 using namespace C3w::Errors;
 using namespace C3w::Storage;
 
-namespace C3w::Controllers {
+namespace C3w {
+
+namespace Controllers {
 
 /**********************************************************************
 【函数名称】 GetName
@@ -378,6 +380,8 @@ ControllerBase::Result ControllerBase::SaveModel(string path) {
         return Result::FILE_FORMAT_ERROR;
     }
     return Result::OK;
+}
+
 }
 
 }

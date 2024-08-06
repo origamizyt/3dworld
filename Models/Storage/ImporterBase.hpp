@@ -13,7 +13,9 @@
 using namespace std;
 using namespace C3w;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 /*************************************************************************
 【类名】 ImporterBase
@@ -53,6 +55,8 @@ class ImporterBase {
         **********************************************************************/
         virtual void InnerImport(ifstream& stream, Model<N>& model) const = 0;
 };
+
+}
 
 }
 

@@ -13,7 +13,9 @@ using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /**********************************************************************
 【函数名称】 Get
@@ -397,6 +399,8 @@ bool CollectionBase<T>::ShouldRemove(size_t index) const {
 template <typename T>
 bool CollectionBase<T>::ShouldInsert(size_t index, const T& element) const {
     return true;
+}
+
 }
 
 }

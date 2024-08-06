@@ -10,7 +10,9 @@
 using namespace std;
 using namespace C3w::Controllers;
 
-namespace C3w::Views {
+namespace C3w {
+
+namespace Views {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -22,5 +24,7 @@ namespace C3w::Views {
 **********************************************************************/
 ViewBase::ViewBase(shared_ptr<ControllerBase> controller)
     : m_pController(controller) {}
+
+}
 
 }

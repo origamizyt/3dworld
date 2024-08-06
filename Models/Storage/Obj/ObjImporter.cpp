@@ -18,7 +18,11 @@ using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
 
-namespace C3w::Storage::Obj {
+namespace C3w {
+
+namespace Storage {
+
+namespace Obj {
 
 /**********************************************************************
 【函数名称】 InnerImport
@@ -101,6 +105,10 @@ void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
             }
         }
     }
+}
+
+}
+
 }
 
 }

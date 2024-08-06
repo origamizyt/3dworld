@@ -13,7 +13,11 @@
 #include "ConsoleController.hpp"
 using namespace std;
 
-namespace C3w::Controllers::Cli {
+namespace C3w {
+
+namespace Controllers {
+
+namespace Cli {
 
 // 初始化空指针。
 shared_ptr<ConsoleController> ConsoleController::m_pInstance { nullptr };
@@ -100,6 +104,10 @@ string ConsoleController::FaceToString(
         }
     }
     return repr;
+}
+
+}
+
 }
 
 }

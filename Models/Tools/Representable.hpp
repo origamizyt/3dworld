@@ -10,7 +10,9 @@
 #include <string>
 using namespace std;
 
-namespace C3w::Tools {
+namespace C3w {
+
+namespace Tools {
 
 /*************************************************************************
 【类名】 Representable
@@ -41,5 +43,7 @@ class Representable {
         **********************************************************************/
         friend ostream& operator<<(ostream& stream, const Representable& repr);
 };
+
+}
 
 }

@@ -9,7 +9,9 @@
 #include "DistinctCollection.hpp"
 using namespace std;
 
-namespace C3w::Containers {
+namespace C3w {
+
+namespace Containers {
 
 /**********************************************************************
 【函数名称】 IsDistinct
@@ -160,6 +162,8 @@ bool DistinctCollection<T>::ShouldAdd(const T& value) const {
 template <typename T>
 bool DistinctCollection<T>::ShouldInsert(size_t index, const T& value) const {
     return !this->Contains(value);
+}
+
 }
 
 }

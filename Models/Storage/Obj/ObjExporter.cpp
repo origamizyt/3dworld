@@ -11,7 +11,11 @@ using namespace std;
 using namespace C3w;
 using namespace C3w::Storage;
 
-namespace C3w::Storage::Obj {
+namespace C3w {
+
+namespace Storage {
+
+namespace Obj {
 
 /**********************************************************************
 【函数名称】 InnerExport
@@ -53,6 +57,10 @@ void ObjExporter::InnerExport(
         }
         stream << endl;
     }
+}
+
+}
+
 }
 
 }

@@ -14,7 +14,11 @@
 using namespace std;
 using namespace C3w::Controllers;
 
-namespace C3w::Views::Cli {
+namespace C3w {
+
+namespace Views {
+
+namespace Cli {
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -240,6 +244,10 @@ ConsoleViewBase::Result FacesConsoleView::CommandRemoveFace() const {
         Output << "." << Palette::CLEAR << endl;
     }
     return result;
+}
+
+}
+
 }
 
 }

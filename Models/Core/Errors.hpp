@@ -9,7 +9,9 @@
 #include <stdexcept>
 using namespace std;
 
-namespace C3w::Errors {
+namespace C3w {
+
+namespace Errors {
 
 /*************************************************************************
 【类名】 IndexOverflowException
@@ -124,5 +126,8 @@ class StorageFactoryLookupException: public invalid_argument {
         StorageFactoryLookupException()
             : invalid_argument("cannot find appropriate importer/exporter.") {}
 };
+
+}
+
 
 }

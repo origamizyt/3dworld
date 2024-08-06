@@ -13,7 +13,11 @@ using namespace std;
 using namespace C3w;
 using namespace C3w::Storage;
 
-namespace C3w::Storage::Obj {
+namespace C3w {
+
+namespace Storage {
+
+namespace Obj {
 
 /*************************************************************************
 【类名】 ObjImporter
@@ -34,5 +38,9 @@ class ObjImporter: public ImporterBase<3> {
         **********************************************************************/
         void InnerImport(ifstream& stream, Model<3>& model) const override;
 };
+
+}
+
+}
 
 }

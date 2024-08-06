@@ -11,7 +11,9 @@
 #include "../Tools/Representable.hpp"
 using namespace std;
 
-namespace C3w::Containers { 
+namespace C3w {
+
+namespace Containers { 
 
 /*************************************************************************
 【类名】 CollectionBase
@@ -322,6 +324,8 @@ class CollectionBase: public Tools::Representable {
         **********************************************************************/
         virtual void InnerInsert(size_t index, const T& element) = 0;
 };
+
+}
 
 }
 

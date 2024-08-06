@@ -12,7 +12,9 @@
 #include "StorageFactory.hpp"
 using namespace std;
 
-namespace C3w::Storage {
+namespace C3w {
+
+namespace Storage {
 
 // 导入/导出器列表
 list<StorageFactory::Pair> StorageFactory::m_Pairs {
@@ -42,6 +44,8 @@ void StorageFactory::Register(
     m_Pairs.push_back(Pair { 
         extension, dimension, importerFactory, exporterFactory 
     });
+}
+
 }
 
 }
