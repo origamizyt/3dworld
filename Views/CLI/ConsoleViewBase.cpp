@@ -257,9 +257,9 @@ void ConsoleViewBase::ShowHelp() const {
 **********************************************************************/
 float ConsoleViewBase::Likelihood(string given, string have) {
     auto denominator = max(given.size(), have.size());
-    auto valid_len = min(given.size(), have.size());
+    auto validLength = min(given.size(), have.size());
     int numerator = 0;
-    for (size_t i = 0; i < valid_len; i++) {
+    for (size_t i = 0; i < validLength; i++) {
         if (given[i] == have[i]) {
             numerator++;
         }
