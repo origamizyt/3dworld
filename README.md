@@ -33,7 +33,7 @@ MSVC 比较麻烦：
 ```py
 import glob, os
 
-for cpp in glob.iglob("..\\**\\*.cpp", recursive=True):
+for cpp in glob.iglob("**\\*.cpp", recursive=True):
     os.system('cl %s /c /EHsc' % cpp)
 
 obj_list = glob.glob('*.obj')
