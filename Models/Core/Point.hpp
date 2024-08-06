@@ -292,6 +292,7 @@ class Point: public Vector<double, N> {
         // GetComponent
         // SetComponent
         // SetAllComponents
+        // NegateInplace
         // AddInplace
         // SubtractInplace
         // operator[]
