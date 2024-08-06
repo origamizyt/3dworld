@@ -8,6 +8,7 @@
 
 #include "Element.hpp"
 #include "Vector.hpp"
+#include "Point.hpp"
 
 namespace C3w {
 
@@ -20,6 +21,13 @@ namespace C3w {
 template <size_t N>
 class Line: public Element<N, 2> {
     public:
+        // 属性
+        
+        // 起始点
+        const Point<N>& Start { this->Points[0] };
+        // 中止点
+        const Point<N>& End { this->Points[1] };
+
         // 构造函数
 
         // 使用 Element 的构造函数

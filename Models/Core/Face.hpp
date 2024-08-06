@@ -7,6 +7,7 @@
 #pragma once
 
 #include "Element.hpp"
+#include "Point.hpp"
 
 namespace C3w {
 
@@ -19,6 +20,15 @@ namespace C3w {
 template <size_t N>
 class Face: public Element<N, 3> {
     public:
+        // 属性
+
+        // 第一个点
+        const Point<N>& First { this->Points[0] };
+        // 第二个点
+        const Point<N>& Second { this->Points[1] };
+        // 第三个点
+        const Point<N>& Third { this->Points[2] };
+
         // 构造函数
 
         // 使用 Element 的构造函数
