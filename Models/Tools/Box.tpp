@@ -13,6 +13,7 @@
 #include "../Containers/DynamicSet.hpp"
 using namespace std;
 using namespace C3w;
+using namespace C3w::Containers;
 
 namespace C3w {
 

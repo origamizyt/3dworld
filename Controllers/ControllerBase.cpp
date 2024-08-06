@@ -12,7 +12,6 @@
 #include "../Models/Core/Model.hpp"
 #include "../Models/Core/Line.hpp"
 #include "../Models/Core/Face.hpp"
-#include "../Models/Containers/DynamicSet.hpp"
 #include "../Models/Storage/ImporterBase.hpp"
 #include "../Models/Storage/ExporterBase.hpp"
 #include "../Models/Storage/StorageFactory.hpp"
