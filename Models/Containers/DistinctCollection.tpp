@@ -147,4 +147,19 @@ bool DistinctCollection<T>::ShouldAdd(const T& value) const {
     return !this->Contains(value);
 }
 
+/**********************************************************************
+【函数名称】 ShouldInsert
+【函数功能】 判断是否应该插入元素。
+【参数】 
+    index: 要插入位置的下标。
+    element: 新的元素。
+【返回值】 
+    是否应该插入元素。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T>
+bool DistinctCollection<T>::ShouldInsert(size_t index, const T& value) const {
+    return !this->Contains(value);
+}
+
 }

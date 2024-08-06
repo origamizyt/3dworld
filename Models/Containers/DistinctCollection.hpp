@@ -94,7 +94,7 @@ class DistinctCollection: public CollectionBase<T> {
             是否应该设置元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldSet(size_t index, const T& value) const override;
+        bool ShouldSet(size_t index, const T& value) const override;
         /**********************************************************************
         【函数名称】 ShouldAdd
         【函数功能】 判断是否应该添加元素。
@@ -104,7 +104,18 @@ class DistinctCollection: public CollectionBase<T> {
             是否应该添加元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldAdd(const T& value) const override;
+        bool ShouldAdd(const T& value) const override;
+        /**********************************************************************
+        【函数名称】 ShouldInsert
+        【函数功能】 判断是否应该插入元素。
+        【参数】 
+            index: 要插入位置的下标。
+            element: 新的元素。
+        【返回值】 
+            是否应该插入元素。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        bool ShouldInsert(size_t index, const T& value) const override;
 };
 
 }
