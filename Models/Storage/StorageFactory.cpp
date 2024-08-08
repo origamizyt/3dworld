@@ -6,6 +6,7 @@
 
 #include <functional>
 #include <string>
+#include <unordered_map>
 #include "Obj/ObjImporter.hpp"
 #include "Obj/ObjExporter.hpp"
 #include "StorageFactory.hpp"
