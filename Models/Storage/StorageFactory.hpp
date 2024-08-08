@@ -40,8 +40,8 @@ class StorageFactory final {
         **********************************************************************/
         template <size_t N, typename Importer, typename Exporter>
         static typename enable_if<
-            std::is_base_of<ImporterBase<N>, Importer>::value &&
-            std::is_base_of<ExporterBase<N>, Exporter>::value
+            is_base_of<ImporterBase<N>, Importer>::value &&
+            is_base_of<ExporterBase<N>, Exporter>::value
         >::type Register(string extension);
         /**********************************************************************
         【函数名称】 Register
@@ -55,8 +55,8 @@ class StorageFactory final {
         **********************************************************************/
         template <size_t N, typename Importer, typename Exporter>
         static typename enable_if<
-            std::is_base_of<ImporterBase<N>, Importer>::value &&
-            std::is_base_of<ExporterBase<N>, Exporter>::value
+            is_base_of<ImporterBase<N>, Importer>::value &&
+            is_base_of<ExporterBase<N>, Exporter>::value
         >::type Register(
             string extension,
             function<Importer*()> importerFactory,

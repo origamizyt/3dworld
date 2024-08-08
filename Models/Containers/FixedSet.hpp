@@ -58,7 +58,7 @@ class FixedSet: public DistinctCollection<T> {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet(const FixedSet<T, N>& other);
+        FixedSet(const FixedSet<T, N>& other) = default;
 
         // 属性
 
@@ -95,7 +95,7 @@ class FixedSet: public DistinctCollection<T> {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet<T, N>& operator=(const FixedSet<T, N>& other);
+        FixedSet<T, N>& operator=(const FixedSet<T, N>& other) = default;
         /**********************************************************************
         【函数名称】 operator DynamicSet<T>
         【函数功能】 将自身转化为 DynamicSet。

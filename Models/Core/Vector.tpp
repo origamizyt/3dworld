@@ -51,17 +51,6 @@ Vector<T, N>::Vector(const array<T, N>& components)
     : m_Components(components) {}
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 Vector 初始化 Vector 对象。
-【参数】 
-    other: 另一个向量。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T, size_t N>
-Vector<T, N>::Vector(const Vector<T, N>& other): Vector(other.m_Components) {}
-
-/**********************************************************************
 【函数名称】 GetComponent
 【函数功能】 返回指定下标处的分量。
 【参数】 
@@ -573,23 +562,6 @@ bool Vector<T, N>::operator==(const Vector<T, N>& other) const {
 template <typename T, size_t N>
 bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
     return !IsEqual(other);
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将其他向量赋值给自身。
-【参数】 
-    other: 从之取值的向量。
-【返回值】 
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T, size_t N>
-Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
-    if (this != &other) {
-        SetAllComponents(other.m_Components);
-    }
-    return *this;
 }
 
 /**********************************************************************

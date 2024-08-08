@@ -80,7 +80,7 @@ class Model {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Model(const Model<N>& other);
+        Model(const Model<N>& other) = default;
 
         // 属性
 
@@ -114,7 +114,7 @@ class Model {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Model<N>& operator=(const Model<N>& other);
+        Model<N>& operator=(const Model<N>& other) = default;
 
         // 虚析构函数
         virtual ~Model() = default;

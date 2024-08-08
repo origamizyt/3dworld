@@ -60,7 +60,7 @@ class DynamicSet: public DistinctCollection<T> {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet(const DynamicSet<T>& other);
+        DynamicSet(const DynamicSet<T>& other) = default;
 
         // 属性
         /**********************************************************************
@@ -183,7 +183,7 @@ class DynamicSet: public DistinctCollection<T> {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T>& operator=(const DynamicSet<T>& other);
+        DynamicSet<T>& operator=(const DynamicSet<T>& other) = default;
         /**********************************************************************
         【函数名称】 operator&
         【函数功能】 返回此集合与另一集合的交集。

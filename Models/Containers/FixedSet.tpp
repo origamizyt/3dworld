@@ -62,18 +62,6 @@ FixedSet<T, N>::FixedSet(const array<T, N>& elements) {
 }
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 FixedSet 初始化 FixedSet 类的实例。
-【参数】
-    other: 另一 FixedSet 实例。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T, size_t N>
-FixedSet<T, N>::FixedSet(const FixedSet<T, N>& other)
-    : FixedSet(other.m_Elements) {}
-
-/**********************************************************************
 【函数名称】 Count
 【函数功能】 获取元素个数。
 【参数】 无
@@ -97,24 +85,6 @@ size_t FixedSet<T, N>::Count() const {
 template <typename T, size_t N>
 DynamicSet<T> FixedSet<T, N>::ToDynamic() const {
     return DynamicSet<T>(vector<T>(begin(), end()));
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将其他集合赋值给自身。
-【参数】 
-    other: 从之取值的集合。
-【返回值】 
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T, size_t N>
-FixedSet<T, N>& FixedSet<T, N>::operator=(const FixedSet<T, N>& other) {
-    if (this != &other) {
-        // 使用 std::array 的赋值运算符
-        m_Elements = other.m_Elements;
-    }
-    return *this;
 }
 
 /**********************************************************************

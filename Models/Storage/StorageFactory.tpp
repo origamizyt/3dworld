@@ -30,8 +30,8 @@ namespace Storage {
 **********************************************************************/
 template <size_t N, typename Importer, typename Exporter>
 typename enable_if<
-    std::is_base_of<ImporterBase<N>, Importer>::value &&
-    std::is_base_of<ExporterBase<N>, Exporter>::value
+    is_base_of<ImporterBase<N>, Importer>::value &&
+    is_base_of<ExporterBase<N>, Exporter>::value
 >::type StorageFactory::Register(string extension) {
     Register<N, Importer, Exporter>(
         extension,
@@ -52,8 +52,8 @@ typename enable_if<
 **********************************************************************/
 template <size_t N, typename Importer, typename Exporter>
 typename enable_if<
-    std::is_base_of<ImporterBase<N>, Importer>::value &&
-    std::is_base_of<ExporterBase<N>, Exporter>::value
+    is_base_of<ImporterBase<N>, Importer>::value &&
+    is_base_of<ExporterBase<N>, Exporter>::value
 >::type StorageFactory::Register(
     string extension,
     function<Importer*()> importerFactory,

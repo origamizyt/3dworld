@@ -33,17 +33,6 @@ Box<N>::Box(const Point<N>& vertex1, const Point<N>& vertex2)
     : Vertex1(vertex1), Vertex2(vertex2) {}
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 Box 对象初始化 Box 对象。
-【参数】 
-    other: 另一 Box 对象。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Box<N>::Box(const Box<N>& other): Box(other.Vertex1, other.Vertex2) {}
-
-/**********************************************************************
 【函数名称】 GetBoundingBoxOf
 【函数功能】 获取可以容纳所有给定点的最小长方体。
 【参数】 
@@ -148,24 +137,6 @@ bool Box<N>::operator==(const Box<N>& other) const {
 template <size_t N>
 bool Box<N>::operator!=(const Box<N>& other) const {
     return !IsEqual(other);
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将另一长方体赋值给自身。
-【参数】
-    other: 从之取值的长方体。
-【返回值】
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Box<N>& Box<N>::operator=(const Box<N>& other) {
-    if (this != &other) {
-        Vertex1 = other.Vertex1;
-        Vertex2 = other.Vertex2;
-    }
-    return *this;
 }
 
 }

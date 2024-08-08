@@ -44,7 +44,7 @@ class Point: public Vector<double, N> {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point(const Point<N>& other);
+        Point(const Point<N>& other) = default;
 
         // 属性
 
@@ -283,7 +283,7 @@ class Point: public Vector<double, N> {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N>& operator=(const Point<N>& other);
+        Point<N>& operator=(const Point<N>& other) = default;
 
         // 格式化
         

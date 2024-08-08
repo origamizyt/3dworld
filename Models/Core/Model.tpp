@@ -46,18 +46,6 @@ Model<N>::Model(
 ): Name(name), Lines(lines), Faces(faces) {}
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 Model 对象初始化 Model 类型实例。
-【参数】
-    other: 另一 Model 对象。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Model<N>::Model(const Model<N>& other)
-    : Model(other.Name, other.Lines, other.Faces) {}
-
-/**********************************************************************
 【函数名称】 CollectPoints
 【函数功能】 收集模型中所有元素的点。
 【参数】 无
@@ -92,25 +80,6 @@ DynamicSet<Point<N>> Model<N>::CollectPoints() const {
 template <size_t N>
 Tools::Box<N> Model<N>::GetBoundingBox() const {
     return Tools::Box<N>::GetBoundingBoxOf(CollectPoints());
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将其他模型赋值给自身。
-【参数】 
-    other: 从之取值的模型。
-【返回值】 
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Model<N>& Model<N>::operator=(const Model<N>& other) {
-    if (this != &other) {
-        Name = other.Name;
-        Lines = other.Lines;
-        Faces = other.Faces;
-    }
-    return *this;
 }
 
 }

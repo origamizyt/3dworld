@@ -67,7 +67,7 @@ class Vector: public Tools::Representable {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Vector(const Vector<T, N>& other);
+        Vector(const Vector<T, N>& other) = default;
 
         // 访问器
 
@@ -442,7 +442,7 @@ class Vector: public Tools::Representable {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Vector<T, N>& operator=(const Vector<T, N>& other);
+        Vector<T, N>& operator=(const Vector<T, N>& other) = default;
 
         // 格式化
 

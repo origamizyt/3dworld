@@ -55,18 +55,6 @@ DynamicSet<T>::DynamicSet(const vector<T>& elements) {
 }
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 DynamicSet 初始化 DynamicSet 类的实例。
-【参数】
-    other: 另一 DynamicSet 实例。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T>
-DynamicSet<T>::DynamicSet(const DynamicSet<T>& other)
-    : DynamicSet(other.m_Elements) {}
-
-/**********************************************************************
 【函数名称】 Count
 【函数功能】 获取元素个数。
 【参数】 无
@@ -226,24 +214,6 @@ DynamicSet<T> DynamicSet<T>::SymmetricDifference(
     const DynamicSet<T>& right
 ) {
     return Union(Difference(left, right), Difference(right, left));
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将其他集合赋值给自身。
-【参数】 
-    other: 从之取值的集合。
-【返回值】 
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <typename T>
-DynamicSet<T>& DynamicSet<T>::operator=(const DynamicSet<T>& other) {
-    if (this != &other) {
-        // 使用 std::vector<T> 的赋值运算符
-        m_Elements = other.m_Elements;
-    }
-    return *this;
 }
 
 /**********************************************************************

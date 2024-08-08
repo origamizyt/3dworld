@@ -66,7 +66,7 @@ class Element: public Tools::Representable {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Element(const Element<N, S>& other);
+        Element(const Element<N, S>& other) = default;
 
         // 属性
 
@@ -235,7 +235,7 @@ class Element: public Tools::Representable {
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Element<N, S>& operator=(const Element<N, S>& other);
+        Element<N, S>& operator=(const Element<N, S>& other) = default;
 
         // 格式化
 

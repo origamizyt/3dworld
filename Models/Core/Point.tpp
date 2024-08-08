@@ -17,17 +17,6 @@ template <size_t N>
 const Point<N> Point<N>::Origin { Point<N>() };
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 Point 初始化 Point 类的实例。
-【参数】
-    other: 另一 Point 实例。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Point<N>::Point(const Point<N>& other): Vector<double, N>(other) {}
-
-/**********************************************************************
 【函数名称】 Distance
 【函数功能】 求两个点之间的直线距离。
 【参数】 
@@ -349,23 +338,6 @@ Vector<double, N> Point<N>::operator-(const Point<N>& other) const {
 template <size_t N>
 Point<N>& Point<N>::operator-=(const Vector<double, N>& delta) {
     Vector<double, N>::operator-=(delta);
-    return *this;
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将另一点赋值于自身。
-【参数】 
-    other: 要从之取值的点。
-【返回值】 
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N>
-Point<N>& Point<N>::operator=(const Point<N>& other) {
-    if (this != &other) {
-        Vector<double, N>::operator=(other);
-    }
     return *this;
 }
 

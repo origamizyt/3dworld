@@ -40,17 +40,6 @@ template <size_t N, size_t S>
 Element<N, S>::Element(const FixedSet<Point<N>, S>& points): Points(points) {}
 
 /**********************************************************************
-【函数名称】 拷贝构造函数
-【函数功能】 使用另一 Element 初始化 Element 对象。
-【参数】 
-    other: 另一 Element。
-【返回值】 无
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N, size_t S>
-Element<N, S>::Element(const Element<N, S>& other): Points(other.Points) {}
-
-/**********************************************************************
 【函数名称】 IsEqual
 【函数功能】 判断自身和另一元素是否相等。
 【参数】
@@ -248,24 +237,6 @@ bool Element<N, S>::operator==(const Element<N, S>& other) const {
 template <size_t N, size_t S>
 bool Element<N, S>::operator!=(const Element<N, S>& other) const {
     return !IsEqual(other);
-}
-
-/**********************************************************************
-【函数名称】 operator=
-【函数功能】 将另一元素赋值给自身。
-【参数】
-    other: 从之取值的元素。
-【返回值】
-    自身的引用。
-【开发者及日期】 赵一彤 2024/7/24
-**********************************************************************/
-template <size_t N, size_t S>
-Element<N, S>& Element<N, S>::operator=(const Element<N, S>& other) {
-    if (this != &other) {
-        // 使用 FixedSet 的赋值运算符
-        Points = other.Points;
-    }
-    return *this;
 }
 
 /**********************************************************************
