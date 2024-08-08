@@ -11,6 +11,7 @@
 #include <list>
 #include <functional>
 #include <memory>
+#include <type_traits>
 #include "ImporterBase.hpp"
 #include "ExporterBase.hpp"
 using namespace std;
@@ -34,28 +35,32 @@ class StorageFactory final {
         【函数功能】 将 Importer 和 Exporter 注册为一对导入/导出器。
         【参数】
             extension: 要注册的扩展名。
-            dimension: 要注册的维度。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        template <typename Importer, typename Exporter>
-        static void Register(string extension, size_t dimension);
+        template <size_t N, typename Importer, typename Exporter>
+        static typename enable_if<
+            std::is_base_of<ImporterBase<N>, Importer>::value &&
+            std::is_base_of<ExporterBase<N>, Exporter>::value
+        >::type Register(string extension);
         /**********************************************************************
         【函数名称】 Register
         【函数功能】 注册一对自定义的导入/导出器。
         【参数】
             extension: 要注册的扩展名。
-            dimension: 要注册的维度。
             importerFactory: 一个构造导入器的函数。
             exporterFactory: 一个构造导出器的函数。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static void Register(
+        template <size_t N, typename Importer, typename Exporter>
+        static typename enable_if<
+            std::is_base_of<ImporterBase<N>, Importer>::value &&
+            std::is_base_of<ExporterBase<N>, Exporter>::value
+        >::type Register(
             string extension,
-            size_t dimension,
-            function<void*()> importerFactory,
-            function<void*()> exporterFactory
+            function<Importer*()> importerFactory,
+            function<Exporter*()> exporterFactory
         );
         /**********************************************************************
         【函数名称】 GetImporter
