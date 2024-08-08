@@ -5,7 +5,6 @@
 *************************************************************************/
 
 #include <functional>
-#include <list>
 #include <string>
 #include "Obj/ObjImporter.hpp"
 #include "Obj/ObjExporter.hpp"
@@ -16,11 +15,15 @@ namespace C3w {
 
 namespace Storage {
 
-// 导入/导出器列表
-list<StorageFactory::Pair> StorageFactory::m_Pairs {
-    { ".obj", 3, 
-        [](){ return new Obj::ObjImporter(); },
-        [](){ return new Obj::ObjExporter(); }
+// 导入/导出器表
+unordered_multimap<string, const StorageFactory::Pair> StorageFactory::m_Map {
+    { 
+        ".obj",
+        { 
+            3, 
+            []() { return new Obj::ObjImporter(); },
+            []() { return new Obj::ObjExporter(); }
+        } 
     }
 };
 

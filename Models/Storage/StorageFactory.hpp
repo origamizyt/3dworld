@@ -8,10 +8,10 @@
 
 #include <cstddef>
 #include <string>
-#include <list>
 #include <functional>
 #include <memory>
 #include <type_traits>
+#include <unordered_map>
 #include "ImporterBase.hpp"
 #include "ExporterBase.hpp"
 using namespace std;
@@ -86,21 +86,23 @@ class StorageFactory final {
         static unique_ptr<ExporterBase<N>> GetExporter(string path);
         
     private:
-        // 一个存储导入/导出器的结构
+        /**********************************************************************
+        【类名】 Pair
+        【功能】 存储导入/导出器。
+        【接口说明】 简单数据类型，无函数。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
         struct Pair {
-            // 文件的扩展名
-            string Extension;
-            // 模型的维度
+            // 维数
             size_t Dimension;
-            // 导入器构造函数/工厂
+            // 导入器“构造函数”
             function<void*()> ImporterFactory;
-            // 导出器构造函数/工厂
+            // 导出器“构造函数”
             function<void*()> ExporterFactory;
         };
 
-        // 导入/导出器列表
-        // 使用链表获得更好的性能
-        static list<Pair> m_Pairs;
+        // 导入/导出器表
+        static unordered_multimap<string, const Pair> m_Map;
 
         // 静态类，隐藏构造函数。
         StorageFactory();

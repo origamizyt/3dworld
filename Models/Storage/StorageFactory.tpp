@@ -59,11 +59,7 @@ typename enable_if<
     function<Importer*()> importerFactory,
     function<Exporter*()> exporterFactory
 ) {
-    m_Pairs.push_back(Pair {
-        extension, N,
-        importerFactory,
-        exporterFactory
-    });
+    m_Map.insert({ extension, { N, importerFactory, exporterFactory }});
 }
 
 /**********************************************************************
@@ -82,10 +78,11 @@ unique_ptr<ImporterBase<N>> StorageFactory::GetImporter(string path) {
     if (dotpos != string::npos) {
         extension = path.substr(dotpos);
     }
-    for (auto& pair: m_Pairs) {
-        if (extension == pair.Extension && N == pair.Dimension) {
+    auto range = m_Map.equal_range(extension);
+    for (auto it = range.first; it != range.second; ++it) {
+        if (it->second.Dimension == N) {
             return unique_ptr<ImporterBase<N>>(
-                static_cast<ImporterBase<N>*>(pair.ImporterFactory())
+                static_cast<ImporterBase<N>*>(it->second.ImporterFactory())
             );
         }
     }
@@ -108,10 +105,11 @@ unique_ptr<ExporterBase<N>> StorageFactory::GetExporter(string path) {
     if (dotpos != string::npos) {
         extension = path.substr(dotpos);
     }
-    for (auto& pair: m_Pairs) {
-        if (extension == pair.Extension && N == pair.Dimension) {
+    auto range = m_Map.equal_range(extension);
+    for (auto it = range.first; it != range.second; ++it) {
+        if (it->second.Dimension == N) {
             return unique_ptr<ExporterBase<N>>(
-                static_cast<ExporterBase<N>*>(pair.ExporterFactory())
+                static_cast<ExporterBase<N>*>(it->second.ExporterFactory())
             );
         }
     }
