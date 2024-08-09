@@ -211,10 +211,7 @@ void ConsoleViewBase::RegisterCommand(
     function<Result()> handler,
     string help
 ) {
-    m_Commands[name] = { 
-        .Handler = handler, 
-        .Help = help 
-    };
+    m_Commands[name] = { handler, help };
 }
 
 /**********************************************************************

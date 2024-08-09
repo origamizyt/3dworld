@@ -48,8 +48,8 @@ vector<ControllerBase::GetElementResult> ControllerBase::GetLines() const {
     vector<GetElementResult> result;
     for (size_t i = 0; i < m_Model.Lines.Count(); i++) {
         result.push_back({
-            .String = LineToString(m_Model.Lines[i], m_LineStatus[i]),
-            .ElementStatus = m_LineStatus[i],
+            /* .String */ LineToString(m_Model.Lines[i], m_LineStatus[i]),
+            /* .ElementStatus */ m_LineStatus[i],
         });
     }
     return result;
@@ -173,8 +173,8 @@ vector<ControllerBase::GetElementResult> ControllerBase::GetFaces() const {
     vector<GetElementResult> result;
     for (size_t i = 0; i < m_Model.Faces.Count(); i++) {
         result.push_back({
-            .String = FaceToString(m_Model.Faces[i], m_FaceStatus[i]),
-            .ElementStatus = m_FaceStatus[i],
+            /* .String */  FaceToString(m_Model.Faces[i], m_FaceStatus[i]),
+            /* .ElementStatus */  m_FaceStatus[i],
         });
     }
     return result;
@@ -298,12 +298,12 @@ ControllerBase::Result ControllerBase::RemoveFace(size_t index) {
 **********************************************************************/
 ControllerBase::Statistics ControllerBase::GetStatistics() const {
     Statistics stats {
-        .TotalPointCount = 0,
-        .TotalLineCount = m_Model.Lines.Count(), 
-        .TotalLineLength = 0,
-        .TotalFaceCount = m_Model.Faces.Count(), 
-        .TotalFaceArea = 0,
-        .BoundingBoxVolume = m_Model.GetBoundingBox().GetVolume()
+        /* .TotalPointCount     */  0,
+        /* .TotalLineCount      */  m_Model.Lines.Count(), 
+        /* .TotalLineLength     */  0,
+        /* .TotalFaceCount      */  m_Model.Faces.Count(), 
+        /* .TotalFaceArea       */  0,
+        /* .BoundingBoxVolume   */  m_Model.GetBoundingBox().GetVolume()
     };
     stats.TotalPointCount = 
         stats.TotalLineCount * 2 + stats.TotalFaceCount * 3;
