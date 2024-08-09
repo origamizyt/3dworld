@@ -35,8 +35,8 @@ typename enable_if<
 >::type StorageFactory::Register(string extension) {
     Register<N, Importer, Exporter>(
         extension,
-        []() { return new Importer(); },
-        []() { return new Exporter(); }
+        MakeConstructor<Importer>(),
+        MakeConstructor<Exporter>()
     );
 }
 
@@ -114,6 +114,19 @@ unique_ptr<ExporterBase<N>> StorageFactory::GetExporter(string path) {
         }
     }
     throw StorageFactoryLookupException();
+}
+
+/**********************************************************************
+【函数名称】 MakeConstructor
+【函数功能】 创建特定类型的一个“构造函数”。
+【参数】 
+    args: 构造函数需要的参数。
+【返回值】 一个返回特定类型指针的函数。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, typename ...Args>
+constexpr function<T*()> StorageFactory::MakeConstructor(Args&& ...args) {
+    return [=]() { return new T(forward<Args>(args)...); };
 }
 
 }

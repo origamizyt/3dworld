@@ -22,8 +22,8 @@ unordered_multimap<string, const StorageFactory::Pair> StorageFactory::m_Map {
         ".obj",
         { 
             .Dimension = 3, 
-            .ImporterFactory = []() { return new Obj::ObjImporter(); },
-            .ExporterFactory = []() { return new Obj::ObjExporter(); }
+            .ImporterFactory = MakeConstructor<Obj::ObjImporter>(),
+            .ExporterFactory = MakeConstructor<Obj::ObjExporter>()
         } 
     }
 };

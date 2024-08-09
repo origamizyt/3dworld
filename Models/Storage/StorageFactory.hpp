@@ -104,6 +104,17 @@ class StorageFactory final {
         // 导入/导出器表
         static unordered_multimap<string, const Pair> m_Map;
 
+        /**********************************************************************
+        【函数名称】 MakeConstructor
+        【函数功能】 创建特定类型的一个“构造函数”。
+        【参数】 
+            args: 构造函数需要的参数。
+        【返回值】 一个返回特定类型指针的函数。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        template <typename T, typename ...Args>
+        static constexpr function<T*()> MakeConstructor(Args&& ...args);
+
         // 静态类，隐藏构造函数。
         StorageFactory();
 };
