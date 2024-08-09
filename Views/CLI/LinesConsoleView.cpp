@@ -84,11 +84,16 @@ LinesConsoleView::LinesConsoleView(
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 string LinesConsoleView::ResultToString(Result result) const {
-    if (result == Result::ELEMENT_COLLISION) {
-        return "Identical line already exists in model.";
-    }
-    else {
-        return ConsoleViewBase::ResultToString(result);
+    switch (result) {
+        case Result::POINT_COLLISION: {
+            return "Identical point already exists in line.";
+        }
+        case Result::ELEMENT_COLLISION: {
+            return "Identical line already exists in model.";
+        }
+        default: {
+            return ConsoleViewBase::ResultToString(result);
+        }
     }
 }
 
