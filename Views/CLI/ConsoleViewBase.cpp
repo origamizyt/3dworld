@@ -34,7 +34,10 @@ void ConsoleViewBase::Display() const {
     Output << Palette::FG_GRAY << "Type ? for help." << Palette::CLEAR << endl;
     while (true) {
         string line = Ask(m_Prompt, true);
-        if (line == "?") {
+        if (line.empty()) {
+            continue;
+        }
+        else if (line == "?") {
             ShowHelp();
         }
         else if (line == "quit") {

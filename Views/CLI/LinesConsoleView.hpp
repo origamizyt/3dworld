@@ -55,6 +55,18 @@ class LinesConsoleView: public ConsoleViewBase {
             istream& input,
             ostream& output
         );
+    
+    protected:
+        /**********************************************************************
+        【函数名称】 ResultToString
+        【函数功能】 将命令返回的结果转化为字符串。
+        【参数】
+            result: 要转化的 ConsoleViewBase::Result 枚举。
+        【返回值】
+            结果的字符串表示形式。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        string ResultToString(Result result) const override;
         
     private:
         /**********************************************************************

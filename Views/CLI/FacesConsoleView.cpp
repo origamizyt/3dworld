@@ -7,6 +7,7 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
+#include <string>
 #include <vector>
 #include "ConsoleViewBase.hpp"
 #include "../../Controllers/ControllerBase.hpp"
@@ -72,6 +73,24 @@ FacesConsoleView::FacesConsoleView(
         bind(&FacesConsoleView::CommandRemoveFace, this),
         "Removes a face from model."
     );
+}
+
+/**********************************************************************
+【函数名称】 ResultToString
+【函数功能】 将命令返回的结果转化为字符串。
+【参数】
+    result: 要转化的 ConsoleViewBase::Result 枚举。
+【返回值】
+    结果的字符串表示形式。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+string FacesConsoleView::ResultToString(Result result) const {
+    if (result == Result::ELEMENT_COLLISION) {
+        return "Identical face already exists in model.";
+    }
+    else {
+        return ConsoleViewBase::ResultToString(result);
+    }
 }
 
 /**********************************************************************

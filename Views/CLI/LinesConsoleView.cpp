@@ -75,6 +75,24 @@ LinesConsoleView::LinesConsoleView(
 }
 
 /**********************************************************************
+【函数名称】 ResultToString
+【函数功能】 将命令返回的结果转化为字符串。
+【参数】
+    result: 要转化的 ConsoleViewBase::Result 枚举。
+【返回值】
+    结果的字符串表示形式。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+string LinesConsoleView::ResultToString(Result result) const {
+    if (result == Result::ELEMENT_COLLISION) {
+        return "Identical line already exists in model.";
+    }
+    else {
+        return ConsoleViewBase::ResultToString(result);
+    }
+}
+
+/**********************************************************************
 【函数名称】 CommandListLines
 【函数功能】 实现 list 命令。
 【参数】 无
