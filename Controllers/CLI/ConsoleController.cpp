@@ -64,18 +64,19 @@ string ConsoleController::LineToString(
     const Line<3>& line, 
     Status status
 ) const {
-    string repr = line.ToString();
+    ostringstream repr;
+    repr << line.ToString() << ", length=" << line.GetLength();
     switch (status) {
         case Status::CREATED: {
-            repr += " *created";
+            repr << " *created";
             break;
         }
         case Status::MODIFIED: {
-            repr += " *modified";
+            repr << " *modified";
             break;
         }
     }
-    return repr;
+    return repr.str();
 }
 
 /**********************************************************************
@@ -92,18 +93,19 @@ string ConsoleController::FaceToString(
     const Face<3>& face, 
     Status status
 ) const {
-    string repr = face.ToString();
+    ostringstream repr;
+    repr << face.ToString() << ", area=" << face.GetArea();
     switch (status) {
         case Status::CREATED: {
-            repr += " *created";
+            repr << " *created";
             break;
         }
         case Status::MODIFIED: {
-            repr += " *modified";
+            repr << " *modified";
             break;
         }
     }
-    return repr;
+    return repr.str();
 }
 
 }
