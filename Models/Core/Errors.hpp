@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef ERRORS_HPP
+#define ERRORS_HPP
 
 #include <stdexcept>
 using namespace std;
@@ -131,3 +132,5 @@ class StorageFactoryLookupException: public invalid_argument {
 
 
 }
+
+#endif

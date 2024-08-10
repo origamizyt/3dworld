@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef OBJ_IMPORTER_HPP
+#define OBJ_IMPORTER_HPP
 
 #include <fstream>
 #include "../ImporterBase.hpp"
@@ -44,3 +45,5 @@ class ObjImporter: public ImporterBase<3> {
 }
 
 }
+
+#endif

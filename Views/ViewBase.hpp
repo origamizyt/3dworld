@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef VIEW_BASE_HPP
+#define VIEW_BASE_HPP
 
 #include <memory>
 #include "../Controllers/ControllerBase.hpp"
@@ -56,3 +57,5 @@ class ViewBase {
 }
 
 }
+
+#endif

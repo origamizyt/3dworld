@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef STORAGE_FACTORY_HPP
+#define STORAGE_FACTORY_HPP
 
 #include <cstddef>
 #include <string>
@@ -124,3 +125,5 @@ class StorageFactory final {
 }
 
 #include "StorageFactory.tpp"
+
+#endif

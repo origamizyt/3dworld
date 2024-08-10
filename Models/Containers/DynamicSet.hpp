@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef DYNAMIC_SET_HPP
+#define DYNAMIC_SET_HPP
 
 #include <cstddef>
 #include <vector>
@@ -345,3 +346,5 @@ class DynamicSet: public DistinctCollection<T> {
 }
 
 #include "DynamicSet.tpp"
+
+#endif

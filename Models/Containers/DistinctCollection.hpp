@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef DISTINCT_COLLECTION_HPP
+#define DISTINCT_COLLECTION_HPP
 
 #include <cstddef>
 #include "CollectionBase.hpp"
@@ -125,3 +126,5 @@ class DistinctCollection: public CollectionBase<T> {
 }
 
 #include "DistinctCollection.tpp"
+
+#endif

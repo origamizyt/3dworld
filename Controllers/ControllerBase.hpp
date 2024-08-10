@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef CONTROLLER_BASE_HPP
+#define CONTROLLER_BASE_HPP
 
 #include <cstddef>
 #include <string>
@@ -333,3 +334,5 @@ class ControllerBase {
 }
 
 }
+
+#endif

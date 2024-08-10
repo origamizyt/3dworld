@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef MAIN_CONSOLE_VIEW_HPP
+#define MAIN_CONSOLE_VIEW_HPP
 
 #include "../../Controllers/ControllerBase.hpp"
 #include "ConsoleViewBase.hpp"
@@ -109,3 +110,5 @@ class MainConsoleView: public ConsoleViewBase {
 }
 
 }
+
+#endif

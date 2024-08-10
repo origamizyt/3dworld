@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef LINES_CONSOLE_VIEW_HPP
+#define LINES_CONSOLE_VIEW_HPP
 
 #include <iostream>
 #include <memory>
@@ -121,3 +122,5 @@ class LinesConsoleView: public ConsoleViewBase {
 }
 
 }
+
+#endif

@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef COLLECTION_BASE_HPP
+#define COLLECTION_BASE_HPP
 
 #include <cstddef>
 #include <string>
@@ -330,3 +331,5 @@ class CollectionBase: public Tools::Representable {
 }
 
 #include "CollectionBase.tpp"
+
+#endif

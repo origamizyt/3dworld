@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef FACES_CONSOLE_VIEW_HPP
+#define FACES_CONSOLE_VIEW_HPP
 
 #include <iostream>
 #include <memory>
@@ -122,3 +123,5 @@ class FacesConsoleView: public ConsoleViewBase {
 }
 
 }
+
+#endif

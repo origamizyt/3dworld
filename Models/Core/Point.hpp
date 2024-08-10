@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef POINT_HPP
+#define POINT_HPP
 
 #include <cstddef>
 #include <string>
@@ -322,3 +323,5 @@ class Point: public Vector<double, N> {
 }
 
 #include "Point.tpp"
+
+#endif

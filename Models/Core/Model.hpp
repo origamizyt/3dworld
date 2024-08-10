@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef MODEL_HPP
+#define MODEL_HPP
 
 #include <cstddef>
 #include <string>
@@ -123,3 +124,5 @@ class Model {
 }
 
 #include "Model.tpp"
+
+#endif

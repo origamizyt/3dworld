@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef CONSOLE_CONTROLLER_HPP
+#define CONSOLE_CONTROLLER_HPP
 
 #include <memory>
 #include <string>
@@ -98,3 +99,5 @@ class ConsoleController: public ControllerBase {
 }
 
 }
+
+#endif

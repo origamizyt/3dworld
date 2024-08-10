@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef BOX_HPP
+#define BOX_HPP
 
 #include <cstddef>
 #include "../Core/Point.hpp"
@@ -143,3 +144,5 @@ class Box final {
 }
 
 #include "Box.tpp"
+
+#endif

@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef FIXED_SET_HPP
+#define FIXED_SET_HPP
 
 #include <array>
 #include <cstddef>
@@ -215,3 +216,5 @@ class FixedSet: public DistinctCollection<T> {
 }
 
 #include "FixedSet.tpp"
+
+#endif

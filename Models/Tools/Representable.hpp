@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef REPRESENTABLE_HPP
+#define REPRESENTABLE_HPP
 
 #include <ostream>
 #include <string>
@@ -47,3 +48,5 @@ class Representable {
 }
 
 }
+
+#endif

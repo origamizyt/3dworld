@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef EXPORTER_BASE_HPP
+#define EXPORTER_BASE_HPP
 
 #include <cstddef>
 #include <fstream>
@@ -63,3 +64,5 @@ class ExporterBase {
 }
 
 #include "ExporterBase.tpp"
+
+#endif

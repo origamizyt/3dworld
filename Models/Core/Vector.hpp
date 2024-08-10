@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef VECTOR_HPP
+#define VECTOR_HPP
 
 #include <array>
 #include <cstddef>
@@ -467,3 +468,5 @@ class Vector: public Tools::Representable {
 }
 
 #include "Vector.tpp"
+
+#endif

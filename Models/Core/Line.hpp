@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef LINE_HPP
+#define LINE_HPP
 
 #include "Element.hpp"
 #include "Vector.hpp"
@@ -118,3 +119,5 @@ class Line: public Element<N, 2> {
 }
 
 #include "Line.tpp"
+
+#endif

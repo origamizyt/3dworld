@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef OBJ_EXPORTER_HPP
+#define OBJ_EXPORTER_HPP
 
 #include <fstream>
 #include "../ExporterBase.hpp"
@@ -47,3 +48,5 @@ class ObjExporter: public ExporterBase<3> {
 }
 
 }
+
+#endif

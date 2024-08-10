@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef CONSOLE_VIEW_BASE_HPP
+#define CONSOLE_VIEW_BASE_HPP
 
 #include <functional>
 #include <iostream>
@@ -229,3 +230,5 @@ class ConsoleViewBase: public ViewBase {
 }
 
 }
+
+#endif

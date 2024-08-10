@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef FACE_HPP
+#define FACE_HPP
 
 #include "Element.hpp"
 #include "Point.hpp"
@@ -115,3 +116,5 @@ class Face: public Element<N, 3> {
 }
 
 #include "Face.tpp"
+
+#endif

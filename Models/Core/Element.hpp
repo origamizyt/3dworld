@@ -4,7 +4,8 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
-#pragma once
+#ifndef ELEMENT_HPP
+#define ELEMENT_HPP
 
 #include <cstddef>
 #include <initializer_list>
@@ -266,3 +267,5 @@ class Element: public Tools::Representable {
 }
 
 #include "Element.tpp"
+
+#endif
