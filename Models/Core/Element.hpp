@@ -58,7 +58,7 @@ class Element: public Tools::Representable {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Element(const FixedSet<Point<N>, S>& points);
+        explicit Element(const FixedSet<Point<N>, S>& points);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 Element 初始化 Element 对象。

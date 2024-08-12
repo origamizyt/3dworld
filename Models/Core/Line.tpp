@@ -4,6 +4,7 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
+#include <cmath>
 #include "Element.hpp"
 #include "Line.hpp"
 #include "Point.hpp"
@@ -74,6 +75,126 @@ double Line<N>::GetArea() const {
 }
 
 /**********************************************************************
+【函数名称】 IsParallel
+【函数功能】 判断自身是否和指定的线段平行。
+【参数】 
+    other: 要与之判断的线段。
+【返回值】 
+    自身和指定向量是否平行。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+bool Line<N>::IsParallel(const Line<N>& other) const {
+    return IsParallel(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 IsParallel
+【函数功能】 判断两个线段是否平行。
+【参数】 
+    left: 要判断的第一个线段。
+    right: 要判断的第二个线段。
+【返回值】 
+    两个向量是否平行。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+bool Line<N>::IsParallel(
+    const Line<N>& left, 
+    const Line<N>& right
+) {
+    return Vector<double, N>::IsParallel(left, right);
+}
+
+/**********************************************************************
+【函数名称】 IsPerpendicular
+【函数功能】 判断自身是否和指定的线段垂直。
+【参数】 
+    other: 要与之判断的线段。
+【返回值】 
+    自身和指定线段是否垂直。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+bool Line<N>::IsPerpendicular(const Line<N>& other) const {
+    return IsPerpendicular(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 IsPerpendicular
+【函数功能】 判断两个线段是否垂直。
+【参数】 
+    left: 要判断的第一个线段。
+    right: 要判断的第二个线段。
+【返回值】 
+    两个线段是否垂直。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+bool Line<N>::IsPerpendicular(
+    const Line<N>& left,
+    const Line<N>& right
+) {
+    return Vector<double, N>::IsPerpendicular(left, right);
+}
+
+/**********************************************************************
+【函数名称】 Intersection
+【函数功能】 获取自身与另一线段的交点。无交点返回 Point<N>::Void。
+【参数】 
+    other: 另一个线段。
+【返回值】 
+    两个线段的交点。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+Point<N> Line<N>::Intersection(const Line<N>& other) const {
+    return Intersection(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 Intersection
+【函数功能】 获取两线段的交点。无交点返回 Point<N>::Void。
+【参数】 
+    left: 第一个线段。
+    right: 第二个线段。
+【返回值】 
+    两个线段的交点。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+Point<N> Line<N>::Intersection(
+    const Line<N>& left, 
+    const Line<N>& right
+) {
+    if (IsParallel(left, right)) {
+        return Point<N>::Void;
+    }
+    Vector<double, N> vector1 = left;
+    Vector<double, N> vector2 = right;
+    Vector<double, N> b = right.Start - left.Start;
+    double ratio1 = 0;
+    double ratio2 = 0;
+    for (size_t i = 1; i < N; i++) {
+        double det = vector1[0] * vector2[i] - vector2[0] * vector1[i];
+        if (fabs(det) > Vector<double, N>::Epsilon) {
+            ratio1 = 1 / det * (vector2[i] * b[0] - vector2[0] * b[i]);
+            ratio2 = 1 / det * (vector1[i] * b[0] - vector1[0] * b[i]);
+            break;
+        }
+    }
+    if (
+        left.Start + vector1 * ratio1 == right.Start + vector2 * ratio1
+        && 0 <= ratio1 && ratio1 <= 1 && 0 <= ratio2 && ratio2 <= 1
+    ) {
+        return left.Start + vector1 * ratio1;
+    }
+    else {
+        return Point<N>::Void;
+    }
+}
+
+/**********************************************************************
 【函数名称】 operator=
 【函数功能】 将另一元素赋值给自身。
 【参数】
@@ -117,8 +238,7 @@ Line<N>& Line<N>::operator=(const Line<N>& other) {
 **********************************************************************/
 template <size_t N>
 Line<N>::operator Vector<double, N>() const {
-    // 终点 - 起点
-    return this->Points[1] - this->Points[0];
+    return End - Start;
 }
 
 }

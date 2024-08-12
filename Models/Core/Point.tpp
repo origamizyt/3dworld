@@ -4,6 +4,7 @@
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 
+#include <array>
 #include <cmath>
 #include <cstddef>
 #include <string>
@@ -15,6 +16,21 @@ namespace C3w {
 // 原点。
 template <size_t N>
 const Point<N> Point<N>::Origin { Point<N>() };
+
+// 分量全部为 NaN 的点。
+template <size_t N>
+const Point<N> Point<N>::Void { Point<N>(nan("")) };
+
+/**********************************************************************
+【函数名称】 构造函数
+【函数功能】 通过 Vector 初始化 Point 类型实例。
+【参数】 
+    vector: 一个向量。
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+Point<N>::Point(const Vector<double, N>& vector): Vector<double, N>(vector) {}
 
 /**********************************************************************
 【函数名称】 Distance
@@ -78,6 +94,24 @@ template <size_t N>
 template <size_t M>
 double Point<N>::GeneralDistance(const Point<M>& other) const {
     return GeneralDistance(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 IsVoid
+【函数功能】 判断自身是否有分量为 NaN。
+【参数】 无
+【返回值】
+    自身是否含有 NaN 分量。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+bool Point<N>::IsVoid() const {
+    for (size_t i = 0; i < N; i++) {
+        if (isnan(this->GetComponent(i))) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /**********************************************************************

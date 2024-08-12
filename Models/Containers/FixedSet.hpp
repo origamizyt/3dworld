@@ -50,7 +50,7 @@ class FixedSet: public DistinctCollection<T> {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet(const array<T, N>& elements);
+        explicit FixedSet(const array<T, N>& elements);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 FixedSet 初始化 FixedSet 类的实例。

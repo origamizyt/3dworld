@@ -38,6 +38,15 @@ class Point: public Vector<double, N> {
         **********************************************************************/
         Point() = default;
         /**********************************************************************
+        【函数名称】 构造函数
+        【函数功能】 通过 Vector 初始化 Point 类型实例。
+        【参数】 
+            vector: 一个向量。
+        【返回值】 无
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        explicit Point(const Vector<double, N>& vector);
+        /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 Point 初始化 Point 类的实例。
         【参数】
@@ -51,6 +60,8 @@ class Point: public Vector<double, N> {
 
         // 原点。
         static const Point<N> Origin;
+        // 分量全部为 NaN 的点。
+        static const Point<N> Void;
         /**********************************************************************
         【函数名称】 Distance
         【函数功能】 求两个点之间的直线距离。
@@ -101,6 +112,15 @@ class Point: public Vector<double, N> {
 
         // 操作
 
+        /**********************************************************************
+        【函数名称】 IsVoid
+        【函数功能】 判断自身是否有分量为 NaN。
+        【参数】 无
+        【返回值】
+            自身是否含有 NaN 分量。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        bool IsVoid() const;
         /**********************************************************************
         【函数名称】 Project
         【函数功能】 将自身从 N 维投影至更低的 M 维。
@@ -311,6 +331,8 @@ class Point: public Vector<double, N> {
 
     private:
         // 隐藏向量独有的函数
+        using Vector<double, N>::IsParallel;
+        using Vector<double, N>::IsPerpendicular;
         using Vector<double, N>::MultiplyInplace;
         using Vector<double, N>::Multiply;
         using Vector<double, N>::InnerProduct;

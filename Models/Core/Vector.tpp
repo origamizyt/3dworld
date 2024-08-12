@@ -12,15 +12,43 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <type_traits>
 #include "Errors.hpp"
 #include "Vector.hpp"
 using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
 
+// 浮点数比较的范围
+template <typename T, size_t N>
+T Vector<T, N>::Epsilon { is_floating_point<T>::value ? 1e-8 : 0 };
+
 // 零向量。
 template <typename T, size_t N>
 const Vector<T, N> Vector<T, N>::Zero { Vector<T, N>() };
+
+/**********************************************************************
+【函数名称】 构造函数
+【函数功能】 初始化分量全部为 0 的 Vector 对象。
+【参数】 无
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+Vector<T, N>::Vector(): Vector(0) {}
+
+/**********************************************************************
+【函数名称】 构造函数
+【函数功能】 初始化分量全部为 "filler" 的 Vector 对象。
+【参数】 
+    filler: 填充的数值。
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+Vector<T, N>::Vector(T filler) {
+    m_Components.fill(filler);
+}
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -162,11 +190,84 @@ bool Vector<T, N>::IsEqual(
     const Vector<T, N>& right
 ) {
     for (size_t i = 0; i < N; i++) {
-        if (left.m_Components[i] != right.m_Components[i]) {
+        if (fabs(left.m_Components[i] - right.m_Components[i]) > Epsilon) {
             return false;
         }
     }
     return true;
+}
+
+/**********************************************************************
+【函数名称】 IsParallel
+【函数功能】 判断自身是否和指定的向量平行。
+【参数】 
+    other: 要与之判断的向量。
+【返回值】 
+    自身和指定向量是否平行。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+bool Vector<T, N>::IsParallel(const Vector<T, N>& other) const {
+    return IsParallel(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 IsParallel
+【函数功能】 判断两个向量是否平行。
+【参数】 
+    left: 要判断的第一个向量。
+    right: 要判断的第二个向量。
+【返回值】 
+    两个向量是否平行。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+bool Vector<T, N>::IsParallel(
+    const Vector<T, N>& left, 
+    const Vector<T, N>& right
+) {
+    if (N == 1) {
+        return true;
+    }
+    // 由于一些数据类型对除法不封闭，只能使用乘法。
+    for (size_t i = 1; i < N; i++) {
+        if (fabs(left[0] * right[i] - right[0] * left[i]) > Epsilon) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**********************************************************************
+【函数名称】 IsPerpendicular
+【函数功能】 判断自身是否和指定的向量垂直。
+【参数】 
+    other: 要与之判断的向量。
+【返回值】 
+    自身和指定向量是否垂直。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+bool Vector<T, N>::IsPerpendicular(const Vector<T, N>& other) const {
+    return IsPerpendicular(*this, other);
+}
+
+/**********************************************************************
+【函数名称】 IsPerpendicular
+【函数功能】 判断两个向量是否垂直。
+【参数】 
+    left: 要判断的第一个向量。
+    right: 要判断的第二个向量。
+【返回值】 
+    两个向量是否垂直。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T, size_t N>
+bool Vector<T, N>::IsPerpendicular(
+    const Vector<T, N>& left,
+    const Vector<T, N>& right
+) {
+    return fabs(InnerProduct(left, right)) <= Epsilon;
 }
 
 /**********************************************************************

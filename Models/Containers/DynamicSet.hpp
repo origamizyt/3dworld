@@ -52,7 +52,7 @@ class DynamicSet: public DistinctCollection<T> {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet(const vector<T>& elements);
+        explicit DynamicSet(const vector<T>& elements);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 DynamicSet 初始化 DynamicSet 类的实例。
