@@ -49,7 +49,7 @@ Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& points) {
     array<double, N> max_coords;
     max_coords.fill(numeric_limits<double>::max());
     array<double, N> min_coords;
-    max_coords.fill(numeric_limits<double>::min());
+    min_coords.fill(numeric_limits<double>::min());
     Point<N> vertex1(max_coords);
     Point<N> vertex2(min_coords);
     for (auto& point: points) {
