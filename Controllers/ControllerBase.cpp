@@ -8,7 +8,10 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "../Models/Core/Errors.hpp"
+#include "../Models/Errors/IndexOverflowException.hpp"
+#include "../Models/Errors/FileOpenException.hpp"
+#include "../Models/Errors/FileFormatException.hpp"
+#include "../Models/Errors/StorageFactoryLookupException.hpp"
 #include "../Models/Core/Model.hpp"
 #include "../Models/Core/Line.hpp"
 #include "../Models/Core/Face.hpp"
@@ -342,9 +345,6 @@ ControllerBase::Result ControllerBase::LoadModel(string path) {
     catch (FileFormatException) {
         return Result::FILE_FORMAT_ERROR;
     }
-    catch (IndexOverflowException) {
-        return Result::INDEX_OVERFLOW;
-    }
     m_LineStatus.assign(m_Model.Lines.Count(), Status::UNTOUCHED);
     m_FaceStatus.assign(m_Model.Faces.Count(), Status::UNTOUCHED);
     m_Path = path;
@@ -376,9 +376,6 @@ ControllerBase::Result ControllerBase::SaveModel(string path) {
     }
     catch (FileOpenException) {
         return Result::FILE_OPEN_ERROR;
-    }
-    catch (FileFormatException) {
-        return Result::FILE_FORMAT_ERROR;
     }
     return Result::OK;
 }

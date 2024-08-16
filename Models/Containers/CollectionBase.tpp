@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 #include "CollectionBase.hpp"
-#include "../Core/Errors.hpp"
+#include "../Errors/CollectionException.hpp"
 using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
@@ -29,7 +29,7 @@ namespace Containers {
 template <typename T>
 const T& CollectionBase<T>::Get(size_t index) const {
     if (index >= Count()) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, Count());
     }
     return InnerGet(index);
 }
@@ -47,7 +47,7 @@ const T& CollectionBase<T>::Get(size_t index) const {
 template <typename T>
 bool CollectionBase<T>::TrySet(size_t index, const T& value) {
     if (index >= Count()) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, Count());
     }
     if (ShouldSet(index, value)) {
         InnerSet(index, value);
@@ -73,7 +73,7 @@ bool CollectionBase<T>::TrySet(size_t index, const T& value) {
 template <typename T>
 void CollectionBase<T>::Set(size_t index, const T& value) {
     if (!TrySet(index, value)) {
-        throw CollectionException();
+        throw CollectionException("Set");
     }
 }
 
@@ -149,7 +149,7 @@ bool CollectionBase<T>::TryAdd(const T& element) {
 template <typename T>
 void CollectionBase<T>::Add(const T& element) {
     if (!TryAdd(element)) {
-        throw CollectionException();
+        throw CollectionException("Add");
     }
 }
 
@@ -165,7 +165,7 @@ void CollectionBase<T>::Add(const T& element) {
 template <typename T>
 bool CollectionBase<T>::TryRemove(size_t index) {
     if (index >= Count()) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, Count());
     }
     if (ShouldRemove(index)) {
         InnerRemove(index);
@@ -190,7 +190,7 @@ bool CollectionBase<T>::TryRemove(size_t index) {
 template <typename T>
 void CollectionBase<T>::Remove(size_t index) {
     if (!TryRemove(index)) {
-        throw CollectionException();
+        throw CollectionException("Remove");
     }
 }
 
@@ -208,7 +208,7 @@ template <typename T>
 bool CollectionBase<T>::TryInsert(size_t index, const T& element) {
     // index 可以为 Count()，此时与 Add 行为相同
     if (index > Count()) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, Count());
     }
     if (ShouldInsert(index, element)) {
         InnerInsert(index, element);
@@ -234,7 +234,7 @@ bool CollectionBase<T>::TryInsert(size_t index, const T& element) {
 template <typename T>
 void CollectionBase<T>::Insert(size_t index, const T& element) {
     if (!TryInsert(index, element)) {
-        throw CollectionException();
+        throw CollectionException("Insert");
     }
 }
 
@@ -275,7 +275,7 @@ size_t CollectionBase<T>::FindIndex(const T& element) const {
             return i;
         }
     }
-    throw CollectionException();
+    throw CollectionException("FindIndex");
 }
 
 /**********************************************************************

@@ -10,6 +10,7 @@
 #include <array>
 #include <cstddef>
 #include <initializer_list>
+#include "CollectionBase.hpp"
 #include "DistinctCollection.hpp"
 #include "DynamicSet.hpp"
 using namespace std;
@@ -209,6 +210,14 @@ class FixedSet: public DistinctCollection<T> {
         void InnerInsert(size_t index, const T& element) override;
     private:
         array<T, N> m_Elements;
+
+        // 隐藏 Add, Remove, Insert
+        using CollectionBase<T>::TryAdd;
+        using CollectionBase<T>::Add;
+        using CollectionBase<T>::TryInsert;
+        using CollectionBase<T>::Insert;
+        using CollectionBase<T>::TryRemove;
+        using CollectionBase<T>::Remove;
 };
 
 }

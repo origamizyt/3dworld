@@ -7,7 +7,7 @@
 #include <cstddef>
 #include <fstream>
 #include <string>
-#include "../Core/Errors.hpp"
+#include "../Errors/FileOpenException.hpp"
 #include "../Core/Model.hpp"
 #include "ImporterBase.hpp"
 using namespace std;
@@ -31,7 +31,7 @@ template <size_t N>
 void ImporterBase<N>::Import(string path, Model<N>& model) const {
     ifstream stream(path, ios::in);
     if (!stream.is_open()) {
-        throw FileOpenException();
+        throw FileOpenException(path);
     }
     try {
         InnerImport(stream, model);

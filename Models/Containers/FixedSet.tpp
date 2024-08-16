@@ -12,7 +12,8 @@
 #include "DistinctCollection.hpp"
 #include "DynamicSet.hpp"
 #include "FixedSet.hpp"
-#include "../Core/Errors.hpp"
+#include "../Errors/InvalidSizeException.hpp"
+#include "../Errors/CollectionException.hpp"
 using namespace std;
 using namespace C3w::Errors;
 
@@ -31,13 +32,13 @@ namespace Containers {
 template <typename T, size_t N>
 FixedSet<T, N>::FixedSet(initializer_list<T> elements) {
     if (elements.size() != N) {
-        throw InvalidSizeException();
+        throw InvalidSizeException(elements.size(), N);
     }
     if (
         N >= 2 &&
         !this->IsDistinct(elements.begin(), elements.end())
     ) {
-        throw CollectionException();
+        throw CollectionException("Construct");
     }
     copy(elements.begin(), elements.end(), m_Elements.begin());
 }
@@ -56,7 +57,7 @@ FixedSet<T, N>::FixedSet(const array<T, N>& elements) {
         N >= 2 &&
         !this->IsDistinct(elements.begin(), elements.end())
     ) {
-        throw CollectionException();
+        throw CollectionException("Construct");
     }
     m_Elements = elements;
 }
@@ -178,7 +179,7 @@ bool FixedSet<T, N>::ShouldAdd(const T& value) const {
 **********************************************************************/
 template <typename T, size_t N>
 void FixedSet<T, N>::InnerAdd(const T& value) {
-    throw CollectionException();
+    throw CollectionException("Add");
 }
 
 /**********************************************************************
@@ -205,7 +206,7 @@ bool FixedSet<T, N>::ShouldRemove(size_t index) const {
 **********************************************************************/
 template <typename T, size_t N>
 void FixedSet<T, N>::InnerRemove(size_t index) {
-    throw CollectionException();
+    throw CollectionException("Remove");
 }
 
 /**********************************************************************
@@ -234,7 +235,7 @@ bool FixedSet<T, N>::ShouldInsert(size_t index, const T& element) const {
 **********************************************************************/
 template <typename T, size_t N>
 void FixedSet<T, N>::InnerInsert(size_t index, const T& element) {
-    throw CollectionException();
+    throw CollectionException("Insert");
 }
 
 }

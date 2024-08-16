@@ -9,11 +9,11 @@
 #include <string>
 #include <vector>
 #include "ObjImporter.hpp"
-#include "../../Core/Errors.hpp"
 #include "../../Core/Model.hpp"
 #include "../../Core/Point.hpp"
 #include "../../Core/Line.hpp"
 #include "../../Core/Face.hpp"
+#include "../../Errors/FileFormatException.hpp"
 using namespace std;
 using namespace C3w;
 using namespace C3w::Errors;
@@ -35,13 +35,13 @@ namespace Obj {
 **********************************************************************/
 void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
     vector<Point<3>> points;
+    unsigned int LineNumber = 0;
     while (!stream.eof()) {
         string line;
         getline(stream, line);
+        LineNumber++;
         if (line.empty()) continue;
-
         istringstream lineStream(line);
-
         char kind;
         lineStream >> kind;
         switch (kind) {
@@ -59,41 +59,56 @@ void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
                 double z;
                 lineStream >> x >> y >> z;
                 if (lineStream.bad()) {
-                    throw FileFormatException();
+                    throw FileFormatException(
+                        LineNumber,
+                        "cannot parse point coordinates"
+                    );
                 }
                 points.push_back(Point<3> { x, y, z });
                 break;
             }
             case 'l': {
-                double p1;
-                double p2;
+                size_t p1;
+                size_t p2;
                 lineStream >> p1 >> p2;
                 if (lineStream.bad()) {
-                    throw FileFormatException();
+                    throw FileFormatException(
+                        LineNumber,
+                        "cannot parse indices"
+                    );
                 }
                 if (
                     (p1 == 0 || p1 > points.size()) ||
                     (p2 == 0 || p2 > points.size())
                 ) {
-                    throw IndexOverflowException();
+                    throw FileFormatException(
+                        LineNumber,
+                        "index overflow"
+                    );
                 }
                 model.Lines.Add(Line<3> { points[p1-1], points[p2-1] });
                 break;
             }
             case 'f': {
-                double p1;
-                double p2;
-                double p3;
+                size_t p1;
+                size_t p2;
+                size_t p3;
                 lineStream >> p1 >> p2 >> p3;
                 if (lineStream.bad()) {
-                    throw FileFormatException();
+                    throw FileFormatException(
+                        LineNumber,
+                        "cannot parse indices"
+                    );
                 }
                 if (
                     (p1 == 0 || p1 > points.size()) ||
                     (p2 == 0 || p2 > points.size()) ||
                     (p3 == 0 || p3 > points.size())
                 ) {
-                    throw IndexOverflowException();
+                    throw FileFormatException(
+                        LineNumber,
+                        "index overflow"
+                    );
                 }
                 model.Faces.Add(
                     Face<3> { points[p1-1], points[p2-1], points[p3-1] }
@@ -101,7 +116,10 @@ void ObjImporter::InnerImport(ifstream& stream, Model<3>& model) const {
                 break;
             }
             default: {
-                throw FileFormatException();
+                throw FileFormatException(
+                    LineNumber,
+                    string("unrecognized tag '") + kind + string("'")
+                );
             }
         }
     }

@@ -11,8 +11,8 @@
 #include <type_traits>
 #include "ImporterBase.hpp"
 #include "ExporterBase.hpp"
-#include "../Core/Errors.hpp"
 #include "StorageFactory.hpp"
+#include "../Errors/StorageFactoryLookupException.hpp"
 using namespace std;
 using namespace C3w::Errors;
 
@@ -86,7 +86,7 @@ unique_ptr<ImporterBase<N>> StorageFactory::GetImporter(string path) {
             );
         }
     }
-    throw StorageFactoryLookupException();
+    throw StorageFactoryLookupException(extension, N);
 }
 
 /**********************************************************************
@@ -113,7 +113,7 @@ unique_ptr<ExporterBase<N>> StorageFactory::GetExporter(string path) {
             );
         }
     }
-    throw StorageFactoryLookupException();
+    throw StorageFactoryLookupException(extension, N);
 }
 
 /**********************************************************************

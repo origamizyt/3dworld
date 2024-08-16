@@ -13,7 +13,8 @@
 #include <sstream>
 #include <string>
 #include <type_traits>
-#include "Errors.hpp"
+#include "../Errors/IndexOverflowException.hpp"
+#include "../Errors/InvalidSizeException.hpp"
 #include "Vector.hpp"
 using namespace std;
 using namespace C3w;
@@ -61,7 +62,7 @@ Vector<T, N>::Vector(T filler) {
 template <typename T, size_t N>
 Vector<T, N>::Vector(initializer_list<T> components) {
     if (components.size() != N) {
-        throw InvalidSizeException();
+        throw InvalidSizeException(components.size(), N);
     }
     copy(components.begin(), components.end(), m_Components.begin());
 }
@@ -91,7 +92,7 @@ Vector<T, N>::Vector(const array<T, N>& components)
 template <typename T, size_t N>
 const T& Vector<T, N>::GetComponent(size_t index) const {
     if (index >= N) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, N);
     }
     return m_Components[index];
 }
@@ -109,7 +110,7 @@ const T& Vector<T, N>::GetComponent(size_t index) const {
 template <typename T, size_t N>
 T& Vector<T, N>::GetComponent(size_t index) {
     if (index >= N) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, N);
     }
     return m_Components[index];
 }
@@ -126,7 +127,7 @@ T& Vector<T, N>::GetComponent(size_t index) {
 template <typename T, size_t N>
 void Vector<T, N>::SetComponent(size_t index, const T& value) {
     if (index >= N) {
-        throw IndexOverflowException();
+        throw IndexOverflowException(index, N);
     }
     m_Components[index] = value;
 }

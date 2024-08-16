@@ -8,7 +8,7 @@
 #include <vector>
 #include "DistinctCollection.hpp"
 #include "DynamicSet.hpp"
-#include "../Core/Errors.hpp"
+#include "../Errors/CollectionException.hpp"
 using namespace std;
 using namespace C3w::Errors;
 
@@ -30,7 +30,7 @@ DynamicSet<T>::DynamicSet(initializer_list<T> elements) {
         elements.size() >= 2 &&
         !this->IsDistinct(elements.begin(), elements.end())
     ) {
-        throw CollectionException();
+        throw CollectionException("Construct");
     }
     m_Elements = vector<T>(elements);
 }
@@ -49,7 +49,7 @@ DynamicSet<T>::DynamicSet(const vector<T>& elements) {
         elements.size() >= 2 &&
         !this->IsDistinct(elements.begin(), elements.end())
     ) {
-        throw CollectionException();
+        throw CollectionException("Construct");
     }
     m_Elements = elements;
 }

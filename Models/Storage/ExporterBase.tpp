@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include "../Core/Model.hpp"
+#include "../Errors/FileOpenException.hpp"
 #include "ExporterBase.hpp"
 using namespace std;
 using namespace C3w;
@@ -30,7 +31,7 @@ template <size_t N>
 void ExporterBase<N>::Export(string path, const Model<N>& model) const {
     ofstream stream(path, ios::trunc);
     if (!stream.is_open()) {
-        throw FileOpenException();
+        throw FileOpenException(path);
     }
     try {
         InnerExport(stream, model);
