@@ -40,109 +40,109 @@ Vector<T, N>::Vector(): Vector(0) {}
 
 /**********************************************************************
 【函数名称】 构造函数
-【函数功能】 初始化分量全部为 "filler" 的 Vector 对象。
+【函数功能】 初始化分量全部为 "Filler" 的 Vector 对象。
 【参数】 
-    filler: 填充的数值。
+    Filler: 填充的数值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>::Vector(T filler) {
-    m_Components.fill(filler);
+Vector<T, N>::Vector(T Filler) {
+    m_Components.fill(Filler);
 }
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用初始化列表初始化 Vector 对象。
 【参数】 
-    components: 分量构成的初始化列表。
+    Components: 分量构成的初始化列表。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>::Vector(initializer_list<T> components) {
-    if (components.size() != N) {
-        throw InvalidSizeException(components.size(), N);
+Vector<T, N>::Vector(initializer_list<T> Components) {
+    if (Components.size() != N) {
+        throw InvalidSizeException(Components.size(), N);
     }
-    copy(components.begin(), components.end(), m_Components.begin());
+    copy(Components.begin(), Components.end(), m_Components.begin());
 }
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用分量数组初始化 Vector 对象。
 【参数】 
-    components: 分量构成的数组。
+    Components: 分量构成的数组。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>::Vector(const array<T, N>& components)
-    : m_Components(components) {}
+Vector<T, N>::Vector(const array<T, N>& Components)
+    : m_Components(Components) {}
 
 /**********************************************************************
 【函数名称】 GetComponent
 【函数功能】 返回指定下标处的分量。
 【参数】 
-    index: 要获取分量的下标。
+    Index: 要获取分量的下标。
 【返回值】 
     对指定下标处的分量的常引用。
     如果下标越界，抛出 IndexOverflowException。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-const T& Vector<T, N>::GetComponent(size_t index) const {
-    if (index >= N) {
-        throw IndexOverflowException(index, N);
+const T& Vector<T, N>::GetComponent(size_t Index) const {
+    if (Index >= N) {
+        throw IndexOverflowException(Index, N);
     }
-    return m_Components[index];
+    return m_Components[Index];
 }
 
 /**********************************************************************
 【函数名称】 GetComponent
 【函数功能】 返回指定下标处的分量。
 【参数】 
-    index: 要获取分量的下标。
+    Index: 要获取分量的下标。
 【返回值】 
     对指定下标处的分量的可变引用。
     如果下标越界，抛出 IndexOverflowException。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-T& Vector<T, N>::GetComponent(size_t index) {
-    if (index >= N) {
-        throw IndexOverflowException(index, N);
+T& Vector<T, N>::GetComponent(size_t Index) {
+    if (Index >= N) {
+        throw IndexOverflowException(Index, N);
     }
-    return m_Components[index];
+    return m_Components[Index];
 }
 
 /**********************************************************************
 【函数名称】 SetComponent
 【函数功能】 设置指定下标处的分量。
 【参数】 
-    index: 要设置分量的下标。
-    value: 要设置的分量值。
+    Index: 要设置分量的下标。
+    Value: 要设置的分量值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void Vector<T, N>::SetComponent(size_t index, const T& value) {
-    if (index >= N) {
-        throw IndexOverflowException(index, N);
+void Vector<T, N>::SetComponent(size_t Index, const T& Value) {
+    if (Index >= N) {
+        throw IndexOverflowException(Index, N);
     }
-    m_Components[index] = value;
+    m_Components[Index] = Value;
 }
 
 /**********************************************************************
 【函数名称】 SetAllComponents
 【函数功能】 使用数组设置所有分量。
 【参数】 
-    components: 分量构成的数组。不进行越界检测。
+    Components: 分量构成的数组。不进行越界检测。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void Vector<T, N>::SetAllComponents(const array<T, N>& components) {
-    m_Components = components;
+void Vector<T, N>::SetAllComponents(const array<T, N>& Components) {
+    m_Components = Components;
 }
 
 /**********************************************************************
@@ -154,49 +154,49 @@ void Vector<T, N>::SetAllComponents(const array<T, N>& components) {
 **********************************************************************/
 template <typename T, size_t N>
 T Vector<T, N>::Module() const {
-    T squareSum = 0;
+    T SquareSum = 0;
     for (size_t i = 0; i < N; i++) {
-        squareSum += pow(m_Components[i], 2);
+        SquareSum += pow(m_Components[i], 2);
     }
-    return sqrt(squareSum);
+    return sqrt(SquareSum);
 }
 
 /**********************************************************************
 【函数名称】 IsEqual
 【函数功能】 判断自身是否和指定的向量相等。
 【参数】 
-    other: 要与之判断的向量。
+    Other: 要与之判断的向量。
 【返回值】 
     自身和指定向量是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::IsEqual(const Vector<T, N>& other, bool exact) const {
-    return IsEqual(*this, other, exact);
+bool Vector<T, N>::IsEqual(const Vector<T, N>& Other, bool Exact) const {
+    return IsEqual(*this, Other, Exact);
 }
 
 /**********************************************************************
 【函数名称】 IsEqual
 【函数功能】 判断两个向量是否相等。
 【参数】 
-    left: 要判断的第一个向量。
-    right: 要判断的第二个向量。
+    Left: 要判断的第一个向量。
+    Right: 要判断的第二个向量。
 【返回值】 
     两个向量是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 bool Vector<T, N>::IsEqual(
-    const Vector<T, N>& left, 
-    const Vector<T, N>& right,
-    bool exact
+    const Vector<T, N>& Left, 
+    const Vector<T, N>& Right,
+    bool Exact
 ) {
-    if (exact) {
-        return left.m_Components == right.m_Components;
+    if (Exact) {
+        return Left.m_Components == Right.m_Components;
     }
     else {
         for (size_t i = 0; i < N; i++) {
-            if (fabs(left.m_Components[i] - right.m_Components[i]) > Epsilon) {
+            if (fabs(Left[i] - Right[i]) > Epsilon) {
                 return false;
             }
         }
@@ -208,37 +208,37 @@ bool Vector<T, N>::IsEqual(
 【函数名称】 IsParallel
 【函数功能】 判断自身是否和指定的向量平行。
 【参数】 
-    other: 要与之判断的向量。
+    Other: 要与之判断的向量。
 【返回值】 
     自身和指定向量是否平行。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::IsParallel(const Vector<T, N>& other) const {
-    return IsParallel(*this, other);
+bool Vector<T, N>::IsParallel(const Vector<T, N>& Other) const {
+    return IsParallel(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 IsParallel
 【函数功能】 判断两个向量是否平行。
 【参数】 
-    left: 要判断的第一个向量。
-    right: 要判断的第二个向量。
+    Left: 要判断的第一个向量。
+    Right: 要判断的第二个向量。
 【返回值】 
     两个向量是否平行。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 bool Vector<T, N>::IsParallel(
-    const Vector<T, N>& left, 
-    const Vector<T, N>& right
+    const Vector<T, N>& Left, 
+    const Vector<T, N>& Right
 ) {
     if (N == 1) {
         return true;
     }
     // 由于一些数据类型对除法不封闭，只能使用乘法。
     for (size_t i = 1; i < N; i++) {
-        if (left[0] * right[i] != right[0] * left[i]) {
+        if (Left[0] * Right[i] != Right[0] * Left[i]) {
             return false;
         }
     }
@@ -249,32 +249,32 @@ bool Vector<T, N>::IsParallel(
 【函数名称】 IsPerpendicular
 【函数功能】 判断自身是否和指定的向量垂直。
 【参数】 
-    other: 要与之判断的向量。
+    Other: 要与之判断的向量。
 【返回值】 
     自身和指定向量是否垂直。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::IsPerpendicular(const Vector<T, N>& other) const {
-    return IsPerpendicular(*this, other);
+bool Vector<T, N>::IsPerpendicular(const Vector<T, N>& Other) const {
+    return IsPerpendicular(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 IsPerpendicular
 【函数功能】 判断两个向量是否垂直。
 【参数】 
-    left: 要判断的第一个向量。
-    right: 要判断的第二个向量。
+    Left: 要判断的第一个向量。
+    Right: 要判断的第二个向量。
 【返回值】 
     两个向量是否垂直。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 bool Vector<T, N>::IsPerpendicular(
-    const Vector<T, N>& left,
-    const Vector<T, N>& right
+    const Vector<T, N>& Left,
+    const Vector<T, N>& Right
 ) {
-    return fabs(InnerProduct(left, right)) <= Epsilon;
+    return fabs(InnerProduct(Left, Right)) <= Epsilon;
 }
 
 /**********************************************************************
@@ -308,32 +308,32 @@ Vector<T, N> Vector<T, N>::Negate() const {
 【函数名称】 Negate
 【函数功能】 反转给定向量并存为新的向量。
 【参数】 
-    vector: 要反转的向量。
+    AVector: 要反转的向量。
 【返回值】 
     反转后的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::Negate(const Vector<T, N>& vector) {
-    Vector<T, N> result;
+Vector<T, N> Vector<T, N>::Negate(const Vector<T, N>& AVector) {
+    Vector<T, N> Result;
     for (size_t i = 0; i < N; i++) {
-        result.m_Components[i] = -vector.m_Components[i];
+        Result[i] = -AVector[i];
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 AddInplace
 【函数功能】 将自身加以另一个向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void Vector<T, N>::AddInplace(const Vector<T, N>& other) {
+void Vector<T, N>::AddInplace(const Vector<T, N>& Other) {
     for (size_t i = 0; i < N; i++) {
-        m_Components[i] += other.m_Components[i];
+        m_Components[i] += Other[i];
     }
 }
 
@@ -341,50 +341,50 @@ void Vector<T, N>::AddInplace(const Vector<T, N>& other) {
 【函数名称】 Add
 【函数功能】 将自身与另一向量相加并存储为新的向量。
 【参数】 
-    other: 另一向量。
+    Other: 另一向量。
 【返回值】 
     两向量相加形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::Add(const Vector<T, N>& other) const {
-    return Add(*this, other);
+Vector<T, N> Vector<T, N>::Add(const Vector<T, N>& Other) const {
+    return Add(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Add
 【函数功能】 将两个向量相加并存储为新的向量。
 【参数】 
-    left: 要相加的第一个向量。
-    right: 要相加的第二个向量。
+    Left: 要相加的第一个向量。
+    Right: 要相加的第二个向量。
 【返回值】 
     两向量相加形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 Vector<T, N> Vector<T, N>::Add(
-    const Vector<T, N>& left, 
-    const Vector<T, N>& right
+    const Vector<T, N>& Left, 
+    const Vector<T, N>& Right
 ) {
-    Vector<T, N> result;
+    Vector<T, N> Result;
     for (size_t i = 0; i < N; i++) {
-        result.m_Components[i] = left.m_Components[i] + right.m_Components[i];
+        Result[i] = Left[i] + Right[i];
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 SubtractInplace
 【函数功能】 将自身减去另一个向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void Vector<T, N>::SubtractInplace(const Vector<T, N>& other) {
+void Vector<T, N>::SubtractInplace(const Vector<T, N>& Other) {
     for (size_t i = 0; i < N; i++) {
-        m_Components[i] -= other.m_Components[i];
+        m_Components[i] -= Other[i];
     }
 }
 
@@ -392,50 +392,50 @@ void Vector<T, N>::SubtractInplace(const Vector<T, N>& other) {
 【函数名称】 Subtract
 【函数功能】 将自身与另一向量相减并存储为新的向量。
 【参数】 
-    other: 另一向量。
+    Other: 另一向量。
 【返回值】 
     两向量相减形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::Subtract(const Vector<T, N>& other) const {
-    return Subtract(*this, other);
+Vector<T, N> Vector<T, N>::Subtract(const Vector<T, N>& Other) const {
+    return Subtract(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Subtract
 【函数功能】 将两个向量相减并存储为新的向量。
 【参数】 
-    left: 要相减的第一个向量。
-    right: 要相减的第二个向量。
+    Left: 要相减的第一个向量。
+    Right: 要相减的第二个向量。
 【返回值】 
     两向量相减形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 Vector<T, N> Vector<T, N>::Subtract(
-    const Vector<T, N>& left, 
-    const Vector<T, N>& right
+    const Vector<T, N>& Left, 
+    const Vector<T, N>& Right
 ) {
-    Vector<T, N> result;
+    Vector<T, N> Result;
     for (size_t i = 0; i < N; i++) {
-        result.m_Components[i] = left.m_Components[i] - right.m_Components[i];
+        Result[i] = Left[i] - Right[i];
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 MultiplyInplace
 【函数功能】 将自身与标量数乘。
 【参数】 
-    factor: 要数乘的标量。
+    Factor: 要数乘的标量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void Vector<T, N>::MultiplyInplace(T factor) {
+void Vector<T, N>::MultiplyInplace(T Factor) {
     for (auto& component: m_Components) {
-        component *= factor;
+        component *= Factor;
     }
 }
 
@@ -443,96 +443,96 @@ void Vector<T, N>::MultiplyInplace(T factor) {
 【函数名称】 Multiply
 【函数功能】 将自身与标量数乘。
 【参数】 
-    factor: 要数乘的标量。
+    Factor: 要数乘的标量。
 【返回值】 
     数乘形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::Multiply(T factor) const {
-    return Multiply(*this, factor);
+Vector<T, N> Vector<T, N>::Multiply(T Factor) const {
+    return Multiply(*this, Factor);
 }
 
 /**********************************************************************
 【函数名称】 Multiply
 【函数功能】 将向量与标量数乘。
 【参数】 
-    vector: 要数乘的向量。
-    factor: 要数乘的标量。
+    AVector: 要数乘的向量。
+    Factor: 要数乘的标量。
 【返回值】 
     数乘形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::Multiply(const Vector<T, N> vector, T factor) {
-    Vector<T, N> result;
+Vector<T, N> Vector<T, N>::Multiply(const Vector<T, N> AVector, T Factor) {
+    Vector<T, N> Result;
     for (size_t i = 0; i < N; i++) {
-        result.m_Components[i] = vector.m_Components[i] * factor;
+        Result[i] = AVector[i] * Factor;
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 InnerProduct
 【函数功能】 将自身和另一向量做内积。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 与另一向量的内积。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-T Vector<T, N>::InnerProduct(const Vector<T, N>& other) {
-    return InnerProduct(*this, other);
+T Vector<T, N>::InnerProduct(const Vector<T, N>& Other) {
+    return InnerProduct(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 InnerProduct
 【函数功能】 将两个向量做内积。
 【参数】 
-    left: 要做内积的第一个向量。
-    right: 要做内积的第二个向量。
+    Left: 要做内积的第一个向量。
+    Right: 要做内积的第二个向量。
 【返回值】 
     两向量的内积。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
 T Vector<T, N>::InnerProduct(
-    const Vector<T, N>& left, 
-    const Vector<T, N>& right
+    const Vector<T, N>& Left, 
+    const Vector<T, N>& Right
 ) {
-    T result = 0;
+    T Result = 0;
     for (size_t i = 0; i < N; i++) {
-        result += (left.m_Components[i] * right.m_Components[i]);
+        Result += Left[i] * Right[i];
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 operator[]
 【函数功能】 通过下标访问分量。
 【参数】 
-    index: 要访问的下标。
+    Index: 要访问的下标。
 【返回值】 
     分量的常引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-const T& Vector<T, N>::operator[](size_t index) const {
-    return GetComponent(index);
+const T& Vector<T, N>::operator[](size_t Index) const {
+    return GetComponent(Index);
 }
 
 /**********************************************************************
 【函数名称】 operator[]
 【函数功能】 通过下标访问分量。
 【参数】 
-    index: 要访问的下标。
+    Index: 要访问的下标。
 【返回值】 
     分量的可变引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-T& Vector<T, N>::operator[](size_t index) {
-    return GetComponent(index);
+T& Vector<T, N>::operator[](size_t Index) {
+    return GetComponent(Index);
 }
 
 /**********************************************************************
@@ -552,82 +552,82 @@ Vector<T, N> Vector<T, N>::operator-() const {
 【函数名称】 operator+
 【函数功能】 将自身与另一个向量的和存储为新的向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】
     自身与另一向量相加形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& other) const {
-    return Add(other);
+Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& Other) const {
+    return Add(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator+=
 【函数功能】 将自身加以另一个向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& other) {
-    AddInplace(other);
+Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& Other) {
+    AddInplace(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator-
 【函数功能】 将自身与另一个向量的差存储为新的向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】
     自身与另一向量相减形成的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& other) const {
-    return Subtract(other);
+Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& Other) const {
+    return Subtract(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator-=
 【函数功能】 将自身减去另一个向量。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& other) {
-    SubtractInplace(other);
+Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& Other) {
+    SubtractInplace(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator*
 【函数功能】 将自身做数乘。
 【参数】 
-    factor: 要数乘的标量。
+    Factor: 要数乘的标量。
 【返回值】 
     数乘得到的新的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N> Vector<T, N>::operator*(T factor) const {
-    return Multiply(factor);
+Vector<T, N> Vector<T, N>::operator*(T Factor) const {
+    return Multiply(Factor);
 }
 
 /**********************************************************************
 【函数名称】 operator*=
 【函数功能】 将自身做数乘。
 【参数】 
-    factor: 要数乘的标量。
+    Factor: 要数乘的标量。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-Vector<T, N>& Vector<T, N>::operator*=(T factor) {
-    MultiplyInplace(factor);
+Vector<T, N>& Vector<T, N>::operator*=(T Factor) {
+    MultiplyInplace(Factor);
     return *this;
 }
 
@@ -635,41 +635,41 @@ Vector<T, N>& Vector<T, N>::operator*=(T factor) {
 【函数名称】 operator*
 【函数功能】 将自身和另一向量做内积。
 【参数】 
-    other: 另一个向量。
+    Other: 另一个向量。
 【返回值】 与另一向量的内积。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-T Vector<T, N>::operator*(const Vector<T, N>& other) const {
-    return InnerProduct(other);
+T Vector<T, N>::operator*(const Vector<T, N>& Other) const {
+    return InnerProduct(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator==
 【函数功能】 判断自身是否和指定的向量相等。
 【参数】 
-    other: 要与之判断的向量。
+    Other: 要与之判断的向量。
 【返回值】 
     自身和指定向量是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::operator==(const Vector<T, N>& other) const {
-    return IsEqual(other);
+bool Vector<T, N>::operator==(const Vector<T, N>& Other) const {
+    return IsEqual(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator!=
 【函数功能】 判断自身是否和指定的向量不等。
 【参数】 
-    other: 要与之判断的向量。
+    Other: 要与之判断的向量。
 【返回值】 
     自身和指定向量是否不等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
-    return !IsEqual(other);
+bool Vector<T, N>::operator!=(const Vector<T, N>& Other) const {
+    return !IsEqual(Other);
 }
 
 /**********************************************************************
@@ -682,13 +682,13 @@ bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
 **********************************************************************/
 template <typename T, size_t N>
 string Vector<T, N>::ToString() const {
-    ostringstream stream;
-    stream << "[";
+    ostringstream Stream;
+    Stream << "[";
     for (size_t i = 0; i < N - 1; i++) {
-        stream << m_Components[i] << ", ";
+        Stream << m_Components[i] << ", ";
     }
-    stream << m_Components[N-1] << "]";
-    return stream.str();
+    Stream << m_Components[N-1] << "]";
+    return Stream.str();
 }
 
 namespace C3w {
@@ -696,14 +696,14 @@ namespace C3w {
     【函数名称】 operator*
     【函数功能】 将向量与标量数乘。
     【参数】 
-        vector: 要数乘的向量。
-        factor: 要数乘的标量。
+        AVector: 要数乘的向量。
+        Factor: 要数乘的标量。
     【返回值】 
         数乘形成的新的向量。
     【开发者及日期】 赵一彤 2024/7/24
     **********************************************************************/
     template <typename U, size_t M>
-    Vector<U, M> operator*(U factor, const Vector<U, M>& vector) {
-        return vector.Multiply(factor);
+    Vector<U, M> operator*(U Factor, const Vector<U, M>& AVector) {
+        return AVector.Multiply(Factor);
     }
 }

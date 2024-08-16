@@ -43,23 +43,23 @@ class CollectionBase: public Tools::Representable {
         【函数名称】 Get
         【函数功能】 获取指定下标处的元素。如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
+            Index: 元素下标。
         【返回值】 
             指定位置元素的常引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        const T& Get(size_t index) const;
+        const T& Get(size_t Index) const;
         /**********************************************************************
         【函数名称】 TrySet
         【函数功能】 尝试设置指定位置元素的值。如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
-            value: 新的值。
+            Index: 元素下标。
+            Value: 新的值。
         【返回值】 
             操作是否成功。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool TrySet(size_t index, const T& value);
+        bool TrySet(size_t Index, const T& Value);
         /**********************************************************************
         【函数名称】 Set
         【函数功能】 
@@ -67,12 +67,12 @@ class CollectionBase: public Tools::Representable {
             如果操作失败抛出 CollectionException。
             如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
-            value: 新的值。
+            Index: 元素下标。
+            Value: 新的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Set(size_t index, const T& value);
+        void Set(size_t Index, const T& Value);
 
         // 操作
 
@@ -80,55 +80,55 @@ class CollectionBase: public Tools::Representable {
         【函数名称】 IsEqual
         【函数功能】 判断自身和另一容器是否相等。
         【参数】 
-            other: 另一容器。
+            Other: 另一容器。
         【返回值】 
             两容器是否相等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool IsEqual(const CollectionBase<T>& other) const;
+        bool IsEqual(const CollectionBase<T>& Other) const;
         /**********************************************************************
         【函数名称】 IsEqual
         【函数功能】 判断两容器是否相等。
         【参数】 
-            left: 第一个容器。
-            right: 第二个容器。
+            Left: 第一个容器。
+            Right: 第二个容器。
         【返回值】 
             两容器是否相等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static bool IsEqual(
-            const CollectionBase<T>& left,
-            const CollectionBase<T>& right
+            const CollectionBase<T>& Left,
+            const CollectionBase<T>& Right
         );
         /**********************************************************************
         【函数名称】 TryAdd
         【函数功能】 尝试添加一个元素。
         【参数】 
-            element: 新的元素。
+            Value: 新的元素。
         【返回值】 
             操作是否成功。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool TryAdd(const T& element);
+        bool TryAdd(const T& Value);
         /**********************************************************************
         【函数名称】 Add
         【函数功能】 添加一个元素。如果操作失败抛出 CollectionException。
         【参数】 
-            element: 新的元素。
+            Value: 新的元素。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Add(const T& element);
+        void Add(const T& Value);
         /**********************************************************************
         【函数名称】 TryRemove
         【函数功能】 删除指定位置元素。如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
+            Index: 元素下标。
         【返回值】 
             操作是否成功。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool TryRemove(size_t index);
+        bool TryRemove(size_t Index);
         /**********************************************************************
         【函数名称】 Remove
         【函数功能】 
@@ -136,22 +136,22 @@ class CollectionBase: public Tools::Representable {
             如果操作失败抛出 CollectionException。
             如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
+            Index: 元素下标。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Remove(size_t index);
+        void Remove(size_t Index);
         /**********************************************************************
         【函数名称】 TryInsert
         【函数功能】 将指定元素插入容器。如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素被插入位置的下标。
-            element: 新的元素。
+            Index: 元素被插入位置的下标。
+            Value: 新的元素。
         【返回值】 
             操作是否成功。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool TryInsert(size_t index, const T& element);
+        bool TryInsert(size_t Index, const T& Value);
         /**********************************************************************
         【函数名称】 Insert
         【函数功能】 
@@ -159,32 +159,32 @@ class CollectionBase: public Tools::Representable {
             如果操作失败抛出 CollectionException。
             如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素被插入位置的下标。
-            element: 新的元素。
+            Index: 元素被插入位置的下标。
+            Value: 新的元素。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Insert(size_t index, const T& element);
+        void Insert(size_t Index, const T& Value);
         /**********************************************************************
         【函数名称】 Contains
         【函数功能】 判断给定的值是否在容器内。
         【参数】 
-            element: 要进行判断的值。
+            Value: 要进行判断的值。
         【返回值】 
             值是否在容器内。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool Contains(const T& element) const;
+        bool Contains(const T& Value) const;
         /**********************************************************************
         【函数名称】 FindIndex
         【函数功能】 寻找给定值在容器中的下标。找不到则抛出 CollectionException。
         【参数】 
-            element: 要寻找的值。
+            Value: 要寻找的值。
         【返回值】 
             容器中的下标。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        size_t FindIndex(const T& element) const;
+        size_t FindIndex(const T& Value) const;
 
         // 操作符
 
@@ -192,32 +192,32 @@ class CollectionBase: public Tools::Representable {
         【函数名称】 operator[]
         【函数功能】 获取指定下标处的元素。如果越界抛出 IndexOverflowException。
         【参数】 
-            index: 元素下标。
+            Index: 元素下标。
         【返回值】 
             指定位置元素的常引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        const T& operator[](size_t index) const;
+        const T& operator[](size_t Index) const;
         /**********************************************************************
         【函数名称】 operator==
         【函数功能】 判断自身和另一容器是否相等。
         【参数】 
-            other: 另一容器。
+            Other: 另一容器。
         【返回值】 
             两容器是否相等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool operator==(const CollectionBase<T>& other) const;
+        bool operator==(const CollectionBase<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator!=
         【函数功能】 判断自身和另一容器是否不等。
         【参数】 
-            other: 另一容器。
+            Other: 另一容器。
         【返回值】 
             两容器是否不等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool operator!=(const CollectionBase<T>& other) const;
+        bool operator!=(const CollectionBase<T>& Other) const;
 
         // 格式化
         /**********************************************************************
@@ -238,92 +238,92 @@ class CollectionBase: public Tools::Representable {
         【函数名称】 InnerGet
         【函数功能】 无条件获取元素值。
         【参数】 
-            index: 要获取的下标。
+            Index: 要获取的下标。
         【返回值】 
             指定位置元素的常引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual const T& InnerGet(size_t index) const = 0;
+        virtual const T& InnerGet(size_t Index) const = 0;
         /**********************************************************************
         【函数名称】 ShouldSet
         【函数功能】 判断是否应该设置元素值。
         【参数】 
-            index: 要设置的下标。
-            value: 要设置的值。
+            Index: 要设置的下标。
+            Value: 要设置的值。
         【返回值】 
             是否应该设置元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldSet(size_t index, const T& value) const;
+        virtual bool ShouldSet(size_t Index, const T& Value) const;
         /**********************************************************************
         【函数名称】 InnerSet
         【函数功能】 无条件设置元素值。
         【参数】 
-            index: 要设置的下标。
-            value: 要设置的值。
+            Index: 要设置的下标。
+            Value: 要设置的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void InnerSet(size_t index, const T& value) = 0;
+        virtual void InnerSet(size_t Index, const T& Value) = 0;
         /**********************************************************************
         【函数名称】 ShouldAdd
         【函数功能】 判断是否应该添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 
             是否应该添加元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldAdd(const T& value) const;
+        virtual bool ShouldAdd(const T& Value) const;
         /**********************************************************************
         【函数名称】 InnerAdd
         【函数功能】 无条件添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void InnerAdd(const T& value) = 0;
+        virtual void InnerAdd(const T& Value) = 0;
         /**********************************************************************
         【函数名称】 ShouldRemove
         【函数功能】 判断是否应该删除元素。
         【参数】 
-            index: 要删除的下标。
+            Index: 要删除的下标。
         【返回值】 
             是否应该删除元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldRemove(size_t index) const;
+        virtual bool ShouldRemove(size_t Index) const;
         /**********************************************************************
         【函数名称】 InnerRemove
         【函数功能】 无条件删除元素。
         【参数】 
-            index: 要删除的下标。
+            Index: 要删除的下标。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void InnerRemove(size_t index) = 0;
+        virtual void InnerRemove(size_t Index) = 0;
         /**********************************************************************
         【函数名称】 ShouldInsert
         【函数功能】 判断是否应该插入元素。
         【参数】 
-            index: 要插入位置的下标。
-            element: 新的元素。
+            Index: 要插入位置的下标。
+            Value: 新的元素。
         【返回值】 
             是否应该插入元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual bool ShouldInsert(size_t index, const T& element) const;
+        virtual bool ShouldInsert(size_t Index, const T& Value) const;
         /**********************************************************************
         【函数名称】 InnerInsert
         【函数功能】 无条件插入元素。
         【参数】 
-            index: 要插入位置的下标。
-            element: 新的元素。
+            Index: 要插入位置的下标。
+            Value: 新的元素。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void InnerInsert(size_t index, const T& element) = 0;
+        virtual void InnerInsert(size_t Index, const T& Value) = 0;
 };
 
 }

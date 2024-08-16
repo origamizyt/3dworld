@@ -28,14 +28,14 @@ class DistinctCollection: public CollectionBase<T> {
         【函数名称】 IsDistinct
         【函数功能】 判断迭代器中是否无重复元素。
         【参数】 
-            begin: 头部迭代器。
-            end: 尾部迭代器。
+            Begin: 头部迭代器。
+            End: 尾部迭代器。
         【返回值】 
             是否没有重复元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <typename It>
-        static bool IsDistinct(It begin, It end);
+        static bool IsDistinct(It Begin, It End);
 
         // 操作
 
@@ -43,25 +43,25 @@ class DistinctCollection: public CollectionBase<T> {
         【函数名称】 IsEqualUnordered
         【函数功能】 判断自身与另一容器中元素是否一一对应。
         【参数】 
-            other: 另一个容器.
+            Other: 另一个容器.
         【返回值】 
             元素是否一一对应。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool IsEqualUnordered(const DistinctCollection<T>& other) const;
+        bool IsEqualUnordered(const DistinctCollection<T>& Other) const;
         /**********************************************************************
         【函数名称】 IsEqualUnordered
         【函数功能】 判断两个容器中元素是否一一对应。
         【参数】 
-            left: 第一个容器。
-            right: 第二个容器。
+            Left: 第一个容器。
+            Right: 第二个容器。
         【返回值】 
             元素是否一一对应。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static bool IsEqualUnordered(
-            const DistinctCollection<T>& left,
-            const DistinctCollection<T>& right
+            const DistinctCollection<T>& Left,
+            const DistinctCollection<T>& Right
         );
 
         // 操作符
@@ -69,56 +69,56 @@ class DistinctCollection: public CollectionBase<T> {
         【函数名称】 operator==
         【函数功能】 判断自身与另一容器中元素是否一一对应。
         【参数】 
-            other: 另一个容器.
+            Other: 另一个容器.
         【返回值】 
             元素是否一一对应。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool operator==(const DistinctCollection<T>& other) const;
+        bool operator==(const DistinctCollection<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator!=
         【函数功能】 判断两个容器中元素是否一一对应。
         【参数】 
-            left: 第一个容器。
-            right: 第二个容器。
+            Left: 第一个容器。
+            Right: 第二个容器。
         【返回值】 
             元素是否一一对应。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool operator!=(const DistinctCollection<T>& other) const;
+        bool operator!=(const DistinctCollection<T>& Other) const;
     protected:
         /**********************************************************************
         【函数名称】 ShouldSet
         【函数功能】 判断是否应该设置元素值。
         【参数】 
-            index: 要设置的下标。
-            value: 要设置的值。
+            Index: 要设置的下标。
+            Value: 要设置的值。
         【返回值】 
             是否应该设置元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldSet(size_t index, const T& value) const override;
+        bool ShouldSet(size_t Index, const T& Value) const override;
         /**********************************************************************
         【函数名称】 ShouldAdd
         【函数功能】 判断是否应该添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 
             是否应该添加元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldAdd(const T& value) const override;
+        bool ShouldAdd(const T& Value) const override;
         /**********************************************************************
         【函数名称】 ShouldInsert
         【函数功能】 判断是否应该插入元素。
         【参数】 
-            index: 要插入位置的下标。
+            Index: 要插入位置的下标。
             element: 新的元素。
         【返回值】 
             是否应该插入元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldInsert(size_t index, const T& value) const override;
+        bool ShouldInsert(size_t Index, const T& Value) const override;
 };
 
 }

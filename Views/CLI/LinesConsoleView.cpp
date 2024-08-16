@@ -24,28 +24,28 @@ namespace Cli {
 【函数名称】 构造函数
 【函数功能】 使用控制器与标准输入/输出流初始化 LinesConsoleView 类型实例。
 【参数】
-    controller: 控制器指针。
+    Controller: 控制器指针。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-LinesConsoleView::LinesConsoleView(shared_ptr<ControllerBase> controller)
-    : LinesConsoleView(controller, cin, cout) {}
+LinesConsoleView::LinesConsoleView(shared_ptr<ControllerBase> Controller)
+    : LinesConsoleView(Controller, cin, cout) {}
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用控制器与指定输入/输出流初始化 LinesConsoleView 类型实例。
 【参数】
-    controller: 控制器指针。
-    input: 输入流。
-    output: 输出流。
+    Controller: 控制器指针。
+    Input: 输入流。
+    Output: 输出流。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 LinesConsoleView::LinesConsoleView(
-    shared_ptr<ControllerBase> controller,
-    istream& input,
-    ostream& output
-): ConsoleViewBase(controller, input, output) {
+    shared_ptr<ControllerBase> Controller,
+    istream& Input,
+    ostream& Output
+): ConsoleViewBase(Controller, Input, Output) {
     m_Prompt = "lines#> ";
     RegisterCommand(
         "list",
@@ -78,13 +78,13 @@ LinesConsoleView::LinesConsoleView(
 【函数名称】 ResultToString
 【函数功能】 将命令返回的结果转化为字符串。
 【参数】
-    result: 要转化的 ConsoleViewBase::Result 枚举。
+    AResult: 要转化的 ConsoleViewBase::Result 枚举。
 【返回值】
     结果的字符串表示形式。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-string LinesConsoleView::ResultToString(Result result) const {
-    switch (result) {
+string LinesConsoleView::ResultToString(Result AResult) const {
+    switch (AResult) {
         case Result::POINT_COLLISION: {
             return "Identical point already exists in line.";
         }
@@ -92,7 +92,7 @@ string LinesConsoleView::ResultToString(Result result) const {
             return "Identical line already exists in model.";
         }
         default: {
-            return ConsoleViewBase::ResultToString(result);
+            return ConsoleViewBase::ResultToString(AResult);
         }
     }
 }
@@ -106,12 +106,12 @@ string LinesConsoleView::ResultToString(Result result) const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
-    auto lines = m_pController->GetLines();
+    auto Lines = m_pController->GetLines();
     Output << Palette::FG_BLUE << "Lines in '" << m_pController->GetName();
-    Output << "' (" << lines.size() << "):" << Palette::CLEAR << endl;
-    for (size_t i = 0; i < lines.size(); i++) {
+    Output << "' (" << Lines.size() << "):" << Palette::CLEAR << endl;
+    for (size_t i = 0; i < Lines.size(); i++) {
         Output << i + 1 << ". ";
-        switch (lines[i].ElementStatus) {
+        switch (Lines[i].ElementStatus) {
             case ControllerBase::Status::CREATED: {
                 Output << Palette::FG_CYAN;
                 break;
@@ -121,7 +121,7 @@ ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
                 break;
             }
         }
-        Output << lines[i].String << Palette::CLEAR << endl;
+        Output << Lines[i].String << Palette::CLEAR << endl;
     }
     return Result::OK;
 }
@@ -135,24 +135,24 @@ ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandGetLine() const {
-    istringstream stream(Ask("Index of desired line (1~): "));
-    size_t index;
-    stream >> index;
-    if (stream.bad()) {
+    istringstream Stream(Ask("Index of desired line (1~): "));
+    size_t Index;
+    Stream >> Index;
+    if (Stream.bad()) {
         return Result::INDEX_OVERFLOW;
     }
-    vector<string> points;
-    auto result = static_cast<Result>(
-        m_pController->GetLinePoints(index - 1, points)
+    vector<string> Points;
+    auto Res = static_cast<Result>(
+        m_pController->GetLinePoints(Index - 1, Points)
     );
-    if (result == Result::OK) {
-        Output << Palette::FG_PURPLE << "Points in line #" << index;
+    if (Res == Result::OK) {
+        Output << Palette::FG_PURPLE << "Points in line #" << Index;
         Output << ":" << Palette::CLEAR << endl;
-        for (size_t i = 0; i < points.size(); i++) {
-            Output << "  " << i + 1 << ". " << points[i] << endl;
+        for (size_t i = 0; i < Points.size(); i++) {
+            Output << "  " << i + 1 << ". " << Points[i] << endl;
         }
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -164,30 +164,30 @@ ConsoleViewBase::Result LinesConsoleView::CommandGetLine() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandAddLine() const {
-    istringstream first(Ask("1st point (x y z): "));
+    istringstream First(Ask("1st point (x y z): "));
     double x1;
     double y1;
     double z1;
-    first >> x1 >> y1 >> z1;
-    if (first.bad()) {
+    First >> x1 >> y1 >> z1;
+    if (First.bad()) {
         return Result::INVALID_VALUE;
     }
-    istringstream second(Ask("2nd point (x y z): "));
+    istringstream Second(Ask("2nd point (x y z): "));
     double x2;
     double y2;
     double z2;
-    second >> x2 >> y2 >> z2;
-    if (second.bad()) {
+    Second >> x2 >> y2 >> z2;
+    if (Second.bad()) {
         return Result::INVALID_VALUE;
     }
-    auto result = static_cast<Result>(
+    auto Res = static_cast<Result>(
         m_pController->AddLine(x1, y1, z1, x2, y2, z2)
     );
-    if (result == Result::OK) {
+    if (Res == Result::OK) {
         Output << Palette::FG_GREEN << "Successfully added line.";
         Output << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -199,41 +199,41 @@ ConsoleViewBase::Result LinesConsoleView::CommandAddLine() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandModifyLine() const {
-    vector<string> choices;
-    for (auto& line: m_pController->GetLines()) {
-        choices.push_back(line.String);
+    vector<string> Choices;
+    for (auto& Line: m_pController->GetLines()) {
+        Choices.push_back(Line.String);
     }
-    size_t index = Select("Select a line to modify:", choices);
-    if (index == 0) {
+    size_t Index = Select("Select a line to modify:", Choices);
+    if (Index == 0) {
         return Result::INVALID_VALUE;
     }
-    choices.clear();
-    auto result = static_cast<Result>(
-        m_pController->GetLinePoints(index - 1, choices)
+    Choices.clear();
+    auto Res = static_cast<Result>(
+        m_pController->GetLinePoints(Index - 1, Choices)
     );
-    if (result != Result::OK) {
-        return result;
+    if (Res != Result::OK) {
+        return Res;
     }
-    size_t pointIndex = Select("Select a point to modify:", choices);
-    if (pointIndex == 0) {
+    size_t PointIndex = Select("Select a point to modify:", Choices);
+    if (PointIndex == 0) {
         return Result::INVALID_VALUE;
     }
-    istringstream coords(Ask("Set point to (x y z): "));
+    istringstream Coords(Ask("Set point to (x y z): "));
     double x;
     double y;
     double z;
-    coords >> x >> y >> z;
-    if (coords.bad()) {
+    Coords >> x >> y >> z;
+    if (Coords.bad()) {
         return Result::INVALID_VALUE;
     }
-    result = static_cast<Result>(
-        m_pController->ModifyLine(index - 1, pointIndex - 1, x, y, z)
+    Res = static_cast<Result>(
+        m_pController->ModifyLine(Index - 1, PointIndex - 1, x, y, z)
     );
-    if (result == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully modified line #" << index;
+    if (Res == Result::OK) {
+        Output << Palette::FG_GREEN << "Successfully modified line #" << Index;
         Output << "." << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -245,20 +245,20 @@ ConsoleViewBase::Result LinesConsoleView::CommandModifyLine() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandRemoveLine() const {
-    vector<string> choices;
-    for (auto& line: m_pController->GetLines()) {
-        choices.push_back(line.String);
+    vector<string> Choices;
+    for (auto& Line: m_pController->GetLines()) {
+        Choices.push_back(Line.String);
     }
-    size_t index = Select("Select a line to delete:", choices);
-    if (index == 0) {
+    size_t Index = Select("Select a line to delete:", Choices);
+    if (Index == 0) {
         return Result::INVALID_VALUE;
     }
-    auto result = static_cast<Result>(m_pController->RemoveLine(index - 1));
-    if (result == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully deleted line #" << index;
+    auto Res = static_cast<Result>(m_pController->RemoveLine(Index - 1));
+    if (Res == Result::OK) {
+        Output << Palette::FG_GREEN << "Successfully deleted line #" << Index;
         Output << "." << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 }

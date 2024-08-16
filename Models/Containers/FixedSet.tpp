@@ -25,41 +25,41 @@ namespace Containers {
 【函数名称】 构造函数
 【函数功能】 使用初始化列表初始化 FixedSet 类型实例。
 【参数】
-    elements: 元素初始化列表。
+    Elements: 元素初始化列表。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-FixedSet<T, N>::FixedSet(initializer_list<T> elements) {
-    if (elements.size() != N) {
-        throw InvalidSizeException(elements.size(), N);
+FixedSet<T, N>::FixedSet(initializer_list<T> Elements) {
+    if (Elements.size() != N) {
+        throw InvalidSizeException(Elements.size(), N);
     }
     if (
         N >= 2 &&
-        !this->IsDistinct(elements.begin(), elements.end())
+        !this->IsDistinct(Elements.begin(), Elements.end())
     ) {
         throw CollectionException("Construct");
     }
-    copy(elements.begin(), elements.end(), m_Elements.begin());
+    copy(Elements.begin(), Elements.end(), m_Elements.begin());
 }
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用 std::array<T, N> 初始化 FixedSet 类型实例。
 【参数】
-    elements: 元素组成的数组。
+    Elements: 元素组成的数组。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-FixedSet<T, N>::FixedSet(const array<T, N>& elements) {
+FixedSet<T, N>::FixedSet(const array<T, N>& Elements) {
     if (
         N >= 2 &&
-        !this->IsDistinct(elements.begin(), elements.end())
+        !this->IsDistinct(Elements.begin(), Elements.end())
     ) {
         throw CollectionException("Construct");
     }
-    m_Elements = elements;
+    m_Elements = Elements;
 }
 
 /**********************************************************************
@@ -131,41 +131,41 @@ typename array<T, N>::const_iterator FixedSet<T, N>::end() const {
 【函数名称】 InnerGet
 【函数功能】 无条件获取元素值。
 【参数】 
-    index: 要获取的下标。
+    Index: 要获取的下标。
 【返回值】 
     指定位置元素的常引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-const T& FixedSet<T, N>::InnerGet(size_t index) const {
-    return m_Elements[index];
+const T& FixedSet<T, N>::InnerGet(size_t Index) const {
+    return m_Elements[Index];
 }
 
 /**********************************************************************
 【函数名称】 InnerSet
 【函数功能】 无条件设置元素值。
 【参数】 
-    index: 要设置的下标。
-    value: 要设置的值。
+    Index: 要设置的下标。
+    Value: 要设置的值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void FixedSet<T, N>::InnerSet(size_t index, const T& value) {
-    m_Elements[index] = value;
+void FixedSet<T, N>::InnerSet(size_t Index, const T& Value) {
+    m_Elements[Index] = Value;
 }
 
 /**********************************************************************
 【函数名称】 ShouldAdd
 【函数功能】 判断是否应该添加元素。
 【参数】 
-    value: 要添加的值。
+    Value: 要添加的值。
 【返回值】 
     是否应该添加元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool FixedSet<T, N>::ShouldAdd(const T& value) const {
+bool FixedSet<T, N>::ShouldAdd(const T& Value) const {
     return false;
 }
 
@@ -173,12 +173,12 @@ bool FixedSet<T, N>::ShouldAdd(const T& value) const {
 【函数名称】 InnerAdd
 【函数功能】 无条件添加元素。
 【参数】 
-    value: 要添加的值。
+    Value: 要添加的值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void FixedSet<T, N>::InnerAdd(const T& value) {
+void FixedSet<T, N>::InnerAdd(const T& Value) {
     throw CollectionException("Add");
 }
 
@@ -186,13 +186,13 @@ void FixedSet<T, N>::InnerAdd(const T& value) {
 【函数名称】 ShouldRemove
 【函数功能】 判断是否应该删除元素。
 【参数】 
-    index: 要删除的下标。
+    Index: 要删除的下标。
 【返回值】 
     是否应该删除元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool FixedSet<T, N>::ShouldRemove(size_t index) const {
+bool FixedSet<T, N>::ShouldRemove(size_t Index) const {
     return false;
 }
 
@@ -200,12 +200,12 @@ bool FixedSet<T, N>::ShouldRemove(size_t index) const {
 【函数名称】 InnerRemove
 【函数功能】 无条件删除元素。
 【参数】 
-    index: 要删除的下标。
+    Index: 要删除的下标。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void FixedSet<T, N>::InnerRemove(size_t index) {
+void FixedSet<T, N>::InnerRemove(size_t Index) {
     throw CollectionException("Remove");
 }
 
@@ -213,14 +213,14 @@ void FixedSet<T, N>::InnerRemove(size_t index) {
 【函数名称】 ShouldInsert
 【函数功能】 判断是否应该插入元素。
 【参数】 
-    index: 要插入位置的下标。
-    element: 新的元素。
+    Index: 要插入位置的下标。
+    Element: 新的元素。
 【返回值】 
     是否应该插入元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool FixedSet<T, N>::ShouldInsert(size_t index, const T& element) const {
+bool FixedSet<T, N>::ShouldInsert(size_t Index, const T& Element) const {
     return false;
 }
 
@@ -228,13 +228,13 @@ bool FixedSet<T, N>::ShouldInsert(size_t index, const T& element) const {
 【函数名称】 InnerInsert
 【函数功能】 无条件插入元素。
 【参数】 
-    index: 要插入位置的下标。
-    element: 新的元素。
+    Index: 要插入位置的下标。
+    Element: 新的元素。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-void FixedSet<T, N>::InnerInsert(size_t index, const T& element) {
+void FixedSet<T, N>::InnerInsert(size_t Index, const T& Element) {
     throw CollectionException("Insert");
 }
 

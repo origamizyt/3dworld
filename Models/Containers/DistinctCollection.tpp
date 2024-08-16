@@ -17,17 +17,17 @@ namespace Containers {
 【函数名称】 IsDistinct
 【函数功能】 判断迭代器中是否无重复元素。
 【参数】 
-    begin: 头部迭代器。
-    end: 尾部迭代器。
+    Begin: 头部迭代器。
+    End: 尾部迭代器。
 【返回值】 
     是否没有重复元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 template <typename It>
-bool DistinctCollection<T>::IsDistinct(It begin, It end) {
-    for (auto i = begin; i < end - 1; i++) {
-        for (auto j = i + 1; j < end; j++) {
+bool DistinctCollection<T>::IsDistinct(It Begin, It End) {
+    for (auto i = Begin; i < End - 1; i++) {
+        for (auto j = i + 1; j < End; j++) {
             if (*i == *j) {
                 return false;
             }
@@ -40,38 +40,39 @@ bool DistinctCollection<T>::IsDistinct(It begin, It end) {
 【函数名称】 IsEqualUnordered
 【函数功能】 判断自身与另一容器中元素是否一一对应。
 【参数】 
-    other: 另一个容器.
+    Other: 另一个容器.
 【返回值】 
     元素是否一一对应。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 bool DistinctCollection<T>::IsEqualUnordered(
-    const DistinctCollection<T>& other
+    const DistinctCollection<T>& Other
 ) const {
-    return IsEqualUnordered(*this, other);
+    return IsEqualUnordered(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 IsEqualUnordered
 【函数功能】 判断两个容器中元素是否一一对应。
 【参数】 
-    left: 第一个容器。
-    right: 第二个容器。
+    Left: 第一个容器。
+    Right: 第二个容器。
 【返回值】 
     元素是否一一对应。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 bool DistinctCollection<T>::IsEqualUnordered(
-    const DistinctCollection<T>& left,
-    const DistinctCollection<T>& right
+    const DistinctCollection<T>& Left,
+    const DistinctCollection<T>& Right
 ) {
-    if (left.Count() != right.Count()) {
+    if (Left.Count() != Right.Count()) {
         return false;
     }
-    for (size_t i = 0; i < left.Count(); i++) {
-        if (!right.Contains(left.InnerGet(i))) {
+    auto Count = Left.Count();
+    for (size_t i = 0; i < Count; i++) {
+        if (!Right.Contains(Left.InnerGet(i))) {
             return false;
         }
     }
@@ -82,53 +83,53 @@ bool DistinctCollection<T>::IsEqualUnordered(
 【函数名称】 operator==
 【函数功能】 判断自身与另一容器中元素是否一一对应。
 【参数】 
-    other: 另一个容器.
+    Other: 另一个容器.
 【返回值】 
     元素是否一一对应。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 bool DistinctCollection<T>::operator==(
-    const DistinctCollection<T>& other
+    const DistinctCollection<T>& Other
 ) const {
-    return IsEqualUnordered(other);
+    return IsEqualUnordered(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator!=
 【函数功能】 判断两个容器中元素是否一一对应。
 【参数】 
-    left: 第一个容器。
-    right: 第二个容器。
+    Left: 第一个容器。
+    Right: 第二个容器。
 【返回值】 
     元素是否一一对应。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 bool DistinctCollection<T>::operator!=(
-    const DistinctCollection<T>& other
+    const DistinctCollection<T>& Other
 ) const {
-    return !IsEqualUnordered(other);
+    return !IsEqualUnordered(Other);
 }
 
 /**********************************************************************
 【函数名称】 ShouldSet
 【函数功能】 判断是否应该设置元素值。
 【参数】 
-    index: 要设置的下标。
-    value: 要设置的值。
+    Index: 要设置的下标。
+    Value: 要设置的值。
 【返回值】 
     是否应该设置元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-bool DistinctCollection<T>::ShouldSet(size_t index, const T& value) const {
-    auto count = this->Count();
-    for (size_t i = 0; i < count; i++) {
-        if (index == i) {
+bool DistinctCollection<T>::ShouldSet(size_t Index, const T& Value) const {
+    auto Count = this->Count();
+    for (size_t i = 0; i < Count; i++) {
+        if (Index == i) {
             continue;
         }
-        if (this->InnerGet(i) == value) {
+        if (this->InnerGet(i) == Value) {
             return false;
         }
     }
@@ -139,29 +140,29 @@ bool DistinctCollection<T>::ShouldSet(size_t index, const T& value) const {
 【函数名称】 ShouldAdd
 【函数功能】 判断是否应该添加元素。
 【参数】 
-    value: 要添加的值。
+    Value: 要添加的值。
 【返回值】 
     是否应该添加元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-bool DistinctCollection<T>::ShouldAdd(const T& value) const {
-    return !this->Contains(value);
+bool DistinctCollection<T>::ShouldAdd(const T& Value) const {
+    return !this->Contains(Value);
 }
 
 /**********************************************************************
 【函数名称】 ShouldInsert
 【函数功能】 判断是否应该插入元素。
 【参数】 
-    index: 要插入位置的下标。
+    Index: 要插入位置的下标。
     element: 新的元素。
 【返回值】 
     是否应该插入元素。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-bool DistinctCollection<T>::ShouldInsert(size_t index, const T& value) const {
-    return !this->Contains(value);
+bool DistinctCollection<T>::ShouldInsert(size_t Index, const T& Value) const {
+    return !this->Contains(Value);
 }
 
 }

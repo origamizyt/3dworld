@@ -41,20 +41,20 @@ class Point: public Vector<double, N> {
         【函数名称】 构造函数
         【函数功能】 通过 Vector 初始化 Point 类型实例。
         【参数】 
-            vector: 一个向量。
+            AVector: 一个向量。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        explicit Point(const Vector<double, N>& vector);
+        explicit Point(const Vector<double, N>& AVector);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 Point 初始化 Point 类的实例。
         【参数】
-            other: 另一 Point 实例。
+            Other: 另一 Point 实例。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point(const Point<N>& other) = default;
+        Point(const Point<N>& Other) = default;
 
         // 属性
 
@@ -66,49 +66,49 @@ class Point: public Vector<double, N> {
         【函数名称】 Distance
         【函数功能】 求两个点之间的直线距离。
         【参数】 
-            left: 第一个点。
-            right: 第二个点。
+            Left: 第一个点。
+            Right: 第二个点。
         【返回值】
             两点之间的直线距离。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static double Distance(const Point<N>& left, const Point<N>& right);
+        static double Distance(const Point<N>& Left, const Point<N>& Right);
         /**********************************************************************
         【函数名称】 Distance
         【函数功能】 求自身与另一点之间的直线距离。
         【参数】 
-            other: 另一个点。
+            Other: 另一个点。
         【返回值】
             两点之间的直线距离。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        double Distance(const Point<N>& other) const;
+        double Distance(const Point<N>& Other) const;
         /**********************************************************************
         【函数名称】 GeneralDistance
         【函数功能】 求两个点之间的广义直线距离。
         【参数】 
-            left: 第一个点。
-            right: 第二个点。
+            Left: 第一个点。
+            Right: 第二个点。
         【返回值】
             两点之间的直线距离。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <size_t M>
         static double GeneralDistance(
-            const Point<N>& left, 
-            const Point<M>& right
+            const Point<N>& Left, 
+            const Point<M>& Right
         );
         /**********************************************************************
         【函数名称】 GeneralDistance
         【函数功能】 求自身与另一点之间的广义直线距离。
         【参数】 
-            other: 另一个点。
+            Other: 另一个点。
         【返回值】
             两点之间的直线距离。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <size_t M>
-        double GeneralDistance(const Point<M>& other) const;
+        double GeneralDistance(const Point<M>& Other) const;
 
         // 操作
 
@@ -135,13 +135,13 @@ class Point: public Vector<double, N> {
         【函数名称】 Promote
         【函数功能】 将自身从 N 维升至更高的 M 维。
         【参数】 
-            pad: 可选，填充于高维坐标的数，默认 0。
+            Padder: 可选，填充于高维坐标的数，默认 0。
         【返回值】
             一个 M 维的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <size_t M>
-        Point<M> Promote(double pad = 0) const;
+        Point<M> Promote(double Padder = 0) const;
         /**********************************************************************
         【函数名称】 Negate
         【函数功能】 反转此点并存为新的点。
@@ -155,83 +155,83 @@ class Point: public Vector<double, N> {
         【函数名称】 Negate
         【函数功能】 反转给定点并存为新的点。
         【参数】 
-            point: 要反转的点。
+            APoint: 要反转的点。
         【返回值】 
             反转后的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static Point<N> Negate(const Point<N>& point);
+        static Point<N> Negate(const Point<N>& APoint);
         /**********************************************************************
         【函数名称】 Add
         【函数功能】 将自身与一向量相加并存储为新的点。
         【参数】 
-            delta: 相加的向量。
+            Delta: 相加的向量。
         【返回值】 
             点与向量相加形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N> Add(const Vector<double, N>& delta) const;
+        Point<N> Add(const Vector<double, N>& Delta) const;
         /**********************************************************************
         【函数名称】 Add
         【函数功能】 将点与一向量相加并存储为新的点。
         【参数】 
-            point: 相加的点
-            delta: 相加的向量。
+            APoint: 相加的点
+            Delta: 相加的向量。
         【返回值】 
             点与向量相加形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static Point<N> Add(
-            const Point<N>& point, 
-            const Vector<double, N>& delta
+            const Point<N>& APoint, 
+            const Vector<double, N>& Delta
         );
         /**********************************************************************
         【函数名称】 Subtract
         【函数功能】 将自身与一向量相减并存储为新的点。
         【参数】 
-            delta: 相减的向量。
+            Delta: 相减的向量。
         【返回值】 
             点与向量相减形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N> Subtract(const Vector<double, N>& delta) const;
+        Point<N> Subtract(const Vector<double, N>& Delta) const;
         /**********************************************************************
         【函数名称】 Subtract
         【函数功能】 将自身与另一点相减并存储为向量。
         【参数】 
-            other: 相减的点。
+            Other: 相减的点。
         【返回值】 
             点与点相减形成的向量。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Vector<double, N> Subtract(const Point<N>& other) const;
+        Vector<double, N> Subtract(const Point<N>& Other) const;
         /**********************************************************************
         【函数名称】 Subtract
         【函数功能】 将点与一向量相减并存储为新的点。
         【参数】 
-            point: 相减的点
-            delta: 相减的向量。
+            APoint: 相减的点
+            Delta: 相减的向量。
         【返回值】 
             点与向量相减形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static Point<N> Subtract(
-            const Point<N>& point,
-            const Vector<double, N>& delta
+            const Point<N>& APoint,
+            const Vector<double, N>& Delta
         );
         /**********************************************************************
         【函数名称】 Subtract
         【函数功能】 将两点点相减并存储为向量。
         【参数】 
-            left: 第一个点。
-            right: 第二个点。
+            Left: 第一个点。
+            Right: 第二个点。
         【返回值】 
             点与点相减形成的向量。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static Vector<double, N> Subtract(
-            const Point<N>& left,
-            const Point<N>& right
+            const Point<N>& Left,
+            const Point<N>& Right
         );
 
         // 操作符
@@ -249,62 +249,62 @@ class Point: public Vector<double, N> {
         【函数名称】 operator+
         【函数功能】 将自身与一向量相加并存储为新的点。
         【参数】 
-            delta: 相加的向量。
+            Delta: 相加的向量。
         【返回值】 
             点与向量相加形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N> operator+(const Vector<double, N>& delta) const;
+        Point<N> operator+(const Vector<double, N>& Delta) const;
         /**********************************************************************
         【函数名称】 operator+=
         【函数功能】 将自身与一向量相加。
         【参数】 
-            delta: 相加的向量。
+            Delta: 相加的向量。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N>& operator+=(const Vector<double, N>& delta);
+        Point<N>& operator+=(const Vector<double, N>& Delta);
         /**********************************************************************
         【函数名称】 operator-
         【函数功能】 将自身与一向量相减并存储为新的点。
         【参数】 
-            delta: 相减的向量。
+            Delta: 相减的向量。
         【返回值】 
             点与向量相减形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N> operator-(const Vector<double, N>& delta) const;
+        Point<N> operator-(const Vector<double, N>& Delta) const;
         /**********************************************************************
         【函数名称】 operator-
         【函数功能】 将自身与另一点相减并存储为向量。
         【参数】 
-            other: 相减的点。
+            Other: 相减的点。
         【返回值】 
             点与点相减形成的向量。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Vector<double, N> operator-(const Point<N>& other) const;
+        Vector<double, N> operator-(const Point<N>& Other) const;
         /**********************************************************************
         【函数名称】 operator-=
         【函数功能】 将自身与一向量相减并存储为新的点。
         【参数】 
-            delta: 相减的向量。
+            Delta: 相减的向量。
         【返回值】 
             点与向量相减形成的新的点。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N>& operator-=(const Vector<double, N>& delta);
+        Point<N>& operator-=(const Vector<double, N>& Delta);
         /**********************************************************************
         【函数名称】 operator=
         【函数功能】 将另一点赋值于自身。
         【参数】 
-            other: 要从之取值的点。
+            Other: 要从之取值的点。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Point<N>& operator=(const Point<N>& other) = default;
+        Point<N>& operator=(const Point<N>& Other) = default;
 
         // 格式化
         

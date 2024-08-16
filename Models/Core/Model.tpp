@@ -21,29 +21,53 @@ namespace C3w {
 【函数名称】 构造函数
 【函数功能】 使用名称初始化 DynamicSet 类型实例。
 【参数】
-    name: 模型的名称。
+    Name: 模型的名称。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Model<N>::Model(string name): Name(name) {}
+Model<N>::Model(string Name): Name(Name) {}
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用名称、线段集合与面集合初始化 Model 类型实例。
 【参数】
-    name: 模型的名称。
-    lines: 模型中的线集合。
-    faces: 模型中的面集合。
+    Name: 模型的名称。
+    Lines: 模型中的线集合。
+    Faces: 模型中的面集合。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 Model<N>::Model(
-    string name, 
-    const DynamicSet<Line<N>>& lines, 
-    const DynamicSet<Face<N>>& faces
-): Name(name), Lines(lines), Faces(faces) {}
+    string Name, 
+    const DynamicSet<Line<N>>& Lines, 
+    const DynamicSet<Face<N>>& Faces
+): Name(Name), Lines(Lines), Faces(Faces) {}
+
+/**********************************************************************
+【函数名称】 Merged
+【函数功能】 将两个模型融合为一个。
+【参数】
+    First: 第一个模型。
+    Second: 第二个模型。
+    Name: 融合后模型的名称。
+【返回值】
+    融合后的模型。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N>
+Model<N> Model<N>::Merged(
+    const Model<N>& First, 
+    const Model<N>& Second, 
+    string Name
+) {
+    return Model<N>(
+        Name,
+        First.Lines | Second.Lines,
+        First.Faces | Second.Faces
+    );
+}
 
 /**********************************************************************
 【函数名称】 CollectPoints
@@ -55,18 +79,18 @@ Model<N>::Model(
 **********************************************************************/
 template <size_t N>
 DynamicSet<Point<N>> Model<N>::CollectPoints() const {
-    DynamicSet<Point<N>> points;
-    for (auto& line: Lines) {
-        for (auto& point: line.Points) {
-            points.TryAdd(point);
+    DynamicSet<Point<N>> Points;
+    for (auto& Line: Lines) {
+        for (auto& point: Line.Points) {
+            Points.TryAdd(point);
         }
     }
-    for (auto& face: Faces) {
-        for (auto& point: face.Points) {
-            points.TryAdd(point);
+    for (auto& Face: Faces) {
+        for (auto& point: Face.Points) {
+            Points.TryAdd(point);
         }
     }
-    return points;
+    return Points;
 }
 
 /**********************************************************************

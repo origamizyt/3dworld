@@ -22,22 +22,22 @@ namespace Storage {
 【函数名称】 Import
 【函数功能】 导入指定文件到模型中。
 【参数】 
-    path: 文件所在路径。
-    model: 模型的可变引用。
+    Path: 文件所在路径。
+    Model: 模型的可变引用。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-void ImporterBase<N>::Import(string path, Model<N>& model) const {
-    ifstream stream(path, ios::in);
-    if (!stream.is_open()) {
-        throw FileOpenException(path);
+void ImporterBase<N>::Import(string Path, Model<N>& Model) const {
+    ifstream Stream(Path, ios::in);
+    if (!Stream.is_open()) {
+        throw FileOpenException(Path);
     }
     try {
-        InnerImport(stream, model);
+        InnerImport(Stream, Model);
     }
     catch (...) {
-        stream.close();
+        Stream.close();
         throw;
     }
 }

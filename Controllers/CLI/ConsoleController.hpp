@@ -45,39 +45,39 @@ class ConsoleController: public ControllerBase {
         【函数名称】 PointToString
         【函数功能】 获取点的字符串表达形式。
         【参数】
-            point: 要转化的点。
+            APoint: 要转化的点。
         【返回值】
             点的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        string PointToString(const Point<3>& point) const override;
+        string PointToString(const Point<3>& APoint) const override;
         /**********************************************************************
         【函数名称】 LineToString
         【函数功能】 获取线段及其状态的字符串表达形式。
         【参数】
-            line: 要转化的线段。
-            status: 线段的状态。
+            ALine: 要转化的线段。
+            AStatus: 线段的状态。
         【返回值】
             线段的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         string LineToString(
-            const Line<3>& line, 
-            Status status
+            const Line<3>& ALine, 
+            Status AStatus
         ) const override;
         /**********************************************************************
         【函数名称】 FaceToString
         【函数功能】 获取面的字符串表达形式。
         【参数】
-            face: 要转化的面。
-            status: 面的状态。
+            AFace: 要转化的面。
+            AStatus: 面的状态。
         【返回值】
             面的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         string FaceToString(
-            const Face<3>& face, 
-            Status status
+            const Face<3>& AFace, 
+            Status AStatus
         ) const override;
     private:
         // 单例

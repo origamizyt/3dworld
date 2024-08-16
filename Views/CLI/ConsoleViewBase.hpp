@@ -38,30 +38,30 @@ class ConsoleViewBase: public ViewBase {
         【函数名称】 构造函数
         【函数功能】 使用控制器与标准输入/输出流初始化 ConsoleViewBase 类型实例。
         【参数】
-            controller: 控制器指针。
+            Controller: 控制器指针。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        ConsoleViewBase(shared_ptr<ControllerBase> controller);
+        ConsoleViewBase(shared_ptr<ControllerBase> Controller);
         /**********************************************************************
         【函数名称】 构造函数
         【函数功能】 使用控制器与指定输入/输出流初始化 ConsoleViewBase 类型实例。
         【参数】
-            controller: 控制器指针。
-            input: 输入流。
-            output: 输出流。
+            Controller: 控制器指针。
+            Input: 输入流。
+            Output: 输出流。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         ConsoleViewBase(
-            shared_ptr<ControllerBase> controller, 
-            istream& input, 
-            ostream& output
+            shared_ptr<ControllerBase> Controller, 
+            istream& Input, 
+            ostream& Output
         );
         // 删除拷贝构造函数
-        ConsoleViewBase(const ConsoleViewBase& other) = delete;
+        ConsoleViewBase(const ConsoleViewBase& Other) = delete;
         // 删除移动构造函数
-        ConsoleViewBase(ConsoleViewBase&& other) = delete;
+        ConsoleViewBase(ConsoleViewBase&& Other) = delete;
 
         // 成员
         
@@ -89,24 +89,24 @@ class ConsoleViewBase: public ViewBase {
         【函数名称】 Ask
         【函数功能】 向控制台输出提示符并读入一行。
         【参数】
-            prompt: 询问的提示。
-            trim: 是否去除多余的空白字符。
+            Prompt: 询问的提示。
+            Trim: 是否去除多余的空白字符。
         【返回值】
             从输入流读入的一行。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        string Ask(string prompt, bool trim = false) const;
+        string Ask(string Prompt, bool Trim = false) const;
         /**********************************************************************
         【函数名称】 Choose
         【函数功能】 让用户在选项中做出选择。
         【参数】
-            prompt: 询问的提示。
-            choices: 选项组成的向量。
+            Prompt: 询问的提示。
+            Choices: 选项组成的向量。
         【返回值】
             用户选择的项，从 1 开始。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        size_t Select(string prompt, const vector<string>& choices) const;
+        size_t Select(string Prompt, const vector<string>& Choices) const;
 
         /**********************************************************************
         【类名】 Result
@@ -132,26 +132,26 @@ class ConsoleViewBase: public ViewBase {
         【函数名称】 ResultToString
         【函数功能】 将命令返回的结果转化为字符串。
         【参数】
-            result: 要转化的 ConsoleViewBase::Result 枚举。
+            AResult: 要转化的 ConsoleViewBase::Result 枚举。
         【返回值】
             结果的字符串表示形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual string ResultToString(Result result) const;
+        virtual string ResultToString(Result AResult) const;
         /**********************************************************************
         【函数名称】 RegisterCommand
         【函数功能】 注册一个基于回调的命令。
         【参数】
-            name: 命令名称。
-            handler: 命令处理器。
-            help: 命令帮助字符串。
+            Name: 命令名称。
+            Handler: 命令处理器。
+            Help: 命令帮助字符串。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         void RegisterCommand(
-            string name, 
-            function<Result()> handler,
-            string help
+            string Name, 
+            function<Result()> Handler,
+            string Help
         );
 
         /**********************************************************************
@@ -202,26 +202,26 @@ class ConsoleViewBase: public ViewBase {
         【函数名称】 Likelihood
         【函数功能】 计算两个字符串的相似程度。
         【参数】 
-            given: 用户提供的字符串。
-            have: 原有的字符串。
+            Given: 用户提供的字符串。
+            Has: 原有的字符串。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static float Likelihood(string given, string have);
+        static float Likelihood(string Given, string Has);
 
     /**********************************************************************
     【函数名称】 operator<<
     【函数功能】 将指定的颜色显示到流上。
     【参数】
-        stream: 要输出的流。
-        palette: 要显示的颜色。
+        Stream: 要输出的流。
+        APalette: 要显示的颜色。
     【返回值】 
         输出流的引用。
     【开发者及日期】 赵一彤 2024/7/24
     **********************************************************************/
     friend ostream& operator<<(
-        ostream& stream, 
-        Palette palette
+        ostream& Stream, 
+        Palette APalette
     );
 };
 

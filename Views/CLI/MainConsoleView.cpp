@@ -25,28 +25,28 @@ namespace Cli {
 【函数名称】 构造函数
 【函数功能】 使用控制器与标准输入/输出流初始化 ConsoleViewBase 类型实例。
 【参数】
-    controller: 控制器指针。
+    Controller: 控制器指针。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-MainConsoleView::MainConsoleView(shared_ptr<ControllerBase> controller):
-    MainConsoleView(controller, cin, cout) {}
+MainConsoleView::MainConsoleView(shared_ptr<ControllerBase> Controller):
+    MainConsoleView(Controller, cin, cout) {}
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用控制器与指定输入/输出流初始化 ConsoleViewBase 类型实例。
 【参数】
-    controller: 控制器指针。
-    input: 输入流。
-    output: 输出流。
+    Controller: 控制器指针。
+    Input: 输入流。
+    Output: 输出流。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 MainConsoleView::MainConsoleView(
-    shared_ptr<ControllerBase> controller, 
-    istream& input, 
-    ostream& output
-): ConsoleViewBase(controller, input, output) {
+    shared_ptr<ControllerBase> Controller, 
+    istream& Input, 
+    ostream& Output
+): ConsoleViewBase(Controller, Input, Output) {
     m_Prompt = "#> ";
     RegisterCommand(
         "stat", 
@@ -78,11 +78,11 @@ MainConsoleView::MainConsoleView(
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 void MainConsoleView::Display() const {
-    auto path = Ask("Enter model path: ", true);
-    auto result = static_cast<Result>(m_pController->LoadModel(path));
-    if (result != Result::OK) {
+    auto Path = Ask("Enter model path: ", true);
+    auto Res = static_cast<Result>(m_pController->LoadModel(Path));
+    if (Res != Result::OK) {
         Output << Palette::FG_RED;
-        Output << "error: " << ResultToString(result); 
+        Output << "error: " << ResultToString(Res); 
         Output << Palette::CLEAR << endl;
         return;
     }
@@ -127,27 +127,27 @@ ConsoleViewBase::Result MainConsoleView::CommandFacesView() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result MainConsoleView::CommandShowStatistics() const {
-    auto stat = m_pController->GetStatistics();
+    auto Stats = m_pController->GetStatistics();
     
     Output << Palette::FG_PURPLE << "Statistics:" << Palette::CLEAR << endl;
     Output << Palette::FG_PURPLE << "  Total Point Count:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.TotalPointCount << std::endl;
+    Output << Stats.TotalPointCount << std::endl;
     Output << Palette::FG_PURPLE << "  Total Line Count:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.TotalLineCount << std::endl;
+    Output << Stats.TotalLineCount << std::endl;
     Output << Palette::FG_PURPLE << "  Total Line Length:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.TotalLineLength << std::endl;
+    Output << Stats.TotalLineLength << std::endl;
     Output << Palette::FG_PURPLE << "  Total Face Count:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.TotalFaceCount << std::endl;
+    Output << Stats.TotalFaceCount << std::endl;
     Output << Palette::FG_PURPLE << "  Total Face Area:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.TotalFaceArea << std::endl;
+    Output << Stats.TotalFaceArea << std::endl;
     Output << Palette::FG_PURPLE << "  Bounding Box Volume:";
     Output << Palette::CLEAR << "\t";
-    Output << stat.BoundingBoxVolume << std::endl;
+    Output << Stats.BoundingBoxVolume << std::endl;
 
     return Result::OK;
 }
@@ -165,13 +165,13 @@ ConsoleViewBase::Result MainConsoleView::CommandSaveModel() const {
     Output << "(Enter nothing to use original file name)";
     Output << Palette::CLEAR << std::endl;
     std::string fileName = Ask("Save to: ", true);
-    auto result = static_cast<Result>(m_pController->SaveModel(fileName));
-    if (result == Result::OK) {
+    auto Res = static_cast<Result>(m_pController->SaveModel(fileName));
+    if (Res == Result::OK) {
         Output << Palette::FG_GREEN;
         Output << "Successfully saved model '" << m_pController->GetName();
         Output << "'." << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 }

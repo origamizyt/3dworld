@@ -48,35 +48,35 @@ string ControllerBase::GetName() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 vector<ControllerBase::GetElementResult> ControllerBase::GetLines() const {
-    vector<GetElementResult> result;
+    vector<GetElementResult> Result;
     for (size_t i = 0; i < m_Model.Lines.Count(); i++) {
-        result.push_back({
+        Result.push_back({
             /* .String */ LineToString(m_Model.Lines[i], m_LineStatus[i]),
             /* .ElementStatus */ m_LineStatus[i],
         });
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 GetLinePoints
 【函数功能】 获取指定线段中所有点的字符串表达形式。
 【参数】
-    index: 线段的下标。
-    points: 要赋值的向量。
+    Index: 线段的下标。
+    Points: 要赋值的向量。
 【返回值】 
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Result ControllerBase::GetLinePoints(
-    size_t index, 
-    vector<string>& points
+    size_t Index, 
+    vector<string>& Points
 ) const {
-    if (index >= m_Model.Lines.Count()) {
+    if (Index >= m_Model.Lines.Count()) {
         return Result::INDEX_OVERFLOW;
     }
-    for (auto& point: m_Model.Lines[index].Points) {
-        points.push_back(PointToString(point));
+    for (auto& Point: m_Model.Lines[Index].Points) {
+        Points.push_back(PointToString(Point));
     }
     return Result::OK;
 }
@@ -96,8 +96,8 @@ ControllerBase::Result ControllerBase::AddLine(
     double x2, double y2, double z2
 ) {
     try {
-        Line<3> line { { x1, y1, z1 }, { x2, y2, z2 } };
-        if (!m_Model.Lines.TryAdd(line)) {
+        Line<3> ALine { { x1, y1, z1 }, { x2, y2, z2 } };
+        if (!m_Model.Lines.TryAdd(ALine)) {
             return Result::ELEMENT_COLLISION;
         }
     }
@@ -112,36 +112,36 @@ ControllerBase::Result ControllerBase::AddLine(
 【函数名称】 ModifyLine
 【函数功能】 修改一个线段。
 【参数】
-    index: 线段的下标。
-    pointIndex: 要修改的点在线段中的下标。
+    Index: 线段的下标。
+    PointIndex: 要修改的点在线段中的下标。
     x, y, z: 修改后点的三维坐标。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Result ControllerBase::ModifyLine(
-    size_t index,
-    size_t pointIndex,
+    size_t Index,
+    size_t PointIndex,
     double x, double y, double z
 ) {
     try {
-        Line<3> line(m_Model.Lines[index]);
+        Line<3> ALine(m_Model.Lines[Index]);
         try {
-            if (!line.Points.TrySet(pointIndex, { x, y, z })) {
+            if (!ALine.TrySetPoint(PointIndex, { x, y, z })) {
                 return Result::POINT_COLLISION;
             }
         }
         catch (IndexOverflowException) {
             return Result::POINT_INDEX_OVERFLOW;
         }
-        if (!m_Model.Lines.TrySet(index, line)) {
+        if (!m_Model.Lines.TrySet(Index, ALine)) {
             return Result::ELEMENT_COLLISION;
         }
     }
     catch (IndexOverflowException) {
         return Result::INDEX_OVERFLOW;
     }
-    m_LineStatus[index] = Status::MODIFIED;
+    m_LineStatus[Index] = Status::MODIFIED;
     return Result::OK;
 }
 
@@ -149,14 +149,14 @@ ControllerBase::Result ControllerBase::ModifyLine(
 【函数名称】 RemoveLine
 【函数功能】 删除一个线段。
 【参数】
-    index: 要删除线段的下标。
+    Index: 要删除线段的下标。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-ControllerBase::Result ControllerBase::RemoveLine(size_t index) {
+ControllerBase::Result ControllerBase::RemoveLine(size_t Index) {
     try {
-        m_Model.Lines.Remove(index);
+        m_Model.Lines.Remove(Index);
     }
     catch (IndexOverflowException) {
         return Result::INDEX_OVERFLOW;
@@ -173,35 +173,35 @@ ControllerBase::Result ControllerBase::RemoveLine(size_t index) {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 vector<ControllerBase::GetElementResult> ControllerBase::GetFaces() const {
-    vector<GetElementResult> result;
+    vector<GetElementResult> Result;
     for (size_t i = 0; i < m_Model.Faces.Count(); i++) {
-        result.push_back({
+        Result.push_back({
             /* .String */  FaceToString(m_Model.Faces[i], m_FaceStatus[i]),
             /* .ElementStatus */  m_FaceStatus[i],
         });
     }
-    return result;
+    return Result;
 }
 
 /**********************************************************************
 【函数名称】 GetLinePoints
 【函数功能】 获取指定面中所有点的字符串表达形式。
 【参数】
-    index: 面的下标。
-    points: 要赋值的向量。
+    Index: 面的下标。
+    Points: 要赋值的向量。
 【返回值】 
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Result ControllerBase::GetFacePoints(
-    size_t index, 
-    vector<string>& points
+    size_t Index, 
+    vector<string>& Points
 ) const {
-    if (index >= m_Model.Faces.Count()) {
+    if (Index >= m_Model.Faces.Count()) {
         return Result::INDEX_OVERFLOW;
     }
-    for (auto& point: m_Model.Faces[index].Points) {
-        points.push_back(PointToString(point));
+    for (auto& Point: m_Model.Faces[Index].Points) {
+        Points.push_back(PointToString(Point));
     }
     return Result::OK;
 }
@@ -223,8 +223,8 @@ ControllerBase::Result ControllerBase::AddFace(
     double x3, double y3, double z3
 ) {
     try {
-        Face<3> face { { x1, y1, z1 }, { x2, y2, z2 }, { x3, y3, z3 } };
-        if (!m_Model.Faces.TryAdd(face)) {
+        Face<3> AFace { { x1, y1, z1 }, { x2, y2, z2 }, { x3, y3, z3 } };
+        if (!m_Model.Faces.TryAdd(AFace)) {
             return Result::ELEMENT_COLLISION;
         }
     }
@@ -239,36 +239,36 @@ ControllerBase::Result ControllerBase::AddFace(
 【函数名称】 ModifyFace
 【函数功能】 修改一个面。
 【参数】
-    index: 面的下标。
-    pointIndex: 要修改的点在面中的下标。
+    Index: 面的下标。
+    PointIndex: 要修改的点在面中的下标。
     x, y, z: 修改后点的三维坐标。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Result ControllerBase::ModifyFace(
-    size_t index,
-    size_t pointIndex,
+    size_t Index,
+    size_t PointIndex,
     double x, double y, double z
 ) {
     try {
-        Face<3> face(m_Model.Faces[index]);
+        Face<3> AFace(m_Model.Faces[Index]);
         try {
-            if (!face.Points.TrySet(pointIndex, { x, y, z })) {
+            if (!AFace.TrySetPoint(PointIndex, { x, y, z })) {
                 return Result::POINT_COLLISION;
             }
         }
         catch (IndexOverflowException) {
             return Result::POINT_INDEX_OVERFLOW;
         }
-        if (!m_Model.Faces.TrySet(index, face)) {
+        if (!m_Model.Faces.TrySet(Index, AFace)) {
             return Result::ELEMENT_COLLISION;
         }
     }
     catch (IndexOverflowException) {
         return Result::INDEX_OVERFLOW;
     }
-    m_FaceStatus[index] = Status::MODIFIED;
+    m_FaceStatus[Index] = Status::MODIFIED;
     return Result::OK;
 }
 
@@ -276,14 +276,14 @@ ControllerBase::Result ControllerBase::ModifyFace(
 【函数名称】 RemoveFace
 【函数功能】 删除一个面。
 【参数】
-    index: 要删除面的下标。
+    Index: 要删除面的下标。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-ControllerBase::Result ControllerBase::RemoveFace(size_t index) {
+ControllerBase::Result ControllerBase::RemoveFace(size_t Index) {
     try {
-        m_Model.Faces.Remove(index);
+        m_Model.Faces.Remove(Index);
     }
     catch (IndexOverflowException) {
         return Result::INDEX_OVERFLOW;
@@ -300,7 +300,7 @@ ControllerBase::Result ControllerBase::RemoveFace(size_t index) {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Statistics ControllerBase::GetStatistics() const {
-    Statistics stats {
+    Statistics Stats {
         /* .TotalPointCount     */  0,
         /* .TotalLineCount      */  m_Model.Lines.Count(), 
         /* .TotalLineLength     */  0,
@@ -308,36 +308,36 @@ ControllerBase::Statistics ControllerBase::GetStatistics() const {
         /* .TotalFaceArea       */  0,
         /* .BoundingBoxVolume   */  m_Model.GetBoundingBox().GetVolume()
     };
-    stats.TotalPointCount = 
-        stats.TotalLineCount * 2 + stats.TotalFaceCount * 3;
-    for (auto& line: m_Model.Lines) {
-        stats.TotalLineLength += line.GetLength();
+    Stats.TotalPointCount = 
+        Stats.TotalLineCount * 2 + Stats.TotalFaceCount * 3;
+    for (auto& Line: m_Model.Lines) {
+        Stats.TotalLineLength += Line.GetLength();
     }
-    for (auto& face: m_Model.Faces) {
-        stats.TotalFaceArea += face.GetArea();
+    for (auto& Face: m_Model.Faces) {
+        Stats.TotalFaceArea += Face.GetArea();
     }
-    return stats;
+    return Stats;
 }
 
 /**********************************************************************
 【函数名称】 LoadModel
 【函数功能】 从文件加载一个模型。
 【参数】
-    path: 文件位置。
+    Path: 文件位置。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-ControllerBase::Result ControllerBase::LoadModel(string path) {
-    unique_ptr<ImporterBase<3>> importer;
+ControllerBase::Result ControllerBase::LoadModel(string Path) {
+    unique_ptr<ImporterBase<3>> Importer;
     try {
-        importer = StorageFactory::GetImporter<3>(path);
+        Importer = StorageFactory::GetImporter<3>(GetExtension(Path));
     }
     catch (StorageFactoryLookupException) {
         return Result::STORAGE_LOOKUP_ERROR;
     }
     try {
-        importer->Import(path, m_Model);
+        Importer->Import(Path, m_Model);
     }
     catch (FileOpenException) {
         return Result::FILE_OPEN_ERROR;
@@ -347,7 +347,7 @@ ControllerBase::Result ControllerBase::LoadModel(string path) {
     }
     m_LineStatus.assign(m_Model.Lines.Count(), Status::UNTOUCHED);
     m_FaceStatus.assign(m_Model.Faces.Count(), Status::UNTOUCHED);
-    m_Path = path;
+    m_Path = Path;
     return Result::OK;
 }
 
@@ -355,29 +355,53 @@ ControllerBase::Result ControllerBase::LoadModel(string path) {
 【函数名称】 SaveModel
 【函数功能】 向文件保存一个模型。
 【参数】
-    path: 文件位置。
+    Path: 文件位置。
 【返回值】
     函数发生的错误类型。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-ControllerBase::Result ControllerBase::SaveModel(string path) {
-    if (path.empty()) {
-        path = m_Path;
+ControllerBase::Result ControllerBase::SaveModel(string Path) {
+    if (Path.empty()) {
+        Path = m_Path;
     }
-    unique_ptr<ExporterBase<3>> exporter;
+    unique_ptr<ExporterBase<3>> Exporter;
     try {
-        exporter = StorageFactory::GetExporter<3>(path);
+        Exporter = StorageFactory::GetExporter<3>(GetExtension(Path));
     }
     catch (StorageFactoryLookupException) {
         return Result::STORAGE_LOOKUP_ERROR;
     }
     try {
-        exporter->Export(path, m_Model);
+        Exporter->Export(Path, m_Model);
     }
     catch (FileOpenException) {
         return Result::FILE_OPEN_ERROR;
     }
     return Result::OK;
+}
+
+/**********************************************************************
+【函数名称】 GetExtension
+【函数功能】 从路径中提取文件扩展名。
+【参数】
+    Path: 文件路径。
+【返回值】
+    文件的扩展名。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+string ControllerBase::GetExtension(string Path) {
+    auto Name = Path;
+    auto SlashPosition = Path.find_last_of("/\\");
+    if (SlashPosition != string::npos) {
+        Name = Path.substr(SlashPosition + 1);
+    }
+    auto DotPosition = Name.find_last_of('.');
+    if (DotPosition == string::npos) {
+        return "";
+    }
+    else {
+        return Name.substr(DotPosition);
+    }
 }
 
 }

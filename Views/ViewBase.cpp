@@ -18,12 +18,12 @@ namespace Views {
 【函数名称】 构造函数
 【函数功能】 使用控制器初始化 ViewBase 类型实例。
 【参数】
-    controller: 使用的控制器指针。
+    Controller: 使用的控制器指针。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-ViewBase::ViewBase(shared_ptr<ControllerBase> controller)
-    : m_pController(controller) {}
+ViewBase::ViewBase(shared_ptr<ControllerBase> Controller)
+    : m_pController(Controller) {}
 
 }
 

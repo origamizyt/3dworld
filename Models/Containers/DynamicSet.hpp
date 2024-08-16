@@ -39,29 +39,29 @@ class DynamicSet: public DistinctCollection<T> {
         【函数名称】 构造函数
         【函数功能】 使用初始化列表初始化 DynamicSet 类型实例。
         【参数】
-            elements: 元素初始化列表。
+            Elements: 元素初始化列表。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet(initializer_list<T> elements);
+        DynamicSet(initializer_list<T> Elements);
         /**********************************************************************
         【函数名称】 构造函数
         【函数功能】 使用 std::vector<T> 初始化 DynamicSet 类型实例。
         【参数】
-            elements: 元素组成的向量。
+            Elements: 元素组成的向量。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        explicit DynamicSet(const vector<T>& elements);
+        explicit DynamicSet(const vector<T>& Elements);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 DynamicSet 初始化 DynamicSet 类的实例。
         【参数】
-            other: 另一 DynamicSet 实例。
+            Other: 另一 DynamicSet 实例。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet(const DynamicSet<T>& other) = default;
+        DynamicSet(const DynamicSet<T>& Other) = default;
 
         // 属性
         /**********************************************************************
@@ -80,97 +80,97 @@ class DynamicSet: public DistinctCollection<T> {
         【函数名称】 Intersection
         【函数功能】 返回此集合与另一集合的交集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的交集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> Intersection(const DynamicSet<T>& other) const;
+        DynamicSet<T> Intersection(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 Intersection
         【函数功能】 返回两集合的交集。
         【参数】 
-            left: 第一个集合。
-            right: 第二个集合。
+            Left: 第一个集合。
+            Right: 第二个集合。
         【返回值】 
             两集合的交集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static DynamicSet<T> Intersection(
-            const DynamicSet<T>& left,
-            const DynamicSet<T>& right
+            const DynamicSet<T>& Left,
+            const DynamicSet<T>& Right
         );
         /**********************************************************************
         【函数名称】 Union
         【函数功能】 返回此集合与另一集合的并集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的并集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> Union(const DynamicSet<T>& other) const;
+        DynamicSet<T> Union(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 Union
         【函数功能】 返回两集合的并集。
         【参数】 
-            left: 第一个集合。
-            right: 第二个集合。
+            Left: 第一个集合。
+            Right: 第二个集合。
         【返回值】 
             两集合的并集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static DynamicSet<T> Union(
-            const DynamicSet<T>& left,
-            const DynamicSet<T>& right
+            const DynamicSet<T>& Left,
+            const DynamicSet<T>& Right
         );
         /**********************************************************************
         【函数名称】 Difference
         【函数功能】 返回此集合与另一集合的差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> Difference(const DynamicSet<T>& other) const;
+        DynamicSet<T> Difference(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 Difference
         【函数功能】 返回两集合的差集。
         【参数】 
-            left: 第一个集合。
-            right: 第二个集合。
+            Left: 第一个集合。
+            Right: 第二个集合。
         【返回值】 
             两集合的差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static DynamicSet<T> Difference(
-            const DynamicSet<T>& left,
-            const DynamicSet<T>& right
+            const DynamicSet<T>& Left,
+            const DynamicSet<T>& Right
         );
         /**********************************************************************
         【函数名称】 SymmetricDifference
         【函数功能】 返回此集合与另一集合的对称差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的对称差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> SymmetricDifference(const DynamicSet<T>& other) const;
+        DynamicSet<T> SymmetricDifference(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 SymmetricDifference
         【函数功能】 返回两集合的对称差集。
         【参数】 
-            left: 第一个集合。
-            right: 第二个集合。
+            Left: 第一个集合。
+            Right: 第二个集合。
         【返回值】 
             两集合的对称差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static DynamicSet<T> SymmetricDifference(
-            const DynamicSet<T>& left,
-            const DynamicSet<T>& right
+            const DynamicSet<T>& Left,
+            const DynamicSet<T>& Right
         );
 
         // 操作符
@@ -179,92 +179,92 @@ class DynamicSet: public DistinctCollection<T> {
         【函数名称】 operator=
         【函数功能】 将其他集合赋值给自身。
         【参数】 
-            other: 从之取值的集合。
+            Other: 从之取值的集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T>& operator=(const DynamicSet<T>& other) = default;
+        DynamicSet<T>& operator=(const DynamicSet<T>& Other) = default;
         /**********************************************************************
         【函数名称】 operator&
         【函数功能】 返回此集合与另一集合的交集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的交集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> operator&(const DynamicSet<T>& other) const;
+        DynamicSet<T> operator&(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator&=
         【函数功能】 将自身赋值为此集合与另一集合的交集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T>& operator&=(const DynamicSet<T>& other);
+        DynamicSet<T>& operator&=(const DynamicSet<T>& Other);
         /**********************************************************************
         【函数名称】 operator|
         【函数功能】 返回此集合与另一集合的并集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的并集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> operator|(const DynamicSet<T>& other) const;
+        DynamicSet<T> operator|(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator|=
         【函数功能】 将自身赋值为此集合与另一集合的并集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T>& operator|=(const DynamicSet<T>& other);
+        DynamicSet<T>& operator|=(const DynamicSet<T>& Other);
         /**********************************************************************
         【函数名称】 operator-
         【函数功能】 返回此集合与另一集合的差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> operator-(const DynamicSet<T>& other) const;
+        DynamicSet<T> operator-(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator-=
         【函数功能】 将自身赋值为此集合与另一集合的差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T>& operator-=(const DynamicSet<T>& other);
+        DynamicSet<T>& operator-=(const DynamicSet<T>& Other);
         /**********************************************************************
         【函数名称】 operator^
         【函数功能】 返回此集合与另一集合的对称差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             两集合的对称差集。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> operator^(const DynamicSet<T>& other) const;
+        DynamicSet<T> operator^(const DynamicSet<T>& Other) const;
         /**********************************************************************
         【函数名称】 operator^=
         【函数功能】 将自身赋值为此集合与另一集合的对称差集。
         【参数】 
-            other: 另一集合。
+            Other: 另一集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        DynamicSet<T> operator^=(const DynamicSet<T>& other);
+        DynamicSet<T> operator^=(const DynamicSet<T>& Other);
 
         // 迭代器
 
@@ -292,50 +292,50 @@ class DynamicSet: public DistinctCollection<T> {
         【函数名称】 InnerGet
         【函数功能】 无条件获取元素值。
         【参数】 
-            index: 要获取的下标。
+            Index: 要获取的下标。
         【返回值】 
             指定位置元素的常引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        const T& InnerGet(size_t index) const override;
+        const T& InnerGet(size_t Index) const override;
         /**********************************************************************
         【函数名称】 InnerSet
         【函数功能】 无条件设置元素值。
         【参数】 
-            index: 要设置的下标。
-            value: 要设置的值。
+            Index: 要设置的下标。
+            Value: 要设置的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerSet(size_t index, const T& value) override;
+        void InnerSet(size_t Index, const T& Value) override;
         /**********************************************************************
         【函数名称】 InnerAdd
         【函数功能】 无条件添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerAdd(const T& value) override;
+        void InnerAdd(const T& Value) override;
         /**********************************************************************
         【函数名称】 InnerRemove
         【函数功能】 无条件删除元素。
         【参数】 
-            index: 要删除的下标。
+            Index: 要删除的下标。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerRemove(size_t index) override;
+        void InnerRemove(size_t Index) override;
         /**********************************************************************
         【函数名称】 InnerInsert
         【函数功能】 无条件插入元素。
         【参数】 
-            index: 要插入位置的下标。
-            element: 新的元素。
+            Index: 要插入位置的下标。
+            Value: 新的元素。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerInsert(size_t index, const T& element) override;
+        void InnerInsert(size_t Index, const T& Value) override;
 
     private:
         vector<T> m_Elements;

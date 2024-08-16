@@ -115,9 +115,9 @@ class ControllerBase {
         **********************************************************************/
         ControllerBase() = default;
         // 删除拷贝构造函数
-        ControllerBase(const ControllerBase& other) = delete;
+        ControllerBase(const ControllerBase& Other) = delete;
         // 删除移动构造函数
-        ControllerBase(ControllerBase&& other) = delete;
+        ControllerBase(ControllerBase&& Other) = delete;
 
         // 操作
 
@@ -143,13 +143,13 @@ class ControllerBase {
         【函数名称】 GetLinePoints
         【函数功能】 获取指定线段中所有点的字符串表达形式。
         【参数】
-            index: 线段的下标。
-            points: 要赋值的向量。
+            Index: 线段的下标。
+            Points: 要赋值的向量。
         【返回值】 
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result GetLinePoints(size_t index, vector<string>& points) const;
+        Result GetLinePoints(size_t Index, vector<string>& Points) const;
         /**********************************************************************
         【函数名称】 AddLine
         【函数功能】 添加一个线段。
@@ -168,28 +168,28 @@ class ControllerBase {
         【函数名称】 ModifyLine
         【函数功能】 修改一个线段。
         【参数】
-            index: 线段的下标。
-            pointIndex: 要修改的点在线段中的下标。
+            Index: 线段的下标。
+            PointIndex: 要修改的点在线段中的下标。
             x, y, z: 修改后点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         Result ModifyLine(
-            size_t index,
-            size_t pointIndex,
+            size_t Index,
+            size_t PointIndex,
             double x, double y, double z
         );
         /**********************************************************************
         【函数名称】 RemoveLine
         【函数功能】 删除一个线段。
         【参数】
-            index: 要删除线段的下标。
+            Index: 要删除线段的下标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result RemoveLine(size_t index);
+        Result RemoveLine(size_t Index);
         /**********************************************************************
         【函数名称】 GetFaces
         【函数功能】 获取所有面的字符串表达形式。
@@ -203,13 +203,13 @@ class ControllerBase {
         【函数名称】 GetLinePoints
         【函数功能】 获取指定面中所有点的字符串表达形式。
         【参数】
-            index: 面的下标。
-            points: 要赋值的向量。
+            Index: 面的下标。
+            Points: 要赋值的向量。
         【返回值】 
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result GetFacePoints(size_t index, vector<string>& points) const;
+        Result GetFacePoints(size_t Index, vector<string>& Points) const;
         /**********************************************************************
         【函数名称】 AddFace
         【函数功能】 添加一个面。
@@ -230,28 +230,28 @@ class ControllerBase {
         【函数名称】 ModifyFace
         【函数功能】 修改一个面。
         【参数】
-            index: 面的下标。
-            pointIndex: 要修改的点在面中的下标。
+            Index: 面的下标。
+            PointIndex: 要修改的点在面中的下标。
             x, y, z: 修改后点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         Result ModifyFace(
-            size_t index,
-            size_t pointIndex,
+            size_t Index,
+            size_t PointIndex,
             double x, double y, double z
         );
         /**********************************************************************
         【函数名称】 RemoveFace
         【函数功能】 删除一个面。
         【参数】
-            index: 要删除面的下标。
+            Index: 要删除面的下标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result RemoveFace(size_t index);
+        Result RemoveFace(size_t Index);
         /**********************************************************************
         【函数名称】 GetStatistics
         【函数功能】 获取统计信息。
@@ -265,22 +265,22 @@ class ControllerBase {
         【函数名称】 LoadModel
         【函数功能】 从文件加载一个模型。
         【参数】
-            path: 文件位置。
+            Path: 文件位置。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result LoadModel(string path);
+        Result LoadModel(string Path);
         /**********************************************************************
         【函数名称】 SaveModel
         【函数功能】 向文件保存一个模型。
         【参数】
-            path: 文件位置。
+            Path: 文件位置。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Result SaveModel(string path);
+        Result SaveModel(string Path);
 
         // 虚析构函数
         virtual ~ControllerBase() = default;
@@ -290,45 +290,56 @@ class ControllerBase {
         【函数名称】 PointToString
         【函数功能】 获取点的字符串表达形式。
         【参数】
-            point: 要转化的点。
+            APoint: 要转化的点。
         【返回值】
             点的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual string PointToString(const Point<3>& point) const = 0;
+        virtual string PointToString(const Point<3>& APoint) const = 0;
         /**********************************************************************
         【函数名称】 LineToString
         【函数功能】 获取线段及其状态的字符串表达形式。
         【参数】
-            line: 要转化的线段。
-            status: 线段的状态。
+            ALine: 要转化的线段。
+            AStatus: 线段的状态。
         【返回值】
             线段的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         virtual string LineToString(
-            const Line<3>& line, 
-            Status status
+            const Line<3>& ALine, 
+            Status AStatus
         ) const = 0;
         /**********************************************************************
         【函数名称】 FaceToString
         【函数功能】 获取面的字符串表达形式。
         【参数】
-            face: 要转化的面。
-            status: 面的状态。
+            AFace: 要转化的面。
+            AStatus: 面的状态。
         【返回值】
             面的字符串表达形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         virtual string FaceToString(
-            const Face<3>& face, 
-            Status status
+            const Face<3>& AFace, 
+            Status AStatus
         ) const = 0;
     private:
         string m_Path;
         Model<3> m_Model;
         vector<Status> m_LineStatus;
         vector<Status> m_FaceStatus;
+
+        /**********************************************************************
+        【函数名称】 GetExtension
+        【函数功能】 从路径中提取文件扩展名。
+        【参数】
+            Path: 文件路径。
+        【返回值】
+            文件的扩展名。
+        【开发者及日期】 赵一彤 2024/7/24
+        **********************************************************************/
+        static string GetExtension(string Path);
 };
 
 }

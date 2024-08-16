@@ -35,7 +35,7 @@ class StorageFactory final {
         【函数名称】 Register
         【函数功能】 将 Importer 和 Exporter 注册为一对导入/导出器。
         【参数】
-            extension: 要注册的扩展名。
+            Extension: 要注册的扩展名。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
@@ -43,14 +43,14 @@ class StorageFactory final {
         static typename enable_if<
             is_base_of<ImporterBase<N>, Importer>::value &&
             is_base_of<ExporterBase<N>, Exporter>::value
-        >::type Register(string extension);
+        >::type Register(string Extension);
         /**********************************************************************
         【函数名称】 Register
         【函数功能】 注册一对自定义的导入/导出器。
         【参数】
-            extension: 要注册的扩展名。
-            importerFactory: 一个构造导入器的函数。
-            exporterFactory: 一个构造导出器的函数。
+            Extension: 要注册的扩展名。
+            ImporterFactory: 一个构造导入器的函数。
+            ExporterFactory: 一个构造导出器的函数。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
@@ -59,32 +59,32 @@ class StorageFactory final {
             is_base_of<ImporterBase<N>, Importer>::value &&
             is_base_of<ExporterBase<N>, Exporter>::value
         >::type Register(
-            string extension,
-            function<Importer*()> importerFactory,
-            function<Exporter*()> exporterFactory
+            string Extension,
+            function<Importer*()> ImporterFactory,
+            function<Exporter*()> ExporterFactory
         );
         /**********************************************************************
         【函数名称】 GetImporter
-        【函数功能】 根据维数与文件路径获取导入器。
+        【函数功能】 根据维数与文件扩展名获取导入器。
         【参数】
-            path: 文件路径。
+            Extension: 文件扩展名。
         【返回值】
             指向导入器的指针。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <size_t N>
-        static unique_ptr<ImporterBase<N>> GetImporter(string path);
+        static unique_ptr<ImporterBase<N>> GetImporter(string Extension);
         /**********************************************************************
         【函数名称】 GetExporter
-        【函数功能】 根据维数与文件路径获取导出器。
+        【函数功能】 根据维数与文件扩展名获取导出器。
         【参数】
-            path: 文件路径。
+            Extension: 文件扩展名。
         【返回值】
             指向导出器的指针。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         template <size_t N>
-        static unique_ptr<ExporterBase<N>> GetExporter(string path);
+        static unique_ptr<ExporterBase<N>> GetExporter(string Extension);
         
     private:
         /**********************************************************************
@@ -109,12 +109,12 @@ class StorageFactory final {
         【函数名称】 MakeConstructor
         【函数功能】 创建特定类型的一个“构造函数”。
         【参数】 
-            args: 构造函数需要的参数。
+            Args: 构造函数需要的参数。
         【返回值】 一个返回特定类型指针的函数。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        template <typename T, typename ...Args>
-        static constexpr function<T*()> MakeConstructor(Args&& ...args);
+        template <typename T, typename ...A>
+        static constexpr function<T*()> MakeConstructor(A&& ...Args);
 
         // 静态类，隐藏构造函数。
         StorageFactory();

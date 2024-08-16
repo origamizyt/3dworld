@@ -25,59 +25,59 @@ const Point<N> Point<N>::Void { Point<N>(nan("")) };
 【函数名称】 构造函数
 【函数功能】 通过 Vector 初始化 Point 类型实例。
 【参数】 
-    vector: 一个向量。
+    AVector: 一个向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N>::Point(const Vector<double, N>& vector): Vector<double, N>(vector) {}
+Point<N>::Point(const Vector<double, N>& AVector): Vector<double, N>(AVector) {}
 
 /**********************************************************************
 【函数名称】 Distance
 【函数功能】 求两个点之间的直线距离。
 【参数】 
-    left: 第一个点。
-    right: 第二个点。
+    Left: 第一个点。
+    Right: 第二个点。
 【返回值】
     两点之间的直线距离。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Point<N>::Distance(const Point<N>& left, const Point<N>& right) {
-    return (left - right).Module();
+double Point<N>::Distance(const Point<N>& Left, const Point<N>& Right) {
+    return (Left - Right).Module();
 }
 
 /**********************************************************************
 【函数名称】 Distance
 【函数功能】 求自身与另一点之间的直线距离。
 【参数】 
-    other: 另一个点。
+    Other: 另一个点。
 【返回值】
     两点之间的直线距离。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-double Point<N>::Distance(const Point<N>& other) const {
-    return Distance(*this, other);
+double Point<N>::Distance(const Point<N>& Other) const {
+    return Distance(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 GeneralDistance
 【函数功能】 求两个点之间的广义直线距离。
 【参数】 
-    left: 第一个点。
-    right: 第二个点。
+    Left: 第一个点。
+    Right: 第二个点。
 【返回值】
     两点之间的直线距离。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 template <size_t M>
-double Point<N>::GeneralDistance(const Point<N>& left, const Point<M>& right) {
+double Point<N>::GeneralDistance(const Point<N>& Left, const Point<M>& Right) {
     constexpr size_t D = max(M, N);
     return Point<D>::Distance(
-        left.template Promote<D>(),
-        right.template Promote<D>()
+        Left.template Promote<D>(),
+        Right.template Promote<D>()
     );
 }
 
@@ -85,15 +85,15 @@ double Point<N>::GeneralDistance(const Point<N>& left, const Point<M>& right) {
 【函数名称】 GeneralDistance
 【函数功能】 求自身与另一点之间的广义直线距离。
 【参数】 
-    other: 另一个点。
+    Other: 另一个点。
 【返回值】
     两点之间的直线距离。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 template <size_t M>
-double Point<N>::GeneralDistance(const Point<M>& other) const {
-    return GeneralDistance(*this, other);
+double Point<N>::GeneralDistance(const Point<M>& Other) const {
+    return GeneralDistance(*this, Other);
 }
 
 /**********************************************************************
@@ -131,40 +131,41 @@ Point<M> Point<N>::Project() const {
         // 必须强制转换，否则 M != N 时编译不通过
         return *reinterpret_cast<const Point<M>*>(this);
     }
-    array<double, M> components;
+    array<double, M> Components;
     for (size_t i = 0; i < M; i++) {
-        components[i] = this->GetComponent(i);
+        Components[i] = this->GetComponent(i);
     }
-    return Point<M>(components);
+    return Point<M>(Components);
 }
 
 /**********************************************************************
 【函数名称】 Promote
 【函数功能】 将自身从 N 维升至更高的 M 维。
-【参数】 无
+【参数】 
+    Padder: 可选，填充于高维坐标的数，默认 0。
 【返回值】
     一个 M 维的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 template <size_t M>
-Point<M> Point<N>::Promote(double pad) const {
+Point<M> Point<N>::Promote(double Padder) const {
     static_assert(M >= N, "Cannot promote to a lower dimension.");
     if (M == N) {
         // 直接返回 *this，节省一次复制
         // 必须强制转换，否则 M != N 时编译不通过
         return *reinterpret_cast<const Point<M>*>(this);
     }
-    array<double, M> components;
+    array<double, M> Components;
     for (size_t i = 0; i < M; i++) {
         if (i < N) {
-            components[i] = this->GetComponent(i);
+            Components[i] = this->GetComponent(i);
         }
         else {
-            components[i] = pad;
+            Components[i] = Padder;
         }
     }
-    return Point<M>(components);
+    return Point<M>(Components);
 }
 
 /**********************************************************************
@@ -184,110 +185,110 @@ Point<N> Point<N>::Negate() const {
 【函数名称】 Negate
 【函数功能】 反转给定点并存为新的点。
 【参数】 
-    point: 要反转的点。
+    APoint: 要反转的点。
 【返回值】 
     反转后的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N> Point<N>::Negate(const Point<N>& point) {
-    return Point<N>(Vector<double, N>::Negate(point));
+Point<N> Point<N>::Negate(const Point<N>& APoint) {
+    return Point<N>(Vector<double, N>::Negate(APoint));
 }
 
 /**********************************************************************
 【函数名称】 Add
 【函数功能】 将自身与一向量相加并存储为新的点。
 【参数】 
-    delta: 相加的向量。
+    Delta: 相加的向量。
 【返回值】 
     点与向量相加形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N> Point<N>::Add(const Vector<double, N>& delta) const {
-    return Add(*this, delta);
+Point<N> Point<N>::Add(const Vector<double, N>& Delta) const {
+    return Add(*this, Delta);
 }
 
 /**********************************************************************
 【函数名称】 Add
 【函数功能】 将点与一向量相加并存储为新的点。
 【参数】 
-    point: 相加的点
-    delta: 相加的向量。
+    APoint: 相加的点
+    Delta: 相加的向量。
 【返回值】 
     点与向量相加形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 Point<N> Point<N>::Add(
-    const Point<N>& point, 
-    const Vector<double, N>& delta
+    const Point<N>& APoint, 
+    const Vector<double, N>& Delta
 ) {
-    return Point<N>(Vector<double, N>::Add(point, delta));
+    return Point<N>(Vector<double, N>::Add(APoint, Delta));
 }
 
 /**********************************************************************
 【函数名称】 Subtract
 【函数功能】 将自身与一向量相减并存储为新的点。
 【参数】 
-    delta: 相减的向量。
+    Delta: 相减的向量。
 【返回值】 
     点与向量相减形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N> Point<N>::Subtract(const Vector<double, N>& delta) const {
-    return Subtract(*this, delta);
+Point<N> Point<N>::Subtract(const Vector<double, N>& Delta) const {
+    return Subtract(*this, Delta);
 }
 
 /**********************************************************************
 【函数名称】 Subtract
 【函数功能】 将自身与另一点相减并存储为向量。
 【参数】 
-    other: 相减的点。
+    Other: 相减的点。
 【返回值】 
     点与点相减形成的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Vector<double, N> Point<N>::Subtract(const Point<N>& other) const {
-    return Subtract(*this, other);
+Vector<double, N> Point<N>::Subtract(const Point<N>& Other) const {
+    return Subtract(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Subtract
 【函数功能】 将点与一向量相减并存储为新的点。
 【参数】 
-    point: 相减的点
-    delta: 相减的向量。
+    APoint: 相减的点。
+    Delta: 相减的向量。
 【返回值】 
     点与向量相减形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 Point<N> Point<N>::Subtract(
-    const Point<N>& point,
-    const Vector<double, N>& delta
+    const Point<N>& APoint,
+    const Vector<double, N>& Delta
 ) {
-    return Point<N>(Vector<double, N>::Subtract(point, delta));
+    return Point<N>(Vector<double, N>::Subtract(APoint, Delta));
 }
 
 /**********************************************************************
 【函数名称】 Subtract
 【函数功能】 将两点点相减并存储为向量。
 【参数】 
-    left: 第一个点。
-    right: 第二个点。
+    Left: 第一个点。
+    Right: 第二个点。
 【返回值】 
     点与点相减形成的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 Vector<double, N> Point<N>::Subtract(
-    const Point<N>& left,
-    const Point<N>& right
+    const Point<N>& Left,
+    const Point<N>& Right
 ) {
-    return Vector<double, N>::Subtract(left, right);
+    return Vector<double, N>::Subtract(Left, Right);
 }
 
 /**********************************************************************
@@ -307,28 +308,28 @@ Point<N> Point<N>::operator-() const {
 【函数名称】 operator+
 【函数功能】 将自身与一向量相加并存储为新的点。
 【参数】 
-    delta: 相加的向量。
+    Delta: 相加的向量。
 【返回值】 
     点与向量相加形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N> Point<N>::operator+(const Vector<double, N>& delta) const {
-    return Add(delta);
+Point<N> Point<N>::operator+(const Vector<double, N>& Delta) const {
+    return Add(Delta);
 }
 
 /**********************************************************************
 【函数名称】 operator+=
 【函数功能】 将自身与一向量相加。
 【参数】 
-    delta: 相加的向量。
+    Delta: 相加的向量。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N>& Point<N>::operator+=(const Vector<double, N>& delta) {
-    Vector<double, N>::operator+=(delta);
+Point<N>& Point<N>::operator+=(const Vector<double, N>& Delta) {
+    Vector<double, N>::operator+=(Delta);
     return *this;
 }
 
@@ -336,42 +337,42 @@ Point<N>& Point<N>::operator+=(const Vector<double, N>& delta) {
 【函数名称】 operator-
 【函数功能】 将自身与一向量相减并存储为新的点。
 【参数】 
-    delta: 相减的向量。
+    Delta: 相减的向量。
 【返回值】 
     点与向量相减形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N> Point<N>::operator-(const Vector<double, N>& delta) const {
-    return Subtract(delta);
+Point<N> Point<N>::operator-(const Vector<double, N>& Delta) const {
+    return Subtract(Delta);
 }
 
 /**********************************************************************
 【函数名称】 operator-
 【函数功能】 将自身与另一点相减并存储为向量。
 【参数】 
-    other: 相减的点。
+    Other: 相减的点。
 【返回值】 
     点与点相减形成的向量。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Vector<double, N> Point<N>::operator-(const Point<N>& other) const {
-    return Subtract(other);
+Vector<double, N> Point<N>::operator-(const Point<N>& Other) const {
+    return Subtract(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator-=
 【函数功能】 将自身与一向量相减并存储为新的点。
 【参数】 
-    delta: 相减的向量。
+    Delta: 相减的向量。
 【返回值】 
     点与向量相减形成的新的点。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Point<N>& Point<N>::operator-=(const Vector<double, N>& delta) {
-    Vector<double, N>::operator-=(delta);
+Point<N>& Point<N>::operator-=(const Vector<double, N>& Delta) {
+    Vector<double, N>::operator-=(Delta);
     return *this;
 }
 
@@ -385,10 +386,10 @@ Point<N>& Point<N>::operator-=(const Vector<double, N>& delta) {
 **********************************************************************/
 template <size_t N>
 string Point<N>::ToString() const {
-    auto s = Vector<double, N>::ToString();
-    s[0] = '(';
-    s[s.size() - 1] = ')';
-    return s;
+    auto String = Vector<double, N>::ToString();
+    String[0] = '(';
+    String[String.size() - 1] = ')';
+    return String;
 }
 
 }

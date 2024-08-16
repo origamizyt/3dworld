@@ -34,25 +34,25 @@ class MainConsoleView: public ConsoleViewBase {
         【函数名称】 构造函数
         【函数功能】 使用控制器与标准输入/输出流初始化 LinesConsoleView 类型实例。
         【参数】
-            controller: 控制器指针。
+            Controller: 控制器指针。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        MainConsoleView(shared_ptr<ControllerBase> controller);
+        MainConsoleView(shared_ptr<ControllerBase> Controller);
         /**********************************************************************
         【函数名称】 构造函数
         【函数功能】 使用控制器与指定输入/输出流初始化 LinesConsoleView 类型实例。
         【参数】
-            controller: 控制器指针。
-            input: 输入流。
-            output: 输出流。
+            Controller: 控制器指针。
+            Input: 输入流。
+            Output: 输出流。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         MainConsoleView(
-            shared_ptr<ControllerBase> controller, 
-            istream& input, 
-            ostream& output
+            shared_ptr<ControllerBase> Controller, 
+            istream& Input, 
+            ostream& Output
         );
 
         // 操作

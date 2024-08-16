@@ -25,28 +25,28 @@ namespace Cli {
 【函数名称】 构造函数
 【函数功能】 使用控制器与标准输入/输出流初始化 FacesConsoleView 类型实例。
 【参数】
-    controller: 控制器指针。
+    Controller: 控制器指针。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-FacesConsoleView::FacesConsoleView(shared_ptr<ControllerBase> controller)
-    : FacesConsoleView(controller, cin, cout) {}
+FacesConsoleView::FacesConsoleView(shared_ptr<ControllerBase> Controller)
+    : FacesConsoleView(Controller, cin, cout) {}
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用控制器与指定输入/输出流初始化 FacesConsoleView 类型实例。
 【参数】
-    controller: 控制器指针。
-    input: 输入流。
-    output: 输出流。
+    Controller: 控制器指针。
+    Input: 输入流。
+    Output: 输出流。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 FacesConsoleView::FacesConsoleView(
-    shared_ptr<ControllerBase> controller,
-    istream& input,
-    ostream& output
-): ConsoleViewBase(controller, input, output) {
+    shared_ptr<ControllerBase> Controller,
+    istream& Input,
+    ostream& Output
+): ConsoleViewBase(Controller, Input, Output) {
     m_Prompt = "faces#> ";
     RegisterCommand(
         "list",
@@ -79,13 +79,13 @@ FacesConsoleView::FacesConsoleView(
 【函数名称】 ResultToString
 【函数功能】 将命令返回的结果转化为字符串。
 【参数】
-    result: 要转化的 ConsoleViewBase::Result 枚举。
+    AResult: 要转化的 ConsoleViewBase::Result 枚举。
 【返回值】
     结果的字符串表示形式。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-string FacesConsoleView::ResultToString(Result result) const {
-    switch (result) {
+string FacesConsoleView::ResultToString(Result AResult) const {
+    switch (AResult) {
         case Result::POINT_COLLISION: {
             return "Identical point already exists in face.";
         }
@@ -93,7 +93,7 @@ string FacesConsoleView::ResultToString(Result result) const {
             return "Identical face already exists in model.";
         }
         default: {
-            return ConsoleViewBase::ResultToString(result);
+            return ConsoleViewBase::ResultToString(AResult);
         }
     }
 }
@@ -107,12 +107,12 @@ string FacesConsoleView::ResultToString(Result result) const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandListFaces() const {
-    auto faces = m_pController->GetFaces();
+    auto Faces = m_pController->GetFaces();
     Output << Palette::FG_BLUE << "Faces in '" << m_pController->GetName();
-    Output << "' (" << faces.size() << "):" << Palette::CLEAR << endl;
-    for (size_t i = 0; i < faces.size(); i++) {
+    Output << "' (" << Faces.size() << "):" << Palette::CLEAR << endl;
+    for (size_t i = 0; i < Faces.size(); i++) {
         Output << i + 1 << ". ";
-        switch (faces[i].ElementStatus) {
+        switch (Faces[i].ElementStatus) {
             case ControllerBase::Status::CREATED: {
                 Output << Palette::FG_CYAN;
                 break;
@@ -122,7 +122,7 @@ ConsoleViewBase::Result FacesConsoleView::CommandListFaces() const {
                 break;
             }
         }
-        Output << faces[i].String << Palette::CLEAR << endl;
+        Output << Faces[i].String << Palette::CLEAR << endl;
     }
     return Result::OK;
 }
@@ -136,24 +136,24 @@ ConsoleViewBase::Result FacesConsoleView::CommandListFaces() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandGetFace() const {
-    istringstream stream(Ask("Index of desired face (1~): "));
-    size_t index;
-    stream >> index;
-    if (stream.bad()) {
+    istringstream Stream(Ask("Index of desired face (1~): "));
+    size_t Index;
+    Stream >> Index;
+    if (Stream.bad()) {
         return Result::INDEX_OVERFLOW;
     }
-    vector<string> points;
-    auto result = static_cast<Result>(
-        m_pController->GetFacePoints(index - 1, points)
+    vector<string> Points;
+    auto Res = static_cast<Result>(
+        m_pController->GetFacePoints(Index - 1, Points)
     );
-    if (result == Result::OK) {
-        Output << Palette::FG_PURPLE << "Points in face #" << index;
+    if (Res == Result::OK) {
+        Output << Palette::FG_PURPLE << "Points in face #" << Index;
         Output << ":" << Palette::CLEAR << endl;
-        for (size_t i = 0; i < points.size(); i++) {
-            Output << "  " << i + 1 << ". " << points[i] << endl;
+        for (size_t i = 0; i < Points.size(); i++) {
+            Output << "  " << i + 1 << ". " << Points[i] << endl;
         }
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -165,38 +165,38 @@ ConsoleViewBase::Result FacesConsoleView::CommandGetFace() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandAddFace() const {
-    istringstream first(Ask("1st point (x y z): "));
+    istringstream First(Ask("1st point (x y z): "));
     double x1;
     double y1;
     double z1;
-    first >> x1 >> y1 >> z1;
-    if (first.bad()) {
+    First >> x1 >> y1 >> z1;
+    if (First.bad()) {
         return Result::INVALID_VALUE;
     }
-    istringstream second(Ask("2nd point (x y z): "));
+    istringstream Second(Ask("2nd point (x y z): "));
     double x2;
     double y2;
     double z2;
-    second >> x2 >> y2 >> z2;
-    if (second.bad()) {
+    Second >> x2 >> y2 >> z2;
+    if (Second.bad()) {
         return Result::INVALID_VALUE;
     }
-    istringstream third(Ask("3rd point (x y z): "));
+    istringstream Third(Ask("3rd point (x y z): "));
     double x3;
     double y3;
     double z3;
-    third >> x3 >> y3 >> z3;
-    if (third.bad()) {
+    Third >> x3 >> y3 >> z3;
+    if (Third.bad()) {
         return Result::INVALID_VALUE;
     }
-    auto result = static_cast<Result>(
+    auto Res = static_cast<Result>(
         m_pController->AddFace(x1, y1, z1, x2, y2, z2, x3, y3, z3)
     );
-    if (result == Result::OK) {
+    if (Res == Result::OK) {
         Output << Palette::FG_GREEN << "Successfully added face.";
         Output << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -208,41 +208,41 @@ ConsoleViewBase::Result FacesConsoleView::CommandAddFace() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandModifyFace() const {
-    vector<string> choices;
-    for (auto& face: m_pController->GetFaces()) {
-        choices.push_back(face.String);
+    vector<string> Choices;
+    for (auto& Face: m_pController->GetFaces()) {
+        Choices.push_back(Face.String);
     }
-    size_t index = Select("Select a face to modify:", choices);
-    if (index == 0) {
+    size_t Index = Select("Select a face to modify:", Choices);
+    if (Index == 0) {
         return Result::INVALID_VALUE;
     }
-    choices.clear();
-    auto result = static_cast<Result>(
-        m_pController->GetFacePoints(index - 1, choices)
+    Choices.clear();
+    auto Res = static_cast<Result>(
+        m_pController->GetFacePoints(Index - 1, Choices)
     );
-    if (result != Result::OK) {
-        return result;
+    if (Res != Result::OK) {
+        return Res;
     }
-    size_t pointIndex = Select("Select a point to modify:", choices);
-    if (pointIndex == 0) {
+    size_t PointIndex = Select("Select a point to modify:", Choices);
+    if (PointIndex == 0) {
         return Result::INVALID_VALUE;
     }
-    istringstream coords(Ask("Set point to (x y z): "));
+    istringstream Coords(Ask("Set point to (x y z): "));
     double x;
     double y;
     double z;
-    coords >> x >> y >> z;
-    if (coords.bad()) {
+    Coords >> x >> y >> z;
+    if (Coords.bad()) {
         return Result::INVALID_VALUE;
     }
-    result = static_cast<Result>(
-        m_pController->ModifyFace(index - 1, pointIndex - 1, x, y, z)
+    Res = static_cast<Result>(
+        m_pController->ModifyFace(Index - 1, PointIndex - 1, x, y, z)
     );
-    if (result == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully modified face #" << index;
+    if (Res == Result::OK) {
+        Output << Palette::FG_GREEN << "Successfully modified face #" << Index;
         Output << "." << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 /**********************************************************************
@@ -254,20 +254,20 @@ ConsoleViewBase::Result FacesConsoleView::CommandModifyFace() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandRemoveFace() const {
-    vector<string> choices;
-    for (auto& face: m_pController->GetFaces()) {
-        choices.push_back(face.String);
+    vector<string> Choices;
+    for (auto& Face: m_pController->GetFaces()) {
+        Choices.push_back(Face.String);
     }
-    size_t index = Select("Select a face to delete:", choices);
-    if (index == 0) {
+    size_t Index = Select("Select a face to delete:", Choices);
+    if (Index == 0) {
         return Result::INVALID_VALUE;
     }
-    auto result = static_cast<Result>(m_pController->RemoveFace(index - 1));
-    if (result == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully deleted face #" << index;
+    auto Res = static_cast<Result>(m_pController->RemoveFace(Index - 1));
+    if (Res == Result::OK) {
+        Output << Palette::FG_GREEN << "Successfully deleted face #" << Index;
         Output << "." << Palette::CLEAR << endl;
     }
-    return result;
+    return Res;
 }
 
 }

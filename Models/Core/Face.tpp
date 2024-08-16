@@ -16,40 +16,40 @@ namespace C3w {
 【函数名称】 构造函数
 【函数功能】 使用三个点初始化 Face 对象。
 【参数】 
-    first: 第一个点。
-    second: 第二个点。
-    third: 第三个点。
+    First: 第一个点。
+    Second: 第二个点。
+    Third: 第三个点。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
 Face<N>::Face(
-    const Point<N>& first, 
-    const Point<N>& second,
-    const Point<N>& third
-): Element<N, 3>({ first, second, third }) {}
+    const Point<N>& First, 
+    const Point<N>& Second,
+    const Point<N>& Third
+): Element<N, 3>({ First, Second, Third }) {}
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用一个 Element 初始化 Face 对象。
 【参数】 
-    element: 一个包含三个点的元素。
+    AElement: 一个包含三个点的元素。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Face<N>::Face(const Element<N, 3>& element): Element<N, 3>(element) {}
+Face<N>::Face(const Element<N, 3>& AElement): Element<N, 3>(AElement) {}
 
 /**********************************************************************
 【函数名称】 拷贝构造函数
 【函数功能】 使用另一 Face 对象初始化 Face 对象。
 【参数】 
-    other: 另一个 Face 对象。
+    Other: 另一个 Face 对象。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Face<N>::Face(const Face<N>& other): Element<N, 3>(other) {}
+Face<N>::Face(const Face<N>& Other): Element<N, 3>(Other) {}
 
 /**********************************************************************
 【函数名称】 GetLength
@@ -62,9 +62,9 @@ Face<N>::Face(const Face<N>& other): Element<N, 3>(other) {}
 template <size_t N>
 double Face<N>::GetLength() const {
     return (
-        Point<N>::Distance(this->Points[0], this->Points[1]) +
-        Point<N>::Distance(this->Points[1], this->Points[2]) +
-        Point<N>::Distance(this->Points[2], this->Points[0])
+        Point<N>::Distance(First, Second) +
+        Point<N>::Distance(Second, Third) +
+        Point<N>::Distance(Third, First)
     );
 }
 
@@ -78,9 +78,9 @@ double Face<N>::GetLength() const {
 **********************************************************************/
 template <size_t N>
 double Face<N>::GetArea() const {
-    auto a = Point<N>::Distance(this->Points[0], this->Points[1]);
-    auto b = Point<N>::Distance(this->Points[1], this->Points[2]);
-    auto c = Point<N>::Distance(this->Points[2], this->Points[0]);
+    auto a = Point<N>::Distance(First, Second);
+    auto b = Point<N>::Distance(Second, Third);
+    auto c = Point<N>::Distance(Third, First);
     auto p = (a + b + c) / 2;
     return sqrt((p - a) * (p - b) * (p - c) * p);
 }
@@ -89,15 +89,15 @@ double Face<N>::GetArea() const {
 【函数名称】 operator=
 【函数功能】 将另一元素赋值给自身。
 【参数】
-    other: 从之取值的元素。
+    AElement: 从之取值的元素。
 【返回值】
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Face<N>& Face<N>::operator=(const Element<N, 3>& element) {
-    if (this != &element) {
-        Element<N, 3>::operator=(element);
+Face<N>& Face<N>::operator=(const Element<N, 3>& AElement) {
+    if (this != &AElement) {
+        Element<N, 3>::operator=(AElement);
     }
     return *this;
 }
@@ -106,15 +106,15 @@ Face<N>& Face<N>::operator=(const Element<N, 3>& element) {
 【函数名称】 operator=
 【函数功能】 将另一面赋值给自身。
 【参数】
-    other: 从之取值的面。
+    Other: 从之取值的面。
 【返回值】
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Face<N>& Face<N>::operator=(const Face<N>& other) {
-    if (this != &other) {
-        Element<N, 3>::operator=(other);
+Face<N>& Face<N>::operator=(const Face<N>& Other) {
+    if (this != &Other) {
+        Element<N, 3>::operator=(Other);
     }
     return *this;
 }

@@ -20,38 +20,38 @@ namespace Containers {
 【函数名称】 构造函数
 【函数功能】 使用初始化列表初始化 DynamicSet 类型实例。
 【参数】
-    elements: 元素初始化列表。
+    Elements: 元素初始化列表。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T>::DynamicSet(initializer_list<T> elements) {
+DynamicSet<T>::DynamicSet(initializer_list<T> Elements) {
     if (
-        elements.size() >= 2 &&
-        !this->IsDistinct(elements.begin(), elements.end())
+        Elements.size() >= 2 &&
+        !this->IsDistinct(Elements.begin(), Elements.end())
     ) {
         throw CollectionException("Construct");
     }
-    m_Elements = vector<T>(elements);
+    m_Elements = vector<T>(Elements);
 }
 
 /**********************************************************************
 【函数名称】 构造函数
 【函数功能】 使用 std::vector<T> 初始化 DynamicSet 类型实例。
 【参数】
-    elements: 元素组成的向量。
+    Elements: 元素组成的向量。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T>::DynamicSet(const vector<T>& elements) {
+DynamicSet<T>::DynamicSet(const vector<T>& Elements) {
     if (
-        elements.size() >= 2 &&
-        !this->IsDistinct(elements.begin(), elements.end())
+        Elements.size() >= 2 &&
+        !this->IsDistinct(Elements.begin(), Elements.end())
     ) {
         throw CollectionException("Construct");
     }
-    m_Elements = elements;
+    m_Elements = Elements;
 }
 
 /**********************************************************************
@@ -71,177 +71,177 @@ size_t DynamicSet<T>::Count() const {
 【函数名称】 Intersection
 【函数功能】 返回此集合与另一集合的交集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的交集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::Intersection(const DynamicSet<T>& other) const {
-    return Intersection(*this, other);
+DynamicSet<T> DynamicSet<T>::Intersection(const DynamicSet<T>& Other) const {
+    return Intersection(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Intersection
 【函数功能】 返回两集合的交集。
 【参数】 
-    left: 第一个集合。
-    right: 第二个集合。
+    Left: 第一个集合。
+    Right: 第二个集合。
 【返回值】 
     两集合的交集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 DynamicSet<T> DynamicSet<T>::Intersection(
-    const DynamicSet<T>& left,
-    const DynamicSet<T>& right
+    const DynamicSet<T>& Left,
+    const DynamicSet<T>& Right
 ) {
-    DynamicSet<T> set;
-    for (auto& element: left) {
-        if (right.Contains(element)) {
+    DynamicSet<T> Set;
+    for (auto& Element: Left) {
+        if (Right.Contains(Element)) {
             // 无需检查，使用 InnerAdd
-            set.InnerAdd(element);
+            Set.InnerAdd(Element);
         }
     }
-    return set;
+    return Set;
 }
 
 /**********************************************************************
 【函数名称】 Union
 【函数功能】 返回此集合与另一集合的并集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的并集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::Union(const DynamicSet<T>& other) const {
-    return Union(*this, other);
+DynamicSet<T> DynamicSet<T>::Union(const DynamicSet<T>& Other) const {
+    return Union(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Union
 【函数功能】 返回两集合的并集。
 【参数】 
-    left: 第一个集合。
-    right: 第二个集合。
+    Left: 第一个集合。
+    Right: 第二个集合。
 【返回值】 
     两集合的并集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 DynamicSet<T> DynamicSet<T>::Union(
-    const DynamicSet<T>& left,
-    const DynamicSet<T>& right
+    const DynamicSet<T>& Left,
+    const DynamicSet<T>& Right
 ) {
-    DynamicSet<T> set(left);
-    for (auto& element: right) {
+    DynamicSet<T> Set(Left);
+    for (auto& Element: Right) {
         // 使用 TryAdd，忽略返回值
-        set.TryAdd(element);
+        Set.TryAdd(Element);
     }
-    return set;
+    return Set;
 }
 
 /**********************************************************************
 【函数名称】 Difference
 【函数功能】 返回此集合与另一集合的差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::Difference(const DynamicSet<T>& other) const {
-    return Difference(*this, other);
+DynamicSet<T> DynamicSet<T>::Difference(const DynamicSet<T>& Other) const {
+    return Difference(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 Difference
 【函数功能】 返回两集合的差集。
 【参数】 
-    left: 第一个集合。
-    right: 第二个集合。
+    Left: 第一个集合。
+    Right: 第二个集合。
 【返回值】 
     两集合的差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 DynamicSet<T> DynamicSet<T>::Difference(
-    const DynamicSet<T>& left,
-    const DynamicSet<T>& right
+    const DynamicSet<T>& Left,
+    const DynamicSet<T>& Right
 ) {
-    DynamicSet<T> set;
-    for (auto& element: left) {
-        if (!right.Contains(element)) {
+    DynamicSet<T> Set;
+    for (auto& Element: Left) {
+        if (!Right.Contains(Element)) {
             // 无需检查，使用 InnerAdd
-            set.InnerAdd(element);
+            Set.InnerAdd(Element);
         }
     }
-    return set;
+    return Set;
 }
 
 /**********************************************************************
 【函数名称】 SymmetricDifference
 【函数功能】 返回此集合与另一集合的对称差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的对称差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 DynamicSet<T> DynamicSet<T>::SymmetricDifference(
-    const DynamicSet<T>& other
+    const DynamicSet<T>& Other
 ) const {
-    return SymmetricDifference(*this, other);
+    return SymmetricDifference(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 SymmetricDifference
 【函数功能】 返回两集合的对称差集。
 【参数】 
-    left: 第一个集合。
-    right: 第二个集合。
+    Left: 第一个集合。
+    Right: 第二个集合。
 【返回值】 
     两集合的对称差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
 DynamicSet<T> DynamicSet<T>::SymmetricDifference(
-    const DynamicSet<T>& left,
-    const DynamicSet<T>& right
+    const DynamicSet<T>& Left,
+    const DynamicSet<T>& Right
 ) {
-    return Union(Difference(left, right), Difference(right, left));
+    return Union(Difference(Left, Right), Difference(Right, Left));
 }
 
 /**********************************************************************
 【函数名称】 operator&
 【函数功能】 返回此集合与另一集合的交集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的交集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::operator&(const DynamicSet<T>& other) const {
-    return Intersection(other);
+DynamicSet<T> DynamicSet<T>::operator&(const DynamicSet<T>& Other) const {
+    return Intersection(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator&=
 【函数功能】 将自身赋值为此集合与另一集合的交集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T>& DynamicSet<T>::operator&=(const DynamicSet<T>& other) {
-    *this = Intersection(other);
+DynamicSet<T>& DynamicSet<T>::operator&=(const DynamicSet<T>& Other) {
+    *this = Intersection(Other);
     return *this;
 }
 
@@ -249,28 +249,28 @@ DynamicSet<T>& DynamicSet<T>::operator&=(const DynamicSet<T>& other) {
 【函数名称】 operator|
 【函数功能】 返回此集合与另一集合的并集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的并集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::operator|(const DynamicSet<T>& other) const {
-    return Union(other);
+DynamicSet<T> DynamicSet<T>::operator|(const DynamicSet<T>& Other) const {
+    return Union(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator|=
 【函数功能】 将自身赋值为此集合与另一集合的并集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T>& DynamicSet<T>::operator|=(const DynamicSet<T>& other) {
-    *this = Union(other);
+DynamicSet<T>& DynamicSet<T>::operator|=(const DynamicSet<T>& Other) {
+    *this = Union(Other);
     return *this;
 }
 
@@ -278,28 +278,28 @@ DynamicSet<T>& DynamicSet<T>::operator|=(const DynamicSet<T>& other) {
 【函数名称】 operator-
 【函数功能】 返回此集合与另一集合的差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::operator-(const DynamicSet<T>& other) const {
-    return Difference(other);
+DynamicSet<T> DynamicSet<T>::operator-(const DynamicSet<T>& Other) const {
+    return Difference(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator-=
 【函数功能】 将自身赋值为此集合与另一集合的差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T>& DynamicSet<T>::operator-=(const DynamicSet<T>& other) {
-    *this = Difference(other);
+DynamicSet<T>& DynamicSet<T>::operator-=(const DynamicSet<T>& Other) {
+    *this = Difference(Other);
     return *this;
 }
 
@@ -307,28 +307,28 @@ DynamicSet<T>& DynamicSet<T>::operator-=(const DynamicSet<T>& other) {
 【函数名称】 operator^
 【函数功能】 返回此集合与另一集合的对称差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     两集合的对称差集。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::operator^(const DynamicSet<T>& other) const {
-    return SymmetricDifference(other);
+DynamicSet<T> DynamicSet<T>::operator^(const DynamicSet<T>& Other) const {
+    return SymmetricDifference(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator^=
 【函数功能】 将自身赋值为此集合与另一集合的对称差集。
 【参数】 
-    other: 另一集合。
+    Other: 另一集合。
 【返回值】 
     自身的引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-DynamicSet<T> DynamicSet<T>::operator^=(const DynamicSet<T>& other) {
-    *this = SymmetricDifference(other);
+DynamicSet<T> DynamicSet<T>::operator^=(const DynamicSet<T>& Other) {
+    *this = SymmetricDifference(Other);
     return *this;
 }
 
@@ -336,68 +336,68 @@ DynamicSet<T> DynamicSet<T>::operator^=(const DynamicSet<T>& other) {
 【函数名称】 InnerGet
 【函数功能】 无条件获取元素值。
 【参数】 
-    index: 要获取的下标。
+    Index: 要获取的下标。
 【返回值】 
     指定位置元素的常引用。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-const T& DynamicSet<T>::InnerGet(size_t index) const {
-    return m_Elements[index];
+const T& DynamicSet<T>::InnerGet(size_t Index) const {
+    return m_Elements[Index];
 }
 
 /**********************************************************************
 【函数名称】 InnerSet
 【函数功能】 无条件设置元素值。
 【参数】 
-    index: 要设置的下标。
-    value: 要设置的值。
+    Index: 要设置的下标。
+    Value: 要设置的值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-void DynamicSet<T>::InnerSet(size_t index, const T& value) {
-    m_Elements[index] = value;
+void DynamicSet<T>::InnerSet(size_t Index, const T& Value) {
+    m_Elements[Index] = Value;
 }
 
 /**********************************************************************
 【函数名称】 InnerAdd
 【函数功能】 无条件添加元素。
 【参数】 
-    value: 要添加的值。
+    Value: 要添加的值。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-void DynamicSet<T>::InnerAdd(const T& value) {
-    m_Elements.push_back(value);
+void DynamicSet<T>::InnerAdd(const T& Value) {
+    m_Elements.push_back(Value);
 }
 
 /**********************************************************************
 【函数名称】 InnerRemove
 【函数功能】 无条件删除元素。
 【参数】 
-    index: 要删除的下标。
+    Index: 要删除的下标。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-void DynamicSet<T>::InnerRemove(size_t index) {
-    m_Elements.erase(m_Elements.begin() + index);
+void DynamicSet<T>::InnerRemove(size_t Index) {
+    m_Elements.erase(m_Elements.begin() + Index);
 }
 
 /**********************************************************************
 【函数名称】 InnerInsert
 【函数功能】 无条件插入元素。
 【参数】 
-    index: 要插入位置的下标。
-    element: 新的元素。
+    Index: 要插入位置的下标。
+    Value: 新的元素。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T>
-void DynamicSet<T>::InnerInsert(size_t index, const T& element) {
-    m_Elements.insert(m_Elements.begin() + index, element);
+void DynamicSet<T>::InnerInsert(size_t Index, const T& Value) {
+    m_Elements.insert(m_Elements.begin() + Index, Value);
 }
 
 /**********************************************************************
@@ -423,7 +423,7 @@ typename vector<T>::const_iterator DynamicSet<T>::begin() const {
 **********************************************************************/
 template <typename T>
 typename vector<T>::const_iterator DynamicSet<T>::end() const {
-    return m_Elements.end();
+    return m_Elements.cend();
 }
 
 }

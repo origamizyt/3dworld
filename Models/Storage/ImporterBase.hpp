@@ -34,12 +34,12 @@ class ImporterBase {
         【函数名称】 Import
         【函数功能】 导入指定文件到模型中。
         【参数】 
-            path: 文件所在路径。
-            model: 模型的可变引用。
+            Path: 文件所在路径。
+            Model: 模型的可变引用。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Import(string path, Model<N>& model) const;
+        void Import(string Path, Model<N>& Model) const;
 
         // 虚析构函数
         virtual ~ImporterBase() = default;
@@ -49,12 +49,12 @@ class ImporterBase {
         【函数名称】 InnerImport
         【函数功能】 导入指定文件流到模型中。
         【参数】 
-            stream: 已经打开的文件流。
-            model: 模型的可变引用。
+            Stream: 已经打开的文件流。
+            Model: 模型的可变引用。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void InnerImport(ifstream& stream, Model<N>& model) const = 0;
+        virtual void InnerImport(ifstream& Stream, Model<N>& Model) const = 0;
 };
 
 }

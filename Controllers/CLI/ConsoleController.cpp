@@ -41,71 +41,71 @@ shared_ptr<ConsoleController> ConsoleController::GetInstance() {
 【函数名称】 PointToString
 【函数功能】 获取点的字符串表达形式。
 【参数】
-    point: 要转化的点。
+    APoint: 要转化的点。
 【返回值】
     点的字符串表达形式。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-string ConsoleController::PointToString(const Point<3>& point) const {
-    return point.ToString();
+string ConsoleController::PointToString(const Point<3>& APoint) const {
+    return APoint.ToString();
 }
 
 /**********************************************************************
 【函数名称】 LineToString
 【函数功能】 获取线段及其状态的字符串表达形式。
 【参数】
-    line: 要转化的线段。
-    status: 线段的状态。
+    ALine: 要转化的线段。
+    AStatus: 线段的状态。
 【返回值】
     线段的字符串表达形式。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 string ConsoleController::LineToString(
-    const Line<3>& line, 
-    Status status
+    const Line<3>& ALine, 
+    Status AStatus
 ) const {
-    ostringstream repr;
-    repr << line.ToString() << ", length=" << line.GetLength();
-    switch (status) {
+    ostringstream Stream;
+    Stream << ALine.ToString() << ", length=" << ALine.GetLength();
+    switch (AStatus) {
         case Status::CREATED: {
-            repr << " *created";
+            Stream << " *created";
             break;
         }
         case Status::MODIFIED: {
-            repr << " *modified";
+            Stream << " *modified";
             break;
         }
     }
-    return repr.str();
+    return Stream.str();
 }
 
 /**********************************************************************
 【函数名称】 FaceToString
 【函数功能】 获取面的字符串表达形式。
 【参数】
-    face: 要转化的面。
-    status: 面的状态。
+    AFace: 要转化的面。
+    AStatus: 面的状态。
 【返回值】
     面的字符串表达形式。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 string ConsoleController::FaceToString(
-    const Face<3>& face, 
-    Status status
+    const Face<3>& AFace, 
+    Status AStatus
 ) const {
-    ostringstream repr;
-    repr << face.ToString() << ", area=" << face.GetArea();
-    switch (status) {
+    ostringstream Stream;
+    Stream << AFace.ToString() << ", area=" << AFace.GetArea();
+    switch (AStatus) {
         case Status::CREATED: {
-            repr << " *created";
+            Stream << " *created";
             break;
         }
         case Status::MODIFIED: {
-            repr << " *modified";
+            Stream << " *modified";
             break;
         }
     }
-    return repr.str();
+    return Stream.str();
 }
 
 }

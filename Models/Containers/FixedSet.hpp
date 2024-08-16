@@ -38,29 +38,29 @@ class FixedSet: public DistinctCollection<T> {
         【函数名称】 构造函数
         【函数功能】 使用初始化列表初始化 FixedSet 类型实例。
         【参数】
-            elements: 元素初始化列表。
+            Elements: 元素初始化列表。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet(initializer_list<T> elements);
+        FixedSet(initializer_list<T> Elements);
         /**********************************************************************
         【函数名称】 构造函数
         【函数功能】 使用 std::array<T, N> 初始化 FixedSet 类型实例。
         【参数】
-            elements: 元素组成的数组。
+            Elements: 元素组成的数组。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        explicit FixedSet(const array<T, N>& elements);
+        explicit FixedSet(const array<T, N>& Elements);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 FixedSet 初始化 FixedSet 类的实例。
         【参数】
-            other: 另一 FixedSet 实例。
+            Other: 另一 FixedSet 实例。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet(const FixedSet<T, N>& other) = default;
+        FixedSet(const FixedSet<T, N>& Other) = default;
 
         // 属性
 
@@ -92,12 +92,12 @@ class FixedSet: public DistinctCollection<T> {
         【函数名称】 operator=
         【函数功能】 将其他集合赋值给自身。
         【参数】 
-            other: 从之取值的集合。
+            Other: 从之取值的集合。
         【返回值】 
             自身的引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FixedSet<T, N>& operator=(const FixedSet<T, N>& other) = default;
+        FixedSet<T, N>& operator=(const FixedSet<T, N>& Other) = default;
         /**********************************************************************
         【函数名称】 operator DynamicSet<T>
         【函数功能】 将自身转化为 DynamicSet。
@@ -133,81 +133,81 @@ class FixedSet: public DistinctCollection<T> {
         【函数名称】 InnerGet
         【函数功能】 无条件获取元素值。
         【参数】 
-            index: 要获取的下标。
+            Index: 要获取的下标。
         【返回值】 
             指定位置元素的常引用。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        const T& InnerGet(size_t index) const override;
+        const T& InnerGet(size_t Index) const override;
         /**********************************************************************
         【函数名称】 InnerSet
         【函数功能】 无条件设置元素值。
         【参数】 
-            index: 要设置的下标。
-            value: 要设置的值。
+            Index: 要设置的下标。
+            Value: 要设置的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerSet(size_t index, const T& value) override;
+        void InnerSet(size_t Index, const T& Value) override;
         /**********************************************************************
         【函数名称】 ShouldAdd
         【函数功能】 判断是否应该添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 
             是否应该添加元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldAdd(const T& value) const override;
+        bool ShouldAdd(const T& Value) const override;
         /**********************************************************************
         【函数名称】 InnerAdd
         【函数功能】 无条件添加元素。
         【参数】 
-            value: 要添加的值。
+            Value: 要添加的值。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerAdd(const T& value) override;
+        void InnerAdd(const T& Value) override;
         /**********************************************************************
         【函数名称】 ShouldRemove
         【函数功能】 判断是否应该删除元素。
         【参数】 
-            index: 要删除的下标。
+            Index: 要删除的下标。
         【返回值】 
             是否应该删除元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldRemove(size_t index) const override;
+        bool ShouldRemove(size_t Index) const override;
         /**********************************************************************
         【函数名称】 InnerRemove
         【函数功能】 无条件删除元素。
         【参数】 
-            index: 要删除的下标。
+            Index: 要删除的下标。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerRemove(size_t index) override;
+        void InnerRemove(size_t Index) override;
         /**********************************************************************
         【函数名称】 ShouldInsert
         【函数功能】 判断是否应该插入元素。
         【参数】 
-            index: 要插入位置的下标。
-            element: 新的元素。
+            Index: 要插入位置的下标。
+            Value: 新的元素。
         【返回值】 
             是否应该插入元素。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool ShouldInsert(size_t index, const T& element) const override;
+        bool ShouldInsert(size_t Index, const T& Value) const override;
         /**********************************************************************
         【函数名称】 InnerInsert
         【函数功能】 无条件插入元素。
         【参数】 
-            index: 要插入位置的下标。
-            element: 新的元素。
+            Index: 要插入位置的下标。
+            Value: 新的元素。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerInsert(size_t index, const T& element) override;
+        void InnerInsert(size_t Index, const T& Value) override;
     private:
         array<T, N> m_Elements;
 

@@ -86,57 +86,57 @@ double Box<N>::GetVolume() const {
 【函数名称】 IsEqual
 【函数功能】 判断自身和另一元素是否相等。
 【参数】
-    other: 另一元素。
+    Other: 另一元素。
 【返回值】
     两元素是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-bool Box<N>::IsEqual(const Box<N>& other) const {
-    return IsEqual(*this, other);
+bool Box<N>::IsEqual(const Box<N>& Other) const {
+    return IsEqual(*this, Other);
 }
 
 /**********************************************************************
 【函数名称】 IsEqual
 【函数功能】 判断两元素是否相等。
 【参数】
-    left: 第一个元素。
-    right: 第二个元素。
+    Left: 第一个元素。
+    Right: 第二个元素。
 【返回值】
     两元素是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-bool Box<N>::IsEqual(const Box<N>& left, const Box<N>& right) {
-    return left.Vertex1 == right.Vertex1 && left.Vertex2 == right.Vertex2;
+bool Box<N>::IsEqual(const Box<N>& Left, const Box<N>& Right) {
+    return Left.Vertex1 == Right.Vertex1 && Left.Vertex2 == Right.Vertex2;
 }
 
 /**********************************************************************
 【函数名称】 operator==
 【函数功能】 判断自身和另一长方体是否相等。
 【参数】
-    other: 另一长方体。
+    Other: 另一长方体。
 【返回值】
     两长方体是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-bool Box<N>::operator==(const Box<N>& other) const {
-    return IsEqual(other);
+bool Box<N>::operator==(const Box<N>& Other) const {
+    return IsEqual(Other);
 }
 
 /**********************************************************************
 【函数名称】 operator!=
 【函数功能】 判断自身和另一长方体是否相等。
 【参数】
-    other: 另一长方体。
+    Other: 另一长方体。
 【返回值】
     两长方体是否相等。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-bool Box<N>::operator!=(const Box<N>& other) const {
-    return !IsEqual(other);
+bool Box<N>::operator!=(const Box<N>& Other) const {
+    return !IsEqual(Other);
 }
 
 }

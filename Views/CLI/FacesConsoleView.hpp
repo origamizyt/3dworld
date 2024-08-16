@@ -37,25 +37,25 @@ class FacesConsoleView: public ConsoleViewBase {
         【函数名称】 构造函数
         【函数功能】 使用控制器与标准输入/输出流初始化 FacesConsoleView 类型实例。
         【参数】
-            controller: 控制器指针。
+            Controller: 控制器指针。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        FacesConsoleView(shared_ptr<ControllerBase> controller);
+        FacesConsoleView(shared_ptr<ControllerBase> Controller);
         /**********************************************************************
         【函数名称】 构造函数
         【函数功能】 使用控制器与指定输入/输出流初始化 FacesConsoleView 类型实例。
         【参数】
-            controller: 控制器指针。
-            input: 输入流。
-            output: 输出流。
+            Controller: 控制器指针。
+            Input: 输入流。
+            Output: 输出流。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         FacesConsoleView(
-            shared_ptr<ControllerBase> controller,
-            istream& input,
-            ostream& output
+            shared_ptr<ControllerBase> Controller,
+            istream& Input,
+            ostream& Output
         );
     
     protected:
@@ -63,12 +63,12 @@ class FacesConsoleView: public ConsoleViewBase {
         【函数名称】 ResultToString
         【函数功能】 将命令返回的结果转化为字符串。
         【参数】
-            result: 要转化的 ConsoleViewBase::Result 枚举。
+            AResult: 要转化的 ConsoleViewBase::Result 枚举。
         【返回值】
             结果的字符串表示形式。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        string ResultToString(Result result) const override;
+        string ResultToString(Result AResult) const override;
         
     private:
         /**********************************************************************

@@ -32,14 +32,14 @@ class ObjExporter: public ExporterBase<3> {
         【函数名称】 InnerExport
         【函数功能】 导出指定模型到文件流中。
         【参数】 
-            stream: 已经打开的文件流。
-            model: 模型的可变引用。
+            Stream: 已经打开的文件流。
+            Model: 模型的引用。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         void InnerExport(
-            ofstream& stream, 
-            const Model<3>& model
+            ofstream& Stream, 
+            const Model<3>& Model
         ) const override;
 };
 

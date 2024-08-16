@@ -21,41 +21,41 @@ namespace Obj {
 【函数名称】 InnerExport
 【函数功能】 导出指定模型到文件流中。
 【参数】 
-    stream: 已经打开的文件流。
-    model: 模型的可变引用。
+    Stream: 已经打开的文件流。
+    Model: 模型的引用。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 void ObjExporter::InnerExport(
-    ofstream& stream,
-    const Model<3>& model
+    ofstream& Stream,
+    const Model<3>& Model
 ) const {
-    stream << "g " << model.Name << endl;
+    Stream << "g " << Model.Name << endl;
     
-    auto points = model.CollectPoints();
-    for (auto& point: points) {
-        stream << "v";
-        stream << "  " << point[0];
-        stream << "  " << point[1];
-        stream << "  " << point[2] << endl;
+    auto Points = Model.CollectPoints();
+    for (auto& Point: Points) {
+        Stream << "v";
+        Stream << " " << Point[0];
+        Stream << " " << Point[1];
+        Stream << " " << Point[2] << endl;
     }
 
-    for (auto& line: model.Lines) {
-        stream << "l";
-        for (auto& point: line.Points) {
-            stream << "  ";
-            stream << points.FindIndex(point) + 1;
+    for (auto& Line: Model.Lines) {
+        Stream << "l";
+        for (auto& Point: Line.Points) {
+            Stream << " ";
+            Stream << Points.FindIndex(Point) + 1;
         }
-        stream << endl;
+        Stream << endl;
     }
 
-    for (auto& face: model.Faces) {
-        stream << "f";
-        for (auto& point: face.Points) {
-            stream << "  ";
-            stream << points.FindIndex(point) + 1;
+    for (auto& Face: Model.Faces) {
+        Stream << "f";
+        for (auto& Point: Face.Points) {
+            Stream << " ";
+            Stream << Points.FindIndex(Point) + 1;
         }
-        stream << endl;
+        Stream << endl;
     }
 }
 

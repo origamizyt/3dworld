@@ -32,12 +32,12 @@ class ObjImporter: public ImporterBase<3> {
         【函数名称】 InnerImport
         【函数功能】 导入指定文件流到模型中。
         【参数】 
-            stream: 已经打开的文件流。
-            model: 模型的可变引用。
+            Stream: 已经打开的文件流。
+            Model: 模型的可变引用。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void InnerImport(ifstream& stream, Model<3>& model) const override;
+        void InnerImport(ifstream& Stream, Model<3>& Model) const override;
 };
 
 }
