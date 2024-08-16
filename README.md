@@ -26,7 +26,7 @@ import glob, os
 
 cpp_list = glob.glob("**/*.cpp", recursive=True)
 
-os.system("g++ -std=c++11 %s -o main" % ' '.join(cpp_lists))
+os.system("g++ -std=c++11 %s -o main" % ' '.join(cpp_list))
 ```
 
 MSVC 比较麻烦：
