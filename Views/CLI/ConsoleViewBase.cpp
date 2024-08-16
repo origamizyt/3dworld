@@ -169,31 +169,31 @@ size_t ConsoleViewBase::Select(
 **********************************************************************/
 string ConsoleViewBase::ResultToString(Result AResult) const {
     switch (AResult) {
-        case Result::STORAGE_LOOKUP_ERROR: {
+        case Result::STORAGE_LOOKUP_ERROR : {
             return "Cannot find appropriate im/exporter.";
         }
-        case Result::FILE_OPEN_ERROR: {
+        case Result::FILE_OPEN_ERROR : {
             return "Cannot open given file.";
         }
-        case Result::FILE_FORMAT_ERROR: {
+        case Result::FILE_FORMAT_ERROR : {
             return "Given file contains invalid contents.";
         }
-        case Result::INDEX_OVERFLOW: {
+        case Result::INDEX_OVERFLOW : {
             return "The index given is not valid.";
         }
-        case Result::POINT_INDEX_OVERFLOW: {
+        case Result::POINT_INDEX_OVERFLOW : {
             return "The point index given is not valid.";
         }
-        case Result::POINT_COLLISION: {
+        case Result::POINT_COLLISION : {
             return "Identical point already exists in element.";
         }
-        case Result::ELEMENT_COLLISION: {
+        case Result::ELEMENT_COLLISION : {
             return "Identical element already exists in model.";
         }
-        case Result::INVALID_VALUE: {
+        case Result::INVALID_VALUE : {
             return "Entered value is invalid.";
         }
-        default: {
+        default : {
             return "";
         }
     }

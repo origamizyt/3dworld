@@ -67,11 +67,11 @@ string ConsoleController::LineToString(
     ostringstream Stream;
     Stream << ALine.ToString() << ", length=" << ALine.GetLength();
     switch (AStatus) {
-        case Status::CREATED: {
+        case Status::CREATED : {
             Stream << " *created";
             break;
         }
-        case Status::MODIFIED: {
+        case Status::MODIFIED : {
             Stream << " *modified";
             break;
         }
@@ -96,11 +96,11 @@ string ConsoleController::FaceToString(
     ostringstream Stream;
     Stream << AFace.ToString() << ", area=" << AFace.GetArea();
     switch (AStatus) {
-        case Status::CREATED: {
+        case Status::CREATED : {
             Stream << " *created";
             break;
         }
-        case Status::MODIFIED: {
+        case Status::MODIFIED : {
             Stream << " *modified";
             break;
         }

@@ -86,13 +86,13 @@ FacesConsoleView::FacesConsoleView(
 **********************************************************************/
 string FacesConsoleView::ResultToString(Result AResult) const {
     switch (AResult) {
-        case Result::POINT_COLLISION: {
+        case Result::POINT_COLLISION : {
             return "Identical point already exists in face.";
         }
-        case Result::ELEMENT_COLLISION: {
+        case Result::ELEMENT_COLLISION : {
             return "Identical face already exists in model.";
         }
-        default: {
+        default : {
             return ConsoleViewBase::ResultToString(AResult);
         }
     }
@@ -113,11 +113,11 @@ ConsoleViewBase::Result FacesConsoleView::CommandListFaces() const {
     for (size_t i = 0; i < Faces.size(); i++) {
         Output << i + 1 << ". ";
         switch (Faces[i].ElementStatus) {
-            case ControllerBase::Status::CREATED: {
+            case ControllerBase::Status::CREATED : {
                 Output << Palette::FG_CYAN;
                 break;
             }
-            case ControllerBase::Status::MODIFIED: {
+            case ControllerBase::Status::MODIFIED : {
                 Output << Palette::FG_YELLOW;
                 break;
             }

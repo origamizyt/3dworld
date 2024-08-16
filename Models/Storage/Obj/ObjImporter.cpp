@@ -45,15 +45,15 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
         char Tag;
         LineStream >> Tag;
         switch (Tag) {
-            case '#': {
+            case '#' : {
                 break;
             }
-            case 'g': {
+            case 'g' : {
                 LineStream.ignore();
                 getline(LineStream, Model.Name);
                 break;
             }
-            case 'v': {
+            case 'v' : {
                 double x;
                 double y;
                 double z;
@@ -67,7 +67,7 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
                 Points.push_back(Point<3> { x, y, z });
                 break;
             }
-            case 'l': {
+            case 'l' : {
                 size_t Indices[2];
                 LineStream >> Indices[0] >> Indices[1];
                 if (LineStream.bad()) {
@@ -87,7 +87,7 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
                 );
                 break;
             }
-            case 'f': {
+            case 'f' : {
                 size_t Indices[3];
                 LineStream >> Indices[0] >> Indices[1] >> Indices[2];
                 if (LineStream.bad()) {
@@ -112,7 +112,7 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
                 );
                 break;
             }
-            default: {
+            default : {
                 throw FileFormatException(
                     LineNumber,
                     string("unrecognized tag '") + Tag + string("'")

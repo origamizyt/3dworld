@@ -85,13 +85,13 @@ LinesConsoleView::LinesConsoleView(
 **********************************************************************/
 string LinesConsoleView::ResultToString(Result AResult) const {
     switch (AResult) {
-        case Result::POINT_COLLISION: {
+        case Result::POINT_COLLISION : {
             return "Identical point already exists in line.";
         }
-        case Result::ELEMENT_COLLISION: {
+        case Result::ELEMENT_COLLISION : {
             return "Identical line already exists in model.";
         }
-        default: {
+        default : {
             return ConsoleViewBase::ResultToString(AResult);
         }
     }
@@ -112,11 +112,11 @@ ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
     for (size_t i = 0; i < Lines.size(); i++) {
         Output << i + 1 << ". ";
         switch (Lines[i].ElementStatus) {
-            case ControllerBase::Status::CREATED: {
+            case ControllerBase::Status::CREATED : {
                 Output << Palette::FG_CYAN;
                 break;
             }
-            case ControllerBase::Status::MODIFIED: {
+            case ControllerBase::Status::MODIFIED : {
                 Output << Palette::FG_YELLOW;
                 break;
             }
