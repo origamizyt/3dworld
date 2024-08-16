@@ -6,6 +6,7 @@
 
 #include <cstddef>
 #include <stdexcept>
+#include <string>
 #include "InvalidSizeException.hpp"
 using namespace std;
 
