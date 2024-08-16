@@ -32,7 +32,8 @@ class Vector: public Tools::Representable {
         // 向量的维度，与模板中 N 相等。
         static constexpr size_t Dimension { N };
         // 用作浮点数比较的范围
-        static T Epsilon;
+        // 由于 T 可能没有 constexpr 构造，不使用 constexpr
+        static const T Epsilon;
 
         // 构造函数
 
@@ -147,24 +148,27 @@ class Vector: public Tools::Representable {
         【函数功能】 判断自身是否和指定的向量相等。
         【参数】 
             other: 要与之判断的向量。
+            exact: 是否使用精确的编码比较，而不是值比较。
         【返回值】 
             自身和指定向量是否相等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        bool IsEqual(const Vector<T, N>& other) const;
+        bool IsEqual(const Vector<T, N>& other, bool exact = true) const;
         /**********************************************************************
         【函数名称】 IsEqual
         【函数功能】 判断两个向量是否相等。
         【参数】 
             left: 要判断的第一个向量。
             right: 要判断的第二个向量。
+            exact: 是否使用精确的编码比较，而不是值比较。
         【返回值】 
             两个向量是否相等。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         static bool IsEqual(
             const Vector<T, N>& left, 
-            const Vector<T, N>& right
+            const Vector<T, N>& right,
+            bool exact = true
         );
         /**********************************************************************
         【函数名称】 IsParallel

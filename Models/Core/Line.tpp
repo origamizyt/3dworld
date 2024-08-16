@@ -177,7 +177,7 @@ Point<N> Line<N>::Intersection(
     double ratio2 = 0;
     for (size_t i = 1; i < N; i++) {
         double det = vector1[0] * vector2[i] - vector2[0] * vector1[i];
-        if (fabs(det) > Vector<double, N>::Epsilon) {
+        if (det != 0) {
             ratio1 = 1 / det * (vector2[i] * b[0] - vector2[0] * b[i]);
             ratio2 = 1 / det * (vector1[i] * b[0] - vector1[0] * b[i]);
             break;

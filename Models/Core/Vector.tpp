@@ -22,7 +22,7 @@ using namespace C3w::Errors;
 
 // 浮点数比较的范围
 template <typename T, size_t N>
-T Vector<T, N>::Epsilon { is_floating_point<T>::value ? 1e-8 : 0 };
+const T Vector<T, N>::Epsilon { is_floating_point<T>::value ? 1e-6 : 0 };
 
 // 零向量。
 template <typename T, size_t N>
@@ -171,8 +171,8 @@ T Vector<T, N>::Module() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <typename T, size_t N>
-bool Vector<T, N>::IsEqual(const Vector<T, N>& other) const {
-    return IsEqual(*this, other);
+bool Vector<T, N>::IsEqual(const Vector<T, N>& other, bool exact) const {
+    return IsEqual(*this, other, exact);
 }
 
 /**********************************************************************
@@ -188,14 +188,20 @@ bool Vector<T, N>::IsEqual(const Vector<T, N>& other) const {
 template <typename T, size_t N>
 bool Vector<T, N>::IsEqual(
     const Vector<T, N>& left, 
-    const Vector<T, N>& right
+    const Vector<T, N>& right,
+    bool exact
 ) {
-    for (size_t i = 0; i < N; i++) {
-        if (fabs(left.m_Components[i] - right.m_Components[i]) > Epsilon) {
-            return false;
-        }
+    if (exact) {
+        return left.m_Components == right.m_Components;
     }
-    return true;
+    else {
+        for (size_t i = 0; i < N; i++) {
+            if (fabs(left.m_Components[i] - right.m_Components[i]) > Epsilon) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 /**********************************************************************
@@ -232,7 +238,7 @@ bool Vector<T, N>::IsParallel(
     }
     // 由于一些数据类型对除法不封闭，只能使用乘法。
     for (size_t i = 1; i < N; i++) {
-        if (fabs(left[0] * right[i] - right[0] * left[i]) > Epsilon) {
+        if (left[0] * right[i] != right[0] * left[i]) {
             return false;
         }
     }
