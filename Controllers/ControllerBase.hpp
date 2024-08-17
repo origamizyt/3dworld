@@ -182,15 +182,15 @@ class ControllerBase {
         【函数名称】 AddLine
         【函数功能】 添加一个线段。
         【参数】
-            x1, y1, z1: 第一个点的三维坐标。
-            x2, y2, z2: 第二个点的三维坐标。
+            X1, Y1, Z1: 第一个点的三维坐标。
+            X2, Y2, Z2: 第二个点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         Result AddLine(
-            double x1, double y1, double z1,
-            double x2, double y2, double z2
+            double X1, double Y1, double Z1,
+            double X2, double Y2, double Z2
         );
         /**********************************************************************
         【函数名称】 ModifyLine
@@ -198,7 +198,7 @@ class ControllerBase {
         【参数】
             Index: 线段的下标。
             PointIndex: 要修改的点在线段中的下标。
-            x, y, z: 修改后点的三维坐标。
+            X, Y, Z: 修改后点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
@@ -206,7 +206,7 @@ class ControllerBase {
         Result ModifyLine(
             size_t Index,
             size_t PointIndex,
-            double x, double y, double z
+            double X, double Y, double Z
         );
         /**********************************************************************
         【函数名称】 RemoveLine
@@ -242,17 +242,17 @@ class ControllerBase {
         【函数名称】 AddFace
         【函数功能】 添加一个面。
         【参数】
-            x1, y1, z1: 第一个点的三维坐标。
-            x2, y2, z2: 第二个点的三维坐标。
-            x3, y3, z3: 第三个点的三维坐标。
+            X1, Y1, Z1: 第一个点的三维坐标。
+            X2, Y2, Z2: 第二个点的三维坐标。
+            X3, Y3, Z3: 第三个点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         Result AddFace(
-            double x1, double y1, double z1,
-            double x2, double y2, double z2,
-            double x3, double y3, double z3
+            double X1, double Y1, double Z1,
+            double X2, double Y2, double Z2,
+            double X3, double Y3, double Z3
         );
         /**********************************************************************
         【函数名称】 ModifyFace
@@ -260,7 +260,7 @@ class ControllerBase {
         【参数】
             Index: 面的下标。
             PointIndex: 要修改的点在面中的下标。
-            x, y, z: 修改后点的三维坐标。
+            X, Y, Z: 修改后点的三维坐标。
         【返回值】
             函数发生的错误类型。
         【开发者及日期】 赵一彤 2024/7/24
@@ -268,7 +268,7 @@ class ControllerBase {
         Result ModifyFace(
             size_t Index,
             size_t PointIndex,
-            double x, double y, double z
+            double X, double Y, double Z
         );
         /**********************************************************************
         【函数名称】 RemoveFace
