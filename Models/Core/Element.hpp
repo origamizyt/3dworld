@@ -21,7 +21,7 @@ namespace C3w {
 
 /*************************************************************************
 【类名】 Element
-【功能】 定义一个维数 N，点数 S 的抽象元素作为 Line 与 Face 的基类。
+【功能】 定义一个维数 N，点数 S 的元素作为 Line 与 Face 的基类。
 【接口说明】 
     继承于 C3w::Tools::Representable:
         实现 ToString。
@@ -36,8 +36,8 @@ namespace C3w {
         拷贝构造函数。
         虚析构函数。
     属性：
-        GetLength: 获取元素的长度。
-        GetArea: 获取元素的面积。
+        GetLength: 获取元素的长度，默认抛出 NotImplementedException 异常。
+        GetArea: 获取元素的面积，默认抛出 NotImplementedException 异常。
     操作：
         SetPoint: 调用 Points.Set。
         TrySetPoint: 调用 Points.TrySet。
@@ -106,7 +106,7 @@ class Element: public Tools::Representable {
             此元素的长度。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual double GetLength() const = 0;
+        virtual double GetLength() const;
         /**********************************************************************
         【函数名称】 GetArea
         【函数功能】 求此元素的面积。
@@ -115,7 +115,7 @@ class Element: public Tools::Representable {
             此元素的面积。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual double GetArea() const = 0;
+        virtual double GetArea() const;
 
         // 操作
         

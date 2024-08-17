@@ -12,6 +12,7 @@
 #include "Point.hpp"
 #include "Vector.hpp"
 #include "../Containers/FixedSet.hpp"
+#include "../Errors/NotImplementedException.hpp"
 using namespace std;
 using namespace C3w::Containers;
 
@@ -38,6 +39,32 @@ Element<N, S>::Element(initializer_list<Point<N>> Points): Points(Points) {}
 **********************************************************************/
 template <size_t N, size_t S>
 Element<N, S>::Element(const FixedSet<Point<N>, S>& Points): Points(Points) {}
+
+/**********************************************************************
+【函数名称】 GetLength
+【函数功能】 求此元素的长度。
+【参数】 无
+【返回值】
+    此元素的长度。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N, size_t S>
+double Element<N, S>::GetLength() const {
+    throw NotImplementedException("GetLength");
+}
+
+/**********************************************************************
+【函数名称】 GetArea
+【函数功能】 求此元素的面积。
+【参数】 无
+【返回值】
+    此元素的面积。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <size_t N, size_t S>
+double Element<N, S>::GetArea() const {
+    throw NotImplementedException("GetArea");
+}
 
 /**********************************************************************
 【函数名称】 SetPoint
