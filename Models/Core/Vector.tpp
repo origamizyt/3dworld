@@ -17,8 +17,9 @@
 #include "../Errors/InvalidSizeException.hpp"
 #include "Vector.hpp"
 using namespace std;
-using namespace C3w;
 using namespace C3w::Errors;
+
+namespace C3w {
 
 // 浮点数比较的范围
 template <typename T, size_t N>
@@ -691,19 +692,19 @@ string Vector<T, N>::ToString() const {
     return Stream.str();
 }
 
-namespace C3w {
-    /**********************************************************************
-    【函数名称】 operator*
-    【函数功能】 将向量与标量数乘。
-    【参数】 
-        AVector: 要数乘的向量。
-        Factor: 要数乘的标量。
-    【返回值】 
-        数乘形成的新的向量。
-    【开发者及日期】 赵一彤 2024/7/24
-    **********************************************************************/
-    template <typename U, size_t M>
-    Vector<U, M> operator*(U Factor, const Vector<U, M>& AVector) {
-        return AVector.Multiply(Factor);
-    }
+/**********************************************************************
+【函数名称】 operator*
+【函数功能】 将向量与标量数乘。
+【参数】 
+    AVector: 要数乘的向量。
+    Factor: 要数乘的标量。
+【返回值】 
+    数乘形成的新的向量。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename U, size_t M>
+Vector<U, M> operator*(U Factor, const Vector<U, M>& AVector) {
+    return AVector.Multiply(Factor);
+}
+
 }
