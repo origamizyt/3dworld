@@ -23,7 +23,35 @@ namespace Controllers {
 /*************************************************************************
 【类名】 ControllerBase
 【功能】 所有控制器的基类。
-【接口说明】 获取/修改/添加/删除模型中的线段/面，导入/导出模型。
+【接口说明】 
+    内嵌类型：
+        Result: 表示一个操作返回的错误类型。
+        Status: 表示一个元素的状态。
+        GetElementResult: 用于 GetLines, GetFaces 表示其返回值。
+        Statistics: 作为 GetStatistics 的返回值。
+    构造与析构：
+        默认构造函数。
+        删除拷贝、移动构造函数。
+        虚析构函数。
+    操作：
+        GetName: 获取模型名称。
+        GetLines, GetFaces: 获取模型中所有线段/面。
+        GetLinePoints, GetFacePoints: 获取模型中指定线段/面的所有点。
+        AddLine, AddFace: 向模型中添加线段/面。
+        ModifyLine, ModifyFace: 修改模型中指定线段/面的点坐标。
+        RemoveLine, RemoveFace: 删除模型中的线段/面。
+        GetStatistics: 获取模型统计信息。
+        LoadModel: 从文件中加载模型。
+        SaveModel: 向文件中保存模型。
+        PointToString (protected): 将点转化为字符串，纯虚函数。
+        LineToString (protected): 将线段转化为字符串，纯虚函数。
+        FaceToString (protected): 将面转化为字符串，纯虚函数。
+        GetExtension (private): 提取路径中的文件扩展名。
+    成员：
+        m_Path: 存储导入的路径。
+        m_Model: 存储导入的模型。
+        m_LineStatus: 存储线段的状态。
+        m_FaceStatus: 存储面的状态。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class ControllerBase {

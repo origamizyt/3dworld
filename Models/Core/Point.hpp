@@ -17,17 +17,52 @@ namespace C3w {
 /*************************************************************************
 【类名】 Point
 【功能】 定义一个维数为 N 的点。
-【接口说明】 获取/设置分量，求两点距离，相减得到向量，升维/降维。
+【接口说明】 
+    继承于 C3w::Vector<double, N>:
+        继承全部接口。
+        隐藏基类的向量独有的接口。
+        重写 ToString。
+    成员：
+        Origin: 原点。
+        Void: 分量全部为 NaN 的点，表示不存在的点，用于 Line<N>::Intersection 等。
+    构造与析构：
+        复用基类的构造函数。
+        默认构造函数，初始化分量全部为 0 的点。
+        接受一个向量的构造函数。
+        拷贝构造函数。
+    属性：
+        Distance: 求相同维度点之间的距离。
+        GeneralDistance: 求不同维度点之间的广义距离（升维）。
+        IsVoid: 判断是否有分量为 NaN。
+    操作：
+        Project: 投影到更低维度。
+        Promote: 填充到更高维度。
+        Negate: 反转点。
+        Add: 点和向量的加法。
+        Subtract: 点和点、点和向量的减法。
+    操作符：
+        operator- (unary): 同 Negate。
+        operator+: 同 Add。
+        operator+=: 同基类 AddInplace。
+        operator-: 同 Subtract。
+        operator-=: 同基类 SubtractInplace。
+        operator=: 默认赋值运算符。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <size_t N>
 class Point: public Vector<double, N> {
     public:
-        // 使用基类构造函数
-        using Vector<double, N>::Vector;
+        // 成员
+
+        // 原点。
+        static const Point<N> Origin;
+        // 分量全部为 NaN 的点。
+        static const Point<N> Void;
 
         // 构造函数
 
+        // 使用基类构造函数
+        using Vector<double, N>::Vector;
         // 如果没有此构造函数，g++ 可以通过，但 msvc 报错。
         /**********************************************************************
         【函数名称】 构造函数
@@ -58,10 +93,6 @@ class Point: public Vector<double, N> {
 
         // 属性
 
-        // 原点。
-        static const Point<N> Origin;
-        // 分量全部为 NaN 的点。
-        static const Point<N> Void;
         /**********************************************************************
         【函数名称】 Distance
         【函数功能】 求两个点之间的直线距离。

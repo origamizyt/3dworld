@@ -44,7 +44,7 @@ Box<N>::Box(const Point<N>& Vertex1, const Point<N>& Vertex2)
 template <size_t N>
 Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& Points) {
     if (Points.Count() == 0) {
-        return Box<N>(Point<N>::Origin, Point<N>::Origin);
+        return Box<N>();
     }
     array<double, N> MaxCoords;
     MaxCoords.fill(numeric_limits<double>::max());

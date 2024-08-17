@@ -20,7 +20,45 @@ namespace C3w {
 /*************************************************************************
 【类名】 Vector
 【功能】 定义一个分量类型为 T，维数为 N 的向量。
-【接口说明】 获取/设置分量，向量的加减以及内积。
+【接口说明】 
+    继承于 C3w::Tools::Representable:
+        实现 ToString。
+    成员：
+        Dimension，表示维数。
+        Epsilon，表示值比较时的误差范围。
+        Zero，表示零向量。
+    构造与析构：
+        默认构造函数，创建零向量。
+        接受一个 T 的构造函数，创建分量全部相同的向量。
+        接受一个初始化列表的构造函数。
+        接受一个分量数组的构造函数。
+        拷贝构造函数。
+        虚析构函数。
+    访问器：
+        GetComponent: 返回分量常/可变引用。
+        SetComponent: 设置分量。
+        SetAllComponents: 设置所有分量。
+    属性：
+        Module: 模长。
+    操作：
+        IsEqual: 相等性判断（值/编码比较）。
+        IsParallel: 平行判断。
+        IsPerpendicular: 垂直判断。
+        Negate(Inplace): 反转向量。
+        Add(Inplace): 向量加法。
+        Subtract(Inplace): 向量减法。
+        Multiply(Inplace): 向量数乘。
+        InnerProduct: 向量内积。
+    操作符：
+        operator[]: 同 GetComponent。
+        operator- (unary): 同 Negate。
+        operator+(=): 同 Add(Inplace)。
+        operator-(=): 同 Subtract(Inplace)。
+        operator*(=): 同 Multiply(Inplace)。
+        operator==/!=: 同 IsEqual 的编码比较。
+        operator=: 默认赋值运算符。
+    成员：
+        m_Components: 存储分量的 array。    
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T, size_t N>
@@ -131,6 +169,7 @@ class Vector: public Tools::Representable {
         void SetAllComponents(const array<T, N>& Components);
 
         // 属性
+
         /**********************************************************************
         【函数名称】 Module
         【函数功能】 求此向量的模长。

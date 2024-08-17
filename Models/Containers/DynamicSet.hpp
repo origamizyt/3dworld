@@ -19,7 +19,34 @@ namespace Containers {
 /*************************************************************************
 【类名】 DynamicSet
 【功能】 定义一个元素类型为 T 的动态大小的集合。
-【接口说明】 获取/设置/添加/删除元素，判断是否包含元素，集合的交并补。
+【接口说明】 
+    继承于 C3w::Containers::DistinctCollection<T>:
+        继承全部接口。
+        实现 Count。
+        实现 InnerGet, InnerSet, InnerAdd, InnerRemove, InnerInsert。
+    构造函数：
+        默认构造函数，创建空的集合。
+        接受初始化列表的构造函数。
+        接受向量的构造函数。
+        拷贝构造函数。
+    操作：
+        Clear: 清空所有元素。
+        Intersection: 求集合的交集。
+        Union: 求集合的并集。
+        Difference: 求集合的补集。
+        SymmetricDifference: 求集合的对称补集。
+    操作符：
+        operator&(=): 同 Intersection。
+        operator|(=): 同 Union。
+        operator-(=): 同 Difference。
+        operator^(=): 同 SymmetricDifference。
+        operator=: 默认赋值运算符。
+    迭代器：
+        begin: 指向第一个元素的迭代器。
+        end: 指向最后一个元素之后的迭代器。
+        * 为保证复用性，此处不符合编码规范 2.3.1
+    成员：
+        m_Elements: 包含元素的标准向量容器。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T>
@@ -275,6 +302,7 @@ class DynamicSet: public DistinctCollection<T> {
         DynamicSet<T> operator^=(const DynamicSet<T>& Other);
 
         // 迭代器
+        // 注：为保证复用性，此处不符合编码规范 2.3.1
 
         /**********************************************************************
         【函数名称】 begin

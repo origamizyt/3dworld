@@ -23,7 +23,19 @@ namespace Cli {
 /*************************************************************************
 【类名】 LinesConsoleView
 【功能】 操作线段时显示的视图。
-【接口说明】 继承自 ConsoleViewBase。
+【接口说明】 
+    继承于 C3w::Views::ConsoleViewBase:
+        继承全部接口。
+        重写 ResultToString。
+    构造与析构：
+        接受控制器指针的构造函数。
+        接受控制器指针与输入/输出流的构造函数。
+    操作：
+        CommandListLines: 实现 list 命令。
+        CommandGetLine: 实现 get 命令。
+        CommandAddLine: 实现 add 命令。
+        CommandModifyLine: 实现 edit 命令。
+        CommandRemoveLine: 实现 del 命令。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class LinesConsoleView: public ConsoleViewBase {

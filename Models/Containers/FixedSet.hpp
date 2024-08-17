@@ -24,7 +24,28 @@ namespace Containers {
 /*************************************************************************
 【类名】 FixedSet
 【功能】 定义一个元素类型为 T，大小为 N 的集合。
-【接口说明】 获取/设置元素，判断是否包含元素。
+【接口说明】
+    继承于 C3w::Containers::DistinctCollection<T>:
+        继承所有接口。
+        实现 Count，InnerGet, InnerSet。
+        实现 InnerAdd, InnerRemove, InnerInsert 并抛出异常。
+        重写 ShouldAdd, ShouldRemove, ShouldInsert 禁止这些操作。
+    构造函数：
+        删除默认构造函数。
+        接受初始化列表的构造函数。
+        接受元素数组的构造函数。
+        拷贝构造函数。
+    操作：
+        ToDynamic: 将自身转化为 DynamicSet。
+    操作符：
+        operator=: 默认赋值运算符。
+        operator DynamicSet<T>: 同 ToDynamic。
+    迭代器：
+        begin: 指向第一个元素的迭代器。
+        end: 指向最后一个元素之后的迭代器。
+        * 为保证复用性，此处不符合编码规范 2.3.1
+    成员：
+        m_Elements: 包含元素的标准数组容器。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T, size_t N>
@@ -109,6 +130,7 @@ class FixedSet: public DistinctCollection<T> {
         operator DynamicSet<T>() const;
 
         // 迭代器
+        // 注：为保证复用性，此处不符合编码规范 2.3.1
 
         /**********************************************************************
         【函数名称】 begin

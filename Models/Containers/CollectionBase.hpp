@@ -19,7 +19,39 @@ namespace Containers {
 /*************************************************************************
 【类名】 CollectionBase
 【功能】 定义一个元素类型为 T 的抽象容器。
-【接口说明】 获取/设置/添加/删除元素，判断是否包含元素。
+【接口说明】 
+    继承于 C3w::Tools::Representable:
+        实现 ToString。
+    构造与析构：
+        虚析构函数。
+    属性：
+        Count: 获取元素个数，纯虚函数。
+    访问器：
+        Get: 获取指定位置元素引用。
+        (Try)Set: (尝试)设置指定位置元素。
+    操作：
+        IsEqual: 相等性判断。
+        (Try)Add: (尝试)添加一个元素到末尾。
+        (Try)EmplaceAdd: (尝试)构造并添加一个元素到末尾。
+        (Try)Remove: (尝试)删除指定位置元素。
+        (Try)Insert: (尝试)插入一个元素。
+        (Try)EmplaceInsert: (尝试)构造并插入一个元素。
+        * 使用带有 Emplace 的函数并不会改善性能，只是提供一个简便的接口。
+        Contains: 判断是否包含元素。
+        FindIndex: 在容器中寻找指定元素的下标。
+        InnerGet (protected): 执行 Get 操作，纯虚函数。
+        ShouldSet (protected): 判断是否应当 Set，默认允许。
+        InnerSet (protected): 执行 Set 操作，纯虚函数。
+        ShouldAdd (protected): 判断是否应当 Add，默认允许。
+        InnerAdd (protected): 执行 Add 操作，纯虚函数。
+        ShouldRemove (protected): 判断是否应当 Remove，默认允许。
+        InnerRemove (protected): 执行 Remove 操作，纯虚函数。
+        ShouldInsert (protected): 判断是否应当 Insert，默认允许。
+        InnerInsert (protected): 执行 Insert 操作，纯虚函数。
+    操作符：
+        operator[]: 同 Get。
+        operator==/!=: 同 IsEqual。
+        * operator==/!= 不为 virtual。当使用 CollectionBase<T> 比较时行为固定。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T>

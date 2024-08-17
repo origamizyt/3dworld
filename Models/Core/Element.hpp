@@ -22,7 +22,34 @@ namespace C3w {
 /*************************************************************************
 【类名】 Element
 【功能】 定义一个维数 N，点数 S 的抽象元素作为 Line 与 Face 的基类。
-【接口说明】 求长度/面积，升维/降维，移动/缩放。
+【接口说明】 
+    继承于 C3w::Tools::Representable:
+        实现 ToString。
+    成员：
+        Dimension: 表示维数。
+        PointCount: 表示点的个数。
+        Points: 点的集合。
+    构造与析构：
+        删除默认构造函数。
+        接受一个初始化列表的构造函数。
+        接受一个集合的构造函数。
+        拷贝构造函数。
+        虚析构函数。
+    属性：
+        GetLength: 获取元素的长度。
+        GetArea: 获取元素的面积。
+    操作：
+        SetPoint: 调用 Points.Set。
+        TrySetPoint: 调用 Points.TrySet。
+        IsEqual: 相等性判断。
+        Project: 投影至更低维度。
+        Promote: 填充至更高维度。
+        Move(Inplace): 平移元素。
+        Scale(Inplace): 缩放元素。
+    运算符：
+        operator[]: 调用 Points.operator[]。
+        operator==/!=: 同 IsEqual。
+        operator=: 默认赋值运算符。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <size_t N, size_t S>

@@ -101,7 +101,7 @@ void MainConsoleView::Display() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result MainConsoleView::CommandLinesView() const {
-    LinesConsoleView(m_pController).Display();
+    LinesConsoleView(m_pController, Input, Output).Display();
     return Result::OK;
 }
 
@@ -114,7 +114,7 @@ ConsoleViewBase::Result MainConsoleView::CommandLinesView() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ConsoleViewBase::Result MainConsoleView::CommandFacesView() const {
-    FacesConsoleView(m_pController).Display();
+    FacesConsoleView(m_pController, Input, Output).Display();
     return Result::OK;
 }
 

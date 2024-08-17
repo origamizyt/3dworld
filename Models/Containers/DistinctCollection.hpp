@@ -18,7 +18,16 @@ namespace Containers {
 /*************************************************************************
 【类名】 DistinctCollection
 【功能】 定义一个元素类型为 T 且不可重复的抽象容器。
-【接口说明】 获取/设置/添加/删除元素，判断是否包含元素。
+【接口说明】
+    继承于 C3w::Containers::CollectionBase<T>:
+        继承全部接口。
+        重写 ShouldSet, ShouldAdd, ShouldInsert 使元素不可重复。
+    静态函数：
+        IsDistinct: 判断迭代器是否不含有重复元素。
+    操作：
+        IsEqualUnordered: 无序的相等性判断。
+    操作符：
+        operator==/!=: 同 IsEqualUnordered。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T>
