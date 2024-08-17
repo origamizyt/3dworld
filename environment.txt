@@ -1,0 +1,82 @@
+代码编辑器：
+
+    Visual Studio Code
+    版本: 1.92.2 (user setup)
+    提交: fee1edb8d6d72a0ddff41e5f71a671c23ed924b9
+    日期: 2024-08-14T17:29:30.058Z
+    Electron: 30.1.2
+    ElectronBuildId: 9870757
+    Chromium: 124.0.6367.243
+    Node.js: 20.14.0
+    V8: 12.4.254.20-electron.0
+    OS: Windows_NT x64 10.0.22631
+
+编译环境 #1：
+
+    操作系统：
+    OS: EndeavourOS Linux on Windows 10 x86_64
+    Kernel: 5.15.153.1-microsoft-standard-WSL2
+    Shell: bash 5.2.26
+    Terminal: Windows Terminal
+    CPU: 12th Gen Intel i7-12700H (20) @ 2.687GHz
+    GPU: 5063:00:00.0 Microsoft Corporation Basic Render Driver
+    Memory: 1222MiB / 15838MiB
+
+    编译器：
+    g++ (GCC) 14.1.1 20240522
+    Copyright (C) 2024 Free Software Foundation, Inc.
+
+    编译用脚本 (python)：
+    import os, glob
+    if not os.path.isdir("build"):
+        os.mkdir("build")
+    files = glob.glob("**/*.cpp", recursive=True)
+    command = "g++ -std=c++11 {} -o build/main".format(" ".join(files))
+    os.system(command)
+
+编译环境 #2:
+
+    操作系统：
+    Microsoft Windows
+    版本 23H2(OS 内部版本 22631.4037)© Microsoft Corporation。保留所有权利。
+    Windows 11 家庭中文版
+
+    编译器：
+    用于 x64 的 Microsoft (R) C/C++ 优化编译器 19.37.32824 版
+    版权所有(C) Microsoft Corporation。保留所有权利。
+    Microsoft (R) Incremental Linker Version 14.37.32824.0
+    Copyright (C) Microsoft Corporation.  All rights reserved.
+
+    编译用脚本 (python)：
+    import glob, os, sys
+    if not os.path.isdir('build'):
+        os.mkdir('build')
+    os.chdir('build')
+    for cpp in glob.iglob("..\\**\\*.cpp", recursive=True):
+        code = os.system('cl %s /wd4819 /c /EHsc' % cpp)
+        if code != 0:
+            print('Compilation failed for', cpp)
+            sys.exit(0)
+    obj_list = glob.glob('*.obj')
+    if os.system('link /OUT:main.exe %s' % ' '.join(obj_list)) != 0:
+        print('Link failed.')
+
+编译环境 #3:
+
+    操作系统：
+    OS: Debian GNU/Linux 11 (bullseye) x86_64
+    Host: Alibaba Cloud ECS pc-i440fx-2.1
+    Kernel: 5.10.0-15-amd64
+    Shell: bash 5.1.4
+    CPU: Intel Xeon Platinum (2) @ 2.499GHz
+    GPU: 00:02.0 Cirrus Logic GD 5446
+    Memory: 115MiB / 926MiB
+
+    编译器：
+    g++ (Debian 10.2.1-6) 10.2.1 20210110
+    Copyright (C) 2020 Free Software Foundation, Inc.
+
+    编译脚本 (python)：
+    import os, glob
+    cpp_list = glob.glob("**/*.cpp", recursive=True)
+    os.system("g++ -std=c++11 -o main %s" % ' '.join(cpp_list))
