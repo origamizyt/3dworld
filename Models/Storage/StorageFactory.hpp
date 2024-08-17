@@ -31,11 +31,6 @@ namespace Storage {
         Register: 注册一对导入/导出器类。
         GetImporter: 获取一个导入器指针。
         GetExporter: 获取一个导出器指针。
-        MakeConstructor (private): 根据类型与参数创建一个 “无参构造函数”。
-    内嵌类型：
-        Pair: 存储维数与构造函数的结构。
-    成员：
-        m_Map: 存储 Pair 的映射（一对多）。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class StorageFactory final {

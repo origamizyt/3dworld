@@ -56,9 +56,7 @@ namespace C3w {
         operator-(=): 同 Subtract(Inplace)。
         operator*(=): 同 Multiply(Inplace)。
         operator==/!=: 同 IsEqual 的编码比较。
-        operator=: 默认赋值运算符。
-    成员：
-        m_Components: 存储分量的 array。    
+        operator=: 默认赋值运算符。 
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 template <typename T, size_t N>

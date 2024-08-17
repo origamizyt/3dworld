@@ -28,11 +28,6 @@ namespace Cli {
     构造函数：
         接受控制器指针的构造函数。
         接受控制器指针与输入/输出流的构造函数。
-    操作：
-        CommandLinesView (private): 实现 lines 命令。
-        CommandFacesView (private): 实现 faces 命令。
-        CommandShowStatistics (private): 实现 stat 命令。
-        CommandSaveModel (private): 实现 save 命令。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class MainConsoleView: public ConsoleViewBase {

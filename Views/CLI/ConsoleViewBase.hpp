@@ -50,10 +50,6 @@ namespace Cli {
         ResultToString (protected): 将 Result 转化为字符串，虚函数。
         RegisterCommand (protected): 注册一个命令。子类应调用此函数。
         ShowHelp (protected): 显示帮助信息，用于 "?" 命令，虚函数。
-        Likelihood (private): 计算两个字符串的相似程度，用于提示用户。
-    成员：
-        m_Prompt: 询问用户时的提示符。
-        m_Commands: 存储命令的映射。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class ConsoleViewBase: public ViewBase {

@@ -46,12 +46,6 @@ namespace Controllers {
         PointToString (protected): 将点转化为字符串，纯虚函数。
         LineToString (protected): 将线段转化为字符串，纯虚函数。
         FaceToString (protected): 将面转化为字符串，纯虚函数。
-        GetExtension (private): 提取路径中的文件扩展名。
-    成员：
-        m_Path: 存储导入的路径。
-        m_Model: 存储导入的模型。
-        m_LineStatus: 存储线段的状态。
-        m_FaceStatus: 存储面的状态。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class ControllerBase {

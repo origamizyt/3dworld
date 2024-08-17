@@ -27,7 +27,6 @@ namespace Cli {
     继承于 C3w::Controllers::ControllerBase:
         实现 PointToString, LineToString, FaceToString。
     构造与析构：
-        默认构造函数 (private)。
         GetInstance: 获取全局唯一实例的指针。
     成员：
         m_pInstance: 存储唯一实例的指针。
