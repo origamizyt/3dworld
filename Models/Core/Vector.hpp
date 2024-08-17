@@ -24,9 +24,9 @@ namespace C3w {
     继承于 C3w::Tools::Representable:
         实现 ToString。
     成员：
-        Dimension，表示维数。
-        Epsilon，表示值比较时的误差范围。
-        Zero，表示零向量。
+        DIMENSION: 表示维数。
+        EPSILON: 表示值比较时的误差范围。
+        ZERO: 表示零向量。
     构造与析构：
         默认构造函数，创建零向量。
         接受一个 T 的构造函数，创建分量全部相同的向量。
@@ -68,12 +68,12 @@ class Vector: public Tools::Representable {
         // 成员
 
         // 向量的维度，与模板中 N 相等。
-        static constexpr size_t Dimension { N };
+        static constexpr size_t DIMENSION { N };
         // 用作浮点数比较的范围
         // 由于 T 可能没有 constexpr 构造，不使用 constexpr
-        static const T Epsilon;
+        static const T EPSILON;
         // 零向量。
-        static const Vector<T, N> Zero;
+        static const Vector<T, N> ZERO;
 
         // 构造函数
 

@@ -24,7 +24,7 @@ namespace C3w {
 【功能】 定义一个维数为 N 的模型。
 【接口说明】 
     成员：
-        Dimension: 表示维数。
+        DIMENSION: 表示维数。
         Name: 模型的名称。
         Lines: 模型中线段的集合。
         Faces: 模型中面的集合。
@@ -49,7 +49,7 @@ class Model {
         // 成员
 
         // 维数
-        static constexpr size_t Dimension { N };
+        static constexpr size_t DIMENSION { N };
         // 名称
         string Name;
         // 线段集合

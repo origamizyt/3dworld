@@ -22,7 +22,7 @@ namespace Tools {
 【功能】 定义一个棱平行于坐标轴的 N 维长方体。使用两个顶点确定。不能从 Box 继承。
 【接口说明】 
     成员：
-        Dimension: 表示维数。
+        DIMENSION: 表示维数。
         Vertex1: 长方体的第一个顶点。
         Vertex2: 长方体的第二个顶点，与 Vertex1 构成对角线。
     构造与析构：
@@ -45,7 +45,7 @@ class Box final {
         // 成员
 
         // 维数
-        static constexpr size_t Dimension { N };
+        static constexpr size_t DIMENSION { N };
         // 第一个顶点
         Point<N> Vertex1;
         // 第二个顶点（可与另一顶点重合）

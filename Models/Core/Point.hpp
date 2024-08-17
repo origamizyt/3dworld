@@ -23,8 +23,8 @@ namespace C3w {
         隐藏基类的向量独有的接口。
         重写 ToString。
     成员：
-        Origin: 原点。
-        Void: 分量全部为 NaN 的点，表示不存在的点，用于 Line<N>::Intersection 等。
+        ORIGIN: 原点。
+        VOID: 分量全部为 NaN 的点，表示不存在的点，用于 Line<N>::Intersection 等。
     构造与析构：
         复用基类的构造函数。
         默认构造函数，初始化分量全部为 0 的点。
@@ -55,9 +55,9 @@ class Point: public Vector<double, N> {
         // 成员
 
         // 原点。
-        static const Point<N> Origin;
+        static const Point<N> ORIGIN;
         // 分量全部为 NaN 的点。
-        static const Point<N> Void;
+        static const Point<N> VOID;
 
         // 构造函数
 
@@ -370,7 +370,7 @@ class Point: public Vector<double, N> {
         using Vector<double, N>::operator*;
         using Vector<double, N>::operator*=;
         using Vector<double, N>::Module;
-        using Vector<double, N>::Zero;
+        using Vector<double, N>::ZERO;
 };
 
 }

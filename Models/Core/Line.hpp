@@ -152,7 +152,7 @@ class Line: public Element<N, 2> {
         );
         /**********************************************************************
         【函数名称】 Intersection
-        【函数功能】 获取自身与另一线段的交点。无交点返回 Point<N>::Void。
+        【函数功能】 获取自身与另一线段的交点。无交点返回 Point<N>::VOID。
         【参数】 
             Other: 另一个线段。
         【返回值】 
@@ -162,7 +162,7 @@ class Line: public Element<N, 2> {
         Point<N> Intersection(const Line<N>& Other) const;
         /**********************************************************************
         【函数名称】 Intersection
-        【函数功能】 获取两线段的交点。无交点返回 Point<N>::Void。
+        【函数功能】 获取两线段的交点。无交点返回 Point<N>::VOID。
         【参数】 
             Left: 第一个线段。
             Right: 第二个线段。

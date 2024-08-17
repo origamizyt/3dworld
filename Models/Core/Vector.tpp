@@ -22,11 +22,11 @@ using namespace C3w::Errors;
 
 // 浮点数比较的范围
 template <typename T, size_t N>
-const T Vector<T, N>::Epsilon { is_floating_point<T>::value ? 1e-6 : 0 };
+const T Vector<T, N>::EPSILON { is_floating_point<T>::value ? 1e-6 : 0 };
 
 // 零向量。
 template <typename T, size_t N>
-const Vector<T, N> Vector<T, N>::Zero { Vector<T, N>() };
+const Vector<T, N> Vector<T, N>::ZERO { Vector<T, N>() };
 
 /**********************************************************************
 【函数名称】 构造函数
@@ -196,7 +196,7 @@ bool Vector<T, N>::IsEqual(
     }
     else {
         for (size_t i = 0; i < N; i++) {
-            if (fabs(Left[i] - Right[i]) > Epsilon) {
+            if (fabs(Left[i] - Right[i]) > EPSILON) {
                 return false;
             }
         }
@@ -274,7 +274,7 @@ bool Vector<T, N>::IsPerpendicular(
     const Vector<T, N>& Left,
     const Vector<T, N>& Right
 ) {
-    return fabs(InnerProduct(Left, Right)) <= Epsilon;
+    return fabs(InnerProduct(Left, Right)) <= EPSILON;
 }
 
 /**********************************************************************

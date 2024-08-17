@@ -140,7 +140,7 @@ bool Line<N>::IsPerpendicular(
 
 /**********************************************************************
 【函数名称】 Intersection
-【函数功能】 获取自身与另一线段的交点。无交点返回 Point<N>::Void。
+【函数功能】 获取自身与另一线段的交点。无交点返回 Point<N>::VOID。
 【参数】 
     Other: 另一个线段。
 【返回值】 
@@ -154,7 +154,7 @@ Point<N> Line<N>::Intersection(const Line<N>& Other) const {
 
 /**********************************************************************
 【函数名称】 Intersection
-【函数功能】 获取两线段的交点。无交点返回 Point<N>::Void。
+【函数功能】 获取两线段的交点。无交点返回 Point<N>::VOID。
 【参数】 
     Left: 第一个线段。
     Right: 第二个线段。
@@ -168,7 +168,7 @@ Point<N> Line<N>::Intersection(
     const Line<N>& Right
 ) {
     if (IsParallel(Left, Right)) {
-        return Point<N>::Void;
+        return Point<N>::VOID;
     }
     // 矩阵 A = (Vec1 | Vec2)
     Vector<double, N> Vec1 = Left;
@@ -193,7 +193,7 @@ Point<N> Line<N>::Intersection(
         return Left.Start + Vec1 * rRatio1;
     }
     else {
-        return Point<N>::Void;
+        return Point<N>::VOID;
     }
 }
 

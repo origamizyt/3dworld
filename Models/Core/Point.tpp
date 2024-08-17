@@ -15,11 +15,11 @@ namespace C3w {
 
 // 原点。
 template <size_t N>
-const Point<N> Point<N>::Origin { Point<N>() };
+const Point<N> Point<N>::ORIGIN { Point<N>() };
 
 // 分量全部为 NaN 的点。
 template <size_t N>
-const Point<N> Point<N>::Void { Point<N>(nan("")) };
+const Point<N> Point<N>::VOID { Point<N>(nan("")) };
 
 /**********************************************************************
 【函数名称】 构造函数

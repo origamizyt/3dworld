@@ -26,8 +26,8 @@ namespace C3w {
     继承于 C3w::Tools::Representable:
         实现 ToString。
     成员：
-        Dimension: 表示维数。
-        PointCount: 表示点的个数。
+        DIMENSION: 表示维数。
+        POINT_COUNT: 表示点的个数。
         Points: 点的集合。
     构造与析构：
         删除默认构造函数。
@@ -58,9 +58,9 @@ class Element: public Tools::Representable {
         // 成员
 
         // 元素的维度，与模板中 N 相等。
-        static constexpr size_t Dimension { N };
+        static constexpr size_t DIMENSION { N };
         // 点数量，与模板中 S 相等。
-        static constexpr size_t PointCount { S };
+        static constexpr size_t POINT_COUNT { S };
         // 点集合。
         FixedSet<Point<N>, S> Points;
 
