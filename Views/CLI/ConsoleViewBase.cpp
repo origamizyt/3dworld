@@ -127,7 +127,7 @@ string ConsoleViewBase::Ask(string Prompt, bool Trim) const {
 }
 
 /**********************************************************************
-【函数名称】 Choose
+【函数名称】 Select
 【函数功能】 让用户在选项中做出选择。
 【参数】
     Prompt: 询问的提示。
