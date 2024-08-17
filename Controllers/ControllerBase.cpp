@@ -96,8 +96,10 @@ ControllerBase::Result ControllerBase::AddLine(
     double x2, double y2, double z2
 ) {
     try {
-        Line<3> ALine { { x1, y1, z1 }, { x2, y2, z2 } };
-        if (!m_Model.Lines.TryAdd(ALine)) {
+        if (!m_Model.Lines.TryEmplaceAdd(
+            Point<3> { x1, y1, z1 },
+            Point<3> { x2, y2, z2 }
+        )) {
             return Result::ELEMENT_COLLISION;
         }
     }
@@ -223,8 +225,11 @@ ControllerBase::Result ControllerBase::AddFace(
     double x3, double y3, double z3
 ) {
     try {
-        Face<3> AFace { { x1, y1, z1 }, { x2, y2, z2 }, { x3, y3, z3 } };
-        if (!m_Model.Faces.TryAdd(AFace)) {
+        if (!m_Model.Faces.TryEmplaceAdd(
+            Point<3> { x1, y1, z1 },
+            Point<3> { x2, y2, z2 },
+            Point<3> { x3, y3, z3 }
+        )) {
             return Result::ELEMENT_COLLISION;
         }
     }

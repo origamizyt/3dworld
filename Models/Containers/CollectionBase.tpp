@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <sstream>
 #include <string>
+#include <utility>
 #include "CollectionBase.hpp"
 #include "../Errors/CollectionException.hpp"
 using namespace std;
@@ -106,11 +107,10 @@ bool CollectionBase<T>::IsEqual(
     const CollectionBase<T>& Left,
     const CollectionBase<T>& Right
 ) {
-    size_t ullCount = Left.Count();
-    if (ullCount != Right.Count()) {
+    if (Left.Count() != Right.Count()) {
         return false;
     }
-    for (size_t i = 0; i < ullCount; i++) {
+    for (size_t i = 0; i < Left.Count(); i++) {
         if (Left.InnerGet(i) != Right.InnerGet(i)) {
             return false;
         }
@@ -139,6 +139,21 @@ bool CollectionBase<T>::TryAdd(const T& Value) {
 }
 
 /**********************************************************************
+【函数名称】 TryEmplaceAdd
+【函数功能】 尝试添加一个元素。
+【参数】 
+    Args: 转给 T 类型构造函数的参数。
+【返回值】 
+    操作是否成功。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T>
+template <typename ...A>
+bool CollectionBase<T>::TryEmplaceAdd(A&& ...Args) {
+    return TryAdd(T(forward<A>(Args)...));
+}
+
+/**********************************************************************
 【函数名称】 Add
 【函数功能】 添加一个元素。如果操作失败抛出 CollectionException。
 【参数】 
@@ -151,6 +166,20 @@ void CollectionBase<T>::Add(const T& Value) {
     if (!TryAdd(Value)) {
         throw CollectionException("Add");
     }
+}
+
+/**********************************************************************
+【函数名称】 EmplaceAdd
+【函数功能】 添加一个元素。如果操作失败抛出 CollectionException。
+【参数】 
+    Args: 转给 T 类型构造函数的参数。
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T>
+template <typename ...A>
+void CollectionBase<T>::EmplaceAdd(A&& ...Args) {
+    Add(T(forward<A>(Args)...));
 }
 
 /**********************************************************************
@@ -220,6 +249,22 @@ bool CollectionBase<T>::TryInsert(size_t Index, const T& Value) {
 }
 
 /**********************************************************************
+【函数名称】 TryEmplaceInsert
+【函数功能】 将指定元素插入容器。如果越界抛出 IndexOverflowException。
+【参数】 
+    Index: 元素被插入位置的下标。
+    Args: 传给 T 类型构造函数的参数。
+【返回值】 
+    操作是否成功。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T>
+template <typename ...A>
+bool CollectionBase<T>::TryEmplaceInsert(size_t Index, A&& ...Args) {
+    return TryInsert(Index, T(forward<A>(Args)...));
+}
+
+/**********************************************************************
 【函数名称】 Insert
 【函数功能】 
     将指定元素插入容器。
@@ -239,6 +284,24 @@ void CollectionBase<T>::Insert(size_t Index, const T& Value) {
 }
 
 /**********************************************************************
+【函数名称】 Insert
+【函数功能】 
+    将指定元素插入容器。
+    如果操作失败抛出 CollectionException。
+    如果越界抛出 IndexOverflowException。
+【参数】 
+    Index: 元素被插入位置的下标。
+    Args: 传给 T 类型构造函数的参数。
+【返回值】 无
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+template <typename T>
+template <typename ...A>
+void CollectionBase<T>::EmplaceInsert(size_t Index, A&& ...Args) {
+    Insert(Index, T(forward<A>(Args)...));
+}
+
+/**********************************************************************
 【函数名称】 Contains
 【函数功能】 判断给定的值是否在容器内。
 【参数】 
@@ -249,8 +312,7 @@ void CollectionBase<T>::Insert(size_t Index, const T& Value) {
 **********************************************************************/
 template <typename T>
 bool CollectionBase<T>::Contains(const T& Value) const {
-    size_t ullCount = Count();
-    for (size_t i = 0; i < ullCount; i++) {
+    for (size_t i = 0; i < Count(); i++) {
         if (InnerGet(i) == Value) {
             return true;
         }
@@ -269,8 +331,7 @@ bool CollectionBase<T>::Contains(const T& Value) const {
 **********************************************************************/
 template <typename T>
 size_t CollectionBase<T>::FindIndex(const T& Value) const {
-    size_t ullCount = Count();
-    for (size_t i = 0; i < ullCount; i++) {
+    for (size_t i = 0; i < Count(); i++) {
         if (InnerGet(i) == Value) {
             return i;
         }
@@ -330,16 +391,15 @@ bool CollectionBase<T>::operator!=(const CollectionBase<T>& Other) const {
 **********************************************************************/
 template <typename T>
 string CollectionBase<T>::ToString() const {
-    size_t ullCount = Count();
-    if (ullCount == 0) {
+    if (Count() == 0) {
         return "{}";
     }
     ostringstream Stream;
     Stream << "{";
-    for (size_t i = 0; i < ullCount - 1; i++) {
+    for (size_t i = 0; i < Count() - 1; i++) {
         Stream << InnerGet(i) << ", ";
     }
-    Stream << InnerGet(ullCount - 1) << "}";
+    Stream << InnerGet(Count() - 1) << "}";
     return Stream.str();
 }
 
