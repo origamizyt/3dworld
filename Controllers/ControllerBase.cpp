@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "../Models/Errors/CollectionException.hpp"
 #include "../Models/Errors/IndexOverflowException.hpp"
 #include "../Models/Errors/FileOpenException.hpp"
 #include "../Models/Errors/FileFormatException.hpp"
