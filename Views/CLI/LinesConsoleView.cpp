@@ -136,17 +136,17 @@ ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandGetLine() const {
     istringstream Stream(Ask("Index of desired line (1~): "));
-    size_t Index;
-    Stream >> Index;
+    size_t ullIndex;
+    Stream >> ullIndex;
     if (Stream.bad()) {
         return Result::INDEX_OVERFLOW;
     }
     vector<string> Points;
-    auto Res = static_cast<Result>(
-        m_pController->GetLinePoints(Index - 1, Points)
+    Result Res = static_cast<Result>(
+        m_pController->GetLinePoints(ullIndex - 1, Points)
     );
     if (Res == Result::OK) {
-        Output << Palette::FG_PURPLE << "Points in line #" << Index;
+        Output << Palette::FG_PURPLE << "Points in line #" << ullIndex;
         Output << ":" << Palette::CLEAR << endl;
         for (size_t i = 0; i < Points.size(); i++) {
             Output << "  " << i + 1 << ". " << Points[i] << endl;
@@ -165,23 +165,23 @@ ConsoleViewBase::Result LinesConsoleView::CommandGetLine() const {
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandAddLine() const {
     istringstream First(Ask("1st point (x y z): "));
-    double x1;
-    double y1;
-    double z1;
-    First >> x1 >> y1 >> z1;
+    double rX1;
+    double rY1;
+    double rZ1;
+    First >> rX1 >> rY1 >> rZ1;
     if (First.bad()) {
         return Result::INVALID_VALUE;
     }
     istringstream Second(Ask("2nd point (x y z): "));
-    double x2;
-    double y2;
-    double z2;
-    Second >> x2 >> y2 >> z2;
+    double rX2;
+    double rY2;
+    double rZ2;
+    Second >> rX2 >> rY2 >> rZ2;
     if (Second.bad()) {
         return Result::INVALID_VALUE;
     }
-    auto Res = static_cast<Result>(
-        m_pController->AddLine(x1, y1, z1, x2, y2, z2)
+    Result Res = static_cast<Result>(
+        m_pController->AddLine(rX1, rY1, rZ1, rX2, rY2, rZ2)
     );
     if (Res == Result::OK) {
         Output << Palette::FG_GREEN << "Successfully added line.";
@@ -203,35 +203,35 @@ ConsoleViewBase::Result LinesConsoleView::CommandModifyLine() const {
     for (auto& Line: m_pController->GetLines()) {
         Choices.push_back(Line.String);
     }
-    size_t Index = Select("Select a line to modify:", Choices);
-    if (Index == 0) {
+    size_t ullIndex = Select("Select a line to modify:", Choices);
+    if (ullIndex == 0) {
         return Result::INVALID_VALUE;
     }
     Choices.clear();
-    auto Res = static_cast<Result>(
-        m_pController->GetLinePoints(Index - 1, Choices)
+    Result Res = static_cast<Result>(
+        m_pController->GetLinePoints(ullIndex - 1, Choices)
     );
     if (Res != Result::OK) {
         return Res;
     }
-    size_t PointIndex = Select("Select a point to modify:", Choices);
-    if (PointIndex == 0) {
+    size_t ullPointIndex = Select("Select a point to modify:", Choices);
+    if (ullPointIndex == 0) {
         return Result::INVALID_VALUE;
     }
     istringstream Coords(Ask("Set point to (x y z): "));
-    double x;
-    double y;
-    double z;
-    Coords >> x >> y >> z;
+    double rX;
+    double rY;
+    double rZ;
+    Coords >> rX >> rY >> rZ;
     if (Coords.bad()) {
         return Result::INVALID_VALUE;
     }
     Res = static_cast<Result>(
-        m_pController->ModifyLine(Index - 1, PointIndex - 1, x, y, z)
+        m_pController->ModifyLine(ullIndex - 1, ullPointIndex - 1, rX, rY, rZ)
     );
     if (Res == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully modified line #" << Index;
-        Output << "." << Palette::CLEAR << endl;
+        Output << Palette::FG_GREEN << "Successfully modified line #";
+        Output << ullIndex << "." << Palette::CLEAR << endl;
     }
     return Res;
 }
@@ -249,14 +249,14 @@ ConsoleViewBase::Result LinesConsoleView::CommandRemoveLine() const {
     for (auto& Line: m_pController->GetLines()) {
         Choices.push_back(Line.String);
     }
-    size_t Index = Select("Select a line to delete:", Choices);
-    if (Index == 0) {
+    size_t ullIndex = Select("Select a line to delete:", Choices);
+    if (ullIndex == 0) {
         return Result::INVALID_VALUE;
     }
-    auto Res = static_cast<Result>(m_pController->RemoveLine(Index - 1));
+    Result Res = static_cast<Result>(m_pController->RemoveLine(ullIndex - 1));
     if (Res == Result::OK) {
-        Output << Palette::FG_GREEN << "Successfully deleted line #" << Index;
-        Output << "." << Palette::CLEAR << endl;
+        Output << Palette::FG_GREEN << "Successfully deleted line #";
+        Output << ullIndex << "." << Palette::CLEAR << endl;
     }
     return Res;
 }

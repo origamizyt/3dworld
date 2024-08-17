@@ -23,46 +23,46 @@ namespace Tools {
 【函数名称】 构造函数
 【函数功能】 使用两个顶点初始化 Box 对象。
 【参数】 
-    vertex1: 第一个顶点。
-    vertex2: 第二个顶点。
+    Vertex1: 第一个顶点。
+    Vertex2: 第二个顶点。
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Box<N>::Box(const Point<N>& vertex1, const Point<N>& vertex2)
-    : Vertex1(vertex1), Vertex2(vertex2) {}
+Box<N>::Box(const Point<N>& Vertex1, const Point<N>& Vertex2)
+    : Vertex1(Vertex1), Vertex2(Vertex2) {}
 
 /**********************************************************************
 【函数名称】 GetBoundingBoxOf
 【函数功能】 获取可以容纳所有给定点的最小长方体。
 【参数】 
-    points: 包含点的集合。
+    Points: 包含点的集合。
 【返回值】
     可以容纳所有给定点的最小长方体。
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 template <size_t N>
-Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& points) {
-    if (points.Count() == 0) {
+Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& Points) {
+    if (Points.Count() == 0) {
         return Box<N>(Point<N>::Origin, Point<N>::Origin);
     }
-    array<double, N> max_coords;
-    max_coords.fill(numeric_limits<double>::max());
-    array<double, N> min_coords;
-    min_coords.fill(numeric_limits<double>::min());
-    Point<N> vertex1(max_coords);
-    Point<N> vertex2(min_coords);
-    for (auto& point: points) {
+    array<double, N> MaxCoords;
+    MaxCoords.fill(numeric_limits<double>::max());
+    array<double, N> MinCoords;
+    MinCoords.fill(numeric_limits<double>::min());
+    Point<N> Vertex1(MaxCoords);
+    Point<N> Vertex2(MinCoords);
+    for (auto& Point: Points) {
         for (size_t i = 0; i < N; i++) {
-            if (point[i] < vertex1[i]) {
-                vertex1[i] = point[i];
+            if (Point[i] < Vertex1[i]) {
+                Vertex1[i] = Point[i];
             }
-            if (point[i] > vertex2[i]) {
-                vertex2[i] = point[i];
+            if (Point[i] > Vertex2[i]) {
+                Vertex2[i] = Point[i];
             }
         }
     }
-    return Box<N>(vertex1, vertex2);
+    return Box<N>(Vertex1, Vertex2);
 }
 
 /**********************************************************************
@@ -75,11 +75,11 @@ Box<N> Box<N>::GetBoundingBoxOf(const DynamicSet<Point<N>>& points) {
 **********************************************************************/
 template <size_t N>
 double Box<N>::GetVolume() const {
-    double volume = 1;
+    double rVolume = 1;
     for (size_t i = 0; i < N; i++) {
-        volume *= fabs(Vertex1[i] - Vertex2[i]);
+        rVolume *= fabs(Vertex1[i] - Vertex2[i]);
     }
-    return volume;
+    return rVolume;
 }
 
 /**********************************************************************

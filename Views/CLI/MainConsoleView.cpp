@@ -78,8 +78,8 @@ MainConsoleView::MainConsoleView(
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 void MainConsoleView::Display() const {
-    auto Path = Ask("Enter model path: ", true);
-    auto Res = static_cast<Result>(m_pController->LoadModel(Path));
+    string Path = Ask("Enter model path: ", true);
+    Result Res = static_cast<Result>(m_pController->LoadModel(Path));
     if (Res != Result::OK) {
         Output << Palette::FG_RED;
         Output << "error: " << ResultToString(Res); 
@@ -165,7 +165,7 @@ ConsoleViewBase::Result MainConsoleView::CommandSaveModel() const {
     Output << "(Enter nothing to use original file name)";
     Output << Palette::CLEAR << std::endl;
     std::string fileName = Ask("Save to: ", true);
-    auto Res = static_cast<Result>(m_pController->SaveModel(fileName));
+    Result Res = static_cast<Result>(m_pController->SaveModel(fileName));
     if (Res == Result::OK) {
         Output << Palette::FG_GREEN;
         Output << "Successfully saved model '" << m_pController->GetName();

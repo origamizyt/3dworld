@@ -78,11 +78,11 @@ double Face<N>::GetLength() const {
 **********************************************************************/
 template <size_t N>
 double Face<N>::GetArea() const {
-    auto a = Point<N>::Distance(First, Second);
-    auto b = Point<N>::Distance(Second, Third);
-    auto c = Point<N>::Distance(Third, First);
-    auto p = (a + b + c) / 2;
-    return sqrt((p - a) * (p - b) * (p - c) * p);
+    double rA = Point<N>::Distance(First, Second);
+    double rB = Point<N>::Distance(Second, Third);
+    double rC = Point<N>::Distance(Third, First);
+    double rP = (rA + rB + rC) / 2;
+    return sqrt((rP - rA) * (rP - rB) * (rP - rC) * rP);
 }
 
 /**********************************************************************

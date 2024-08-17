@@ -106,11 +106,11 @@ bool CollectionBase<T>::IsEqual(
     const CollectionBase<T>& Left,
     const CollectionBase<T>& Right
 ) {
-    auto Count = Left.Count();
-    if (Count != Right.Count()) {
+    size_t ullCount = Left.Count();
+    if (ullCount != Right.Count()) {
         return false;
     }
-    for (size_t i = 0; i < Count; i++) {
+    for (size_t i = 0; i < ullCount; i++) {
         if (Left.InnerGet(i) != Right.InnerGet(i)) {
             return false;
         }
@@ -249,8 +249,8 @@ void CollectionBase<T>::Insert(size_t Index, const T& Value) {
 **********************************************************************/
 template <typename T>
 bool CollectionBase<T>::Contains(const T& Value) const {
-    auto Count = this->Count();
-    for (size_t i = 0; i < Count; i++) {
+    size_t ullCount = Count();
+    for (size_t i = 0; i < ullCount; i++) {
         if (InnerGet(i) == Value) {
             return true;
         }
@@ -269,8 +269,8 @@ bool CollectionBase<T>::Contains(const T& Value) const {
 **********************************************************************/
 template <typename T>
 size_t CollectionBase<T>::FindIndex(const T& Value) const {
-    auto Count = this->Count();
-    for (size_t i = 0; i < Count; i++) {
+    size_t ullCount = Count();
+    for (size_t i = 0; i < ullCount; i++) {
         if (InnerGet(i) == Value) {
             return i;
         }
@@ -330,16 +330,16 @@ bool CollectionBase<T>::operator!=(const CollectionBase<T>& Other) const {
 **********************************************************************/
 template <typename T>
 string CollectionBase<T>::ToString() const {
-    if (Count() == 0) {
+    size_t ullCount = Count();
+    if (ullCount == 0) {
         return "{}";
     }
     ostringstream Stream;
     Stream << "{";
-    auto Count = this->Count();
-    for (size_t i = 0; i < Count - 1; i++) {
+    for (size_t i = 0; i < ullCount - 1; i++) {
         Stream << InnerGet(i) << ", ";
     }
-    Stream << InnerGet(Count - 1) << "}";
+    Stream << InnerGet(ullCount - 1) << "}";
     return Stream.str();
 }
 

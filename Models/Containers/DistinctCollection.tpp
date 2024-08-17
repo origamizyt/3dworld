@@ -70,8 +70,8 @@ bool DistinctCollection<T>::IsEqualUnordered(
     if (Left.Count() != Right.Count()) {
         return false;
     }
-    auto Count = Left.Count();
-    for (size_t i = 0; i < Count; i++) {
+    size_t ullCount = Left.Count();
+    for (size_t i = 0; i < ullCount; i++) {
         if (!Right.Contains(Left.InnerGet(i))) {
             return false;
         }
@@ -124,8 +124,8 @@ bool DistinctCollection<T>::operator!=(
 **********************************************************************/
 template <typename T>
 bool DistinctCollection<T>::ShouldSet(size_t Index, const T& Value) const {
-    auto Count = this->Count();
-    for (size_t i = 0; i < Count; i++) {
+    size_t ullCount = this->Count();
+    for (size_t i = 0; i < ullCount; i++) {
         if (Index == i) {
             continue;
         }

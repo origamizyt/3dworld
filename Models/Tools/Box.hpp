@@ -43,12 +43,12 @@ class Box final {
         【函数名称】 构造函数
         【函数功能】 使用两个顶点初始化 Box 对象。
         【参数】 
-            vertex1: 第一个顶点。
-            vertex2: 第二个顶点。
+            Vertex1: 第一个顶点。
+            Vertex2: 第二个顶点。
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        Box(const Point<N>& vertex1, const Point<N>& vertex2);
+        Box(const Point<N>& Vertex1, const Point<N>& Vertex2);
         /**********************************************************************
         【函数名称】 拷贝构造函数
         【函数功能】 使用另一 Box 对象初始化 Box 对象。
@@ -62,12 +62,12 @@ class Box final {
         【函数名称】 GetBoundingBoxOf
         【函数功能】 获取可以容纳所有给定点的最小长方体。
         【参数】 
-            points: 包含点的集合。
+            Points: 包含点的集合。
         【返回值】
             可以容纳所有给定点的最小长方体。
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        static Box<N> GetBoundingBoxOf(const DynamicSet<Point<N>>& points);
+        static Box<N> GetBoundingBoxOf(const DynamicSet<Point<N>>& Points);
 
         // 属性
 

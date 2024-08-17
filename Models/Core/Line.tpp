@@ -170,28 +170,27 @@ Point<N> Line<N>::Intersection(
     if (IsParallel(Left, Right)) {
         return Point<N>::Void;
     }
-    // 矩阵 A = (LeftVector | RightVector)
-    Vector<double, N> LeftVector = Left;
-    Vector<double, N> RightVector = Right;
+    // 矩阵 A = (Vec1 | Vec2)
+    Vector<double, N> Vec1 = Left;
+    Vector<double, N> Vec2 = Right;
     // 方程 Ax = b 中的 b 向量
-    Vector<double, N> b = Right.Start - Left.Start;
-    // 向量 x = (Ratio1 Ratio2)^T
-    double Ratio1 = 0;
-    double Ratio2 = 0;
+    Vector<double, N> Coef = Right.Start - Left.Start;
+    // 向量 x = (rRatio1 rRatio2)^T
+    double rRatio1 = 0;
+    double rRatio2 = 0;
     for (size_t i = 1; i < N; i++) {
-        double det = 
-            LeftVector[0] * RightVector[i] - RightVector[0] * LeftVector[i];
-        if (det != 0) {
-            Ratio1 = 1 / det * (RightVector[i] * b[0] - RightVector[0] * b[i]);
-            Ratio2 = 1 / det * (LeftVector[i] * b[0] - LeftVector[0] * b[i]);
+        double rDet = Vec1[0] * Vec2[i] - Vec2[0] * Vec1[i];
+        if (rDet != 0) {
+            rRatio1 = 1 / rDet * (Vec2[i] * Coef[0] - Vec2[0] * Coef[i]);
+            rRatio2 = 1 / rDet * (Vec1[i] * Coef[0] - Vec1[0] * Coef[i]);
             break;
         }
     }
     if (
-        Left.Start + LeftVector * Ratio1 == Right.Start + RightVector * Ratio1
-        && 0 <= Ratio1 && Ratio1 <= 1 && 0 <= Ratio2 && Ratio2 <= 1
+        Left.Start + Vec1 * rRatio1 == Right.Start + Vec2 * rRatio1
+        && 0 <= rRatio1 && rRatio1 <= 1 && 0 <= rRatio2 && rRatio2 <= 1
     ) {
-        return Left.Start + LeftVector * Ratio1;
+        return Left.Start + Vec1 * rRatio1;
     }
     else {
         return Point<N>::Void;

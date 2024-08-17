@@ -329,15 +329,15 @@ ControllerBase::Statistics ControllerBase::GetStatistics() const {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 ControllerBase::Result ControllerBase::LoadModel(string Path) {
-    unique_ptr<ImporterBase<3>> Importer;
+    unique_ptr<ImporterBase<3>> pImporter;
     try {
-        Importer = StorageFactory::GetImporter<3>(GetExtension(Path));
+        pImporter = StorageFactory::GetImporter<3>(GetExtension(Path));
     }
     catch (StorageFactoryLookupException) {
         return Result::STORAGE_LOOKUP_ERROR;
     }
     try {
-        Importer->Import(Path, m_Model);
+        pImporter->Import(Path, m_Model);
     }
     catch (FileOpenException) {
         return Result::FILE_OPEN_ERROR;
@@ -364,15 +364,15 @@ ControllerBase::Result ControllerBase::SaveModel(string Path) {
     if (Path.empty()) {
         Path = m_Path;
     }
-    unique_ptr<ExporterBase<3>> Exporter;
+    unique_ptr<ExporterBase<3>> pExporter;
     try {
-        Exporter = StorageFactory::GetExporter<3>(GetExtension(Path));
+        pExporter = StorageFactory::GetExporter<3>(GetExtension(Path));
     }
     catch (StorageFactoryLookupException) {
         return Result::STORAGE_LOOKUP_ERROR;
     }
     try {
-        Exporter->Export(Path, m_Model);
+        pExporter->Export(Path, m_Model);
     }
     catch (FileOpenException) {
         return Result::FILE_OPEN_ERROR;
@@ -390,12 +390,12 @@ ControllerBase::Result ControllerBase::SaveModel(string Path) {
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
 string ControllerBase::GetExtension(string Path) {
-    auto Name = Path;
-    auto SlashPosition = Path.find_last_of("/\\");
+    string Name = Path;
+    size_t SlashPosition = Path.find_last_of("/\\");
     if (SlashPosition != string::npos) {
         Name = Path.substr(SlashPosition + 1);
     }
-    auto DotPosition = Name.find_last_of('.');
+    size_t DotPosition = Name.find_last_of('.');
     if (DotPosition == string::npos) {
         return "";
     }

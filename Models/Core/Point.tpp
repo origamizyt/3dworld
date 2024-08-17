@@ -74,10 +74,10 @@ double Point<N>::Distance(const Point<N>& Other) const {
 template <size_t N>
 template <size_t M>
 double Point<N>::GeneralDistance(const Point<N>& Left, const Point<M>& Right) {
-    constexpr size_t D = max(M, N);
-    return Point<D>::Distance(
-        Left.template Promote<D>(),
-        Right.template Promote<D>()
+    constexpr size_t ullMaxDimension = max(M, N);
+    return Point<ullMaxDimension>::Distance(
+        Left.template Promote<ullMaxDimension>(),
+        Right.template Promote<ullMaxDimension>()
     );
 }
 
@@ -386,7 +386,7 @@ Point<N>& Point<N>::operator-=(const Vector<double, N>& Delta) {
 **********************************************************************/
 template <size_t N>
 string Point<N>::ToString() const {
-    auto String = Vector<double, N>::ToString();
+    string String = Vector<double, N>::ToString();
     String[0] = '(';
     String[String.size() - 1] = ')';
     return String;

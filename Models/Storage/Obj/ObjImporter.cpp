@@ -35,16 +35,16 @@ namespace Obj {
 **********************************************************************/
 void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
     vector<Point<3>> Points;
-    unsigned int LineNumber = 0;
+    unsigned int uLineNumber = 0;
     while (!Stream.eof()) {
         string LineString;
         getline(Stream, LineString);
-        LineNumber++;
+        uLineNumber++;
         if (LineString.empty()) continue;
         istringstream LineStream(LineString);
-        char Tag;
-        LineStream >> Tag;
-        switch (Tag) {
+        char cTag;
+        LineStream >> cTag;
+        switch (cTag) {
             case '#' : {
                 break;
             }
@@ -60,7 +60,7 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
                 LineStream >> x >> y >> z;
                 if (LineStream.bad()) {
                     throw FileFormatException(
-                        LineNumber,
+                        uLineNumber,
                         "cannot parse point coordinates"
                     );
                 }
@@ -68,54 +68,54 @@ void ObjImporter::InnerImport(ifstream& Stream, Model<3>& Model) const {
                 break;
             }
             case 'l' : {
-                size_t Indices[2];
-                LineStream >> Indices[0] >> Indices[1];
+                size_t ullIndices[2];
+                LineStream >> ullIndices[0] >> ullIndices[1];
                 if (LineStream.bad()) {
                     throw FileFormatException(
-                        LineNumber,
+                        uLineNumber,
                         "cannot parse indices"
                     );
                 }
                 if (
-                    (Indices[0] == 0 || Indices[0] > Points.size()) ||
-                    (Indices[1] == 0 || Indices[1] > Points.size())
+                    (ullIndices[0] == 0 || ullIndices[0] > Points.size()) ||
+                    (ullIndices[1] == 0 || ullIndices[1] > Points.size())
                 ) {
-                    throw FileFormatException(LineNumber, "index overflow");
+                    throw FileFormatException(uLineNumber, "index overflow");
                 }
                 Model.Lines.Add(
-                    Line<3>(Points[Indices[0]-1], Points[Indices[1]-1])
+                    Line<3>(Points[ullIndices[0]-1], Points[ullIndices[1]-1])
                 );
                 break;
             }
             case 'f' : {
-                size_t Indices[3];
-                LineStream >> Indices[0] >> Indices[1] >> Indices[2];
+                size_t ullIndices[3];
+                LineStream >> ullIndices[0] >> ullIndices[1] >> ullIndices[2];
                 if (LineStream.bad()) {
                     throw FileFormatException(
-                        LineNumber,
+                        uLineNumber,
                         "cannot parse indices"
                     );
                 }
                 if (
-                    (Indices[0] == 0 || Indices[0] > Points.size()) ||
-                    (Indices[1] == 0 || Indices[1] > Points.size()) ||
-                    (Indices[2] == 0 || Indices[2] > Points.size())
+                    (ullIndices[0] == 0 || ullIndices[0] > Points.size()) ||
+                    (ullIndices[1] == 0 || ullIndices[1] > Points.size()) ||
+                    (ullIndices[2] == 0 || ullIndices[2] > Points.size())
                 ) {
-                    throw FileFormatException(LineNumber, "index overflow");
+                    throw FileFormatException(uLineNumber, "index overflow");
                 }
                 Model.Faces.Add(
                     Face<3>(
-                        Points[Indices[0]-1], 
-                        Points[Indices[1]-1], 
-                        Points[Indices[2]-1]
+                        Points[ullIndices[0]-1], 
+                        Points[ullIndices[1]-1], 
+                        Points[ullIndices[2]-1]
                     )
                 );
                 break;
             }
             default : {
                 throw FileFormatException(
-                    LineNumber,
-                    string("unrecognized tag '") + Tag + string("'")
+                    uLineNumber,
+                    string("unrecognized tag '") + cTag + string("'")
                 );
             }
         }
