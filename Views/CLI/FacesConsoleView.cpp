@@ -108,6 +108,12 @@ string FacesConsoleView::ResultToString(Result AResult) const {
 **********************************************************************/
 ConsoleViewBase::Result FacesConsoleView::CommandListFaces() const {
     auto Faces = m_pController->GetFaces();
+    if (Faces.empty()) {
+        Output << Palette::FG_YELLOW << "There are no lines in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
+    }
     Output << Palette::FG_BLUE << "Faces in '" << m_pController->GetName();
     Output << "' (" << Faces.size() << "):" << Palette::CLEAR << endl;
     for (size_t i = 0; i < Faces.size(); i++) {
@@ -212,6 +218,12 @@ ConsoleViewBase::Result FacesConsoleView::CommandModifyFace() const {
     for (auto& Face: m_pController->GetFaces()) {
         Choices.push_back(Face.String);
     }
+    if (Choices.empty()) {
+        Output << Palette::FG_YELLOW << "There are no faces in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
+    }
     size_t ullIndex = Select("Select a face to modify:", Choices);
     if (ullIndex == 0) {
         return Result::INVALID_VALUE;
@@ -257,6 +269,12 @@ ConsoleViewBase::Result FacesConsoleView::CommandRemoveFace() const {
     vector<string> Choices;
     for (auto& Face: m_pController->GetFaces()) {
         Choices.push_back(Face.String);
+    }
+    if (Choices.empty()) {
+        Output << Palette::FG_YELLOW << "There are no lines in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
     }
     size_t ullIndex = Select("Select a face to delete:", Choices);
     if (ullIndex == 0) {

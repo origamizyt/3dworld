@@ -107,6 +107,12 @@ string LinesConsoleView::ResultToString(Result AResult) const {
 **********************************************************************/
 ConsoleViewBase::Result LinesConsoleView::CommandListLines() const {
     auto Lines = m_pController->GetLines();
+    if (Lines.empty()) {
+        Output << Palette::FG_YELLOW << "There are no lines in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
+    }
     Output << Palette::FG_BLUE << "Lines in '" << m_pController->GetName();
     Output << "' (" << Lines.size() << "):" << Palette::CLEAR << endl;
     for (size_t i = 0; i < Lines.size(); i++) {
@@ -203,6 +209,12 @@ ConsoleViewBase::Result LinesConsoleView::CommandModifyLine() const {
     for (auto& Line: m_pController->GetLines()) {
         Choices.push_back(Line.String);
     }
+    if (Choices.empty()) {
+        Output << Palette::FG_YELLOW << "There are no lines in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
+    }
     size_t ullIndex = Select("Select a line to modify:", Choices);
     if (ullIndex == 0) {
         return Result::INVALID_VALUE;
@@ -248,6 +260,12 @@ ConsoleViewBase::Result LinesConsoleView::CommandRemoveLine() const {
     vector<string> Choices;
     for (auto& Line: m_pController->GetLines()) {
         Choices.push_back(Line.String);
+    }
+    if (Choices.empty()) {
+        Output << Palette::FG_YELLOW << "There are no lines in model.\n";
+        Output << "Try using the 'add' command first.";
+        Output << Palette::CLEAR << endl;
+        return Result::OK;
     }
     size_t ullIndex = Select("Select a line to delete:", Choices);
     if (ullIndex == 0) {
