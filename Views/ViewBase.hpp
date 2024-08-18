@@ -39,7 +39,7 @@ class ViewBase {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        virtual void Display() const = 0;
+        virtual void Display() = 0;
 
         // 虚析构函数
         virtual ~ViewBase() = default;

@@ -7,6 +7,7 @@
 #include <functional>
 #include <memory>
 #include <iostream>
+#include <sstream>
 #include "ConsoleViewBase.hpp"
 #include "LinesConsoleView.hpp"
 #include "FacesConsoleView.hpp"
@@ -47,7 +48,7 @@ MainConsoleView::MainConsoleView(
     istream& Input, 
     ostream& Output
 ): ConsoleViewBase(Controller, Input, Output) {
-    m_Prompt = "#> ";
+    m_Prompt = "(" + Controller->GetName() + ") #> ";
     RegisterCommand(
         "stat", 
         bind(&MainConsoleView::CommandShowStatistics, this), 
@@ -68,6 +69,11 @@ MainConsoleView::MainConsoleView(
         bind(&MainConsoleView::CommandFacesView, this),
         "Enter Face3D context."
     );
+    RegisterCommand(
+        "name",
+        bind(&MainConsoleView::CommandSetName, this),
+        "Set name of model."
+    );
 }
 
 /**********************************************************************
@@ -77,19 +83,39 @@ MainConsoleView::MainConsoleView(
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-void MainConsoleView::Display() const {
-    string Path = Ask("Enter model path: ", true);
-    Result Res = static_cast<Result>(m_pController->LoadModel(Path));
-    if (Res != Result::OK) {
-        Output << Palette::FG_RED;
-        Output << "error: " << ResultToString(Res); 
-        Output << Palette::CLEAR << endl;
-        return;
-    }
-    Output << Palette::FG_GREEN;
-    Output << "Successfully loaded model '" << m_pController->GetName() << "'.";
+void MainConsoleView::Display() {
+    Output << Palette::FG_GRAY << "Enter nothing to create a new model.";
     Output << Palette::CLEAR << endl;
+    string Path = Ask("Enter model path: ", true);
+    if (!Path.empty()) {
+        Result Res = static_cast<Result>(m_pController->LoadModel(Path));
+        if (Res != Result::OK) {
+            Output << Palette::FG_RED;
+            Output << "error: " << ResultToString(Res); 
+            Output << Palette::CLEAR << endl;
+            return;
+        }
+        Output << Palette::FG_GREEN;
+        Output << "Successfully loaded model '" << m_pController->GetName();
+        Output << "'." << Palette::CLEAR << endl;
+        m_Prompt = "(" + m_pController->GetName() + ") #> ";
+    }
     ConsoleViewBase::Display();
+}
+
+/**********************************************************************
+【函数名称】 CommandSetName
+【函数功能】 实现 name 命令。
+【参数】 无
+【返回值】
+    命令发生的错误。
+【开发者及日期】 赵一彤 2024/7/24
+**********************************************************************/
+ConsoleViewBase::Result MainConsoleView::CommandSetName() {
+    string Name = Ask("Rename to: ");
+    m_pController->SetName(Name);
+    m_Prompt = "(" + Name + ") #> ";
+    return Result::OK;
 }
 
 /**********************************************************************

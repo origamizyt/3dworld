@@ -47,7 +47,7 @@ FacesConsoleView::FacesConsoleView(
     istream& Input,
     ostream& Output
 ): ConsoleViewBase(Controller, Input, Output) {
-    m_Prompt = "faces#> ";
+    m_Prompt = "(" + Controller->GetName() + ") faces#> ";
     RegisterCommand(
         "list",
         bind(&FacesConsoleView::CommandListFaces, this),

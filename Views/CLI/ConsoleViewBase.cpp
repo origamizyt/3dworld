@@ -30,7 +30,7 @@ namespace Cli {
 【返回值】 无
 【开发者及日期】 赵一彤 2024/7/24
 **********************************************************************/
-void ConsoleViewBase::Display() const {
+void ConsoleViewBase::Display() {
     Output << Palette::FG_GRAY << "Type ? for help." << Palette::CLEAR << endl;
     while (true) {
         string line = Ask(m_Prompt, true);

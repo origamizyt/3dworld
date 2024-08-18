@@ -101,7 +101,7 @@ class ConsoleViewBase: public ViewBase {
         【返回值】 无
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
-        void Display() const override;
+        void Display() override;
 
     protected:
         // 询问命令时的提示符

@@ -46,7 +46,7 @@ LinesConsoleView::LinesConsoleView(
     istream& Input,
     ostream& Output
 ): ConsoleViewBase(Controller, Input, Output) {
-    m_Prompt = "lines#> ";
+    m_Prompt = "(" + Controller->GetName() + ") lines#> ";
     RegisterCommand(
         "list",
         bind(&LinesConsoleView::CommandListLines, this),
