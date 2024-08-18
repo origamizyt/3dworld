@@ -46,6 +46,8 @@ namespace Controllers {
         PointToString (protected): 将点转化为字符串，纯虚函数。
         LineToString (protected): 将线段转化为字符串，纯虚函数。
         FaceToString (protected): 将面转化为字符串，纯虚函数。
+    操作符：
+        删除赋值运算符。
 【开发者及日期】 赵一彤 2024/7/24
 *************************************************************************/
 class ControllerBase {
@@ -312,6 +314,11 @@ class ControllerBase {
         【开发者及日期】 赵一彤 2024/7/24
         **********************************************************************/
         Result SaveModel(string Path);
+
+        // 操作符
+
+        // 删除赋值运算符
+        ControllerBase& operator=(const ControllerBase& Other) = delete;
 
         // 虚析构函数
         virtual ~ControllerBase() = default;
